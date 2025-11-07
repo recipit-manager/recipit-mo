@@ -1,0 +1,40 @@
+let socket;
+
+window.addEventListener("DOMContentLoaded", () => {
+    const isLogin = document.body.getAttribute("data-is-login");
+    if (isLogin === "true") {
+        connectWebSocket();
+    }
+});
+
+function connectWebSocket() {
+    if (socket && socket.readyState === WebSocket.OPEN) return;
+
+    socket = new WebSocket("ws://localhost:8080/ws/notice");
+
+    socket.onopen = () => {
+        console.log("WebSocket 연결됨");
+    };
+
+    socket.onmessage = (event) => {
+        const message = event.data;
+        console.log("서버로부터 수신:", message);
+
+        if (message === "NEW_NOTICE") {
+            showNoticeDot();
+        }
+    };
+
+    socket.onclose = () => {
+        console.log("WebSocket 종료됨. 5초 후 재연결...");
+        setTimeout(connectWebSocket, 5000);
+    };
+
+    socket.onerror = (err) => {
+        console.error("WebSocket 오류:", err);
+    };
+}
+
+function showNoticeDot() {
+    document.getElementById("noticeDot").style.display = "block";
+}
