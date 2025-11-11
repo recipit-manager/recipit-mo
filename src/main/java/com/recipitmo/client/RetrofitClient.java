@@ -4,8 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.recipitmo.service.CommonService;
 import com.recipitmo.service.UserService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import retrofit2.Retrofit;
-import retrofit2.Retrofit.Builder;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Component
