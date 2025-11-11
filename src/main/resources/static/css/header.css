@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px 10px;
+    padding: 8px 16px;
     border-bottom: 1px solid #ddd;
     background-color: #fff;
     position: sticky;
@@ -21,16 +21,21 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-wrap: nowrap;
 }
 
 .icon-btn {
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
     gap: 6px;
     text-decoration: none;
     color: #333;
     font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .icon-btn img {

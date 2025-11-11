@@ -2,6 +2,7 @@ package com.recipitmo.client;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.recipitmo.service.CommonService;
 import com.recipitmo.service.UserService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -14,6 +15,10 @@ public class RetrofitClient {
 
     public static UserService getUserApiService() {
         return getInstance().create(UserService.class);
+    }
+
+    public static CommonService getCommonService() {
+        return getInstance().create(CommonService.class);
     }
 
     private static Retrofit getInstance() {

@@ -10,8 +10,8 @@
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
         <main>
-            <h2>환영합니다!</h2>
-            <p>여기는 홈 화면입니다.</p>
+            <h2>Recipit</h2>
+            <p>MainPage</p>
         </main>
 
         <script src="/js/header.js" defer></script>
