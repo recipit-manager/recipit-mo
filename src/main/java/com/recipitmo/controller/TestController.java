@@ -31,7 +31,7 @@ public class TestController {
 
         try {
             this.logger.info(getTest.clone().execute().body().toString());
-            mav.addObject("data", getTest.clone().execute().body());
+            mav.addObject("response", getTest.clone().execute().body());
         } catch (IOException e) {
             e.printStackTrace();
         }

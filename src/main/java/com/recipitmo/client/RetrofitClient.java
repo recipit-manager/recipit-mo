@@ -3,12 +3,20 @@ package com.recipitmo.client;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.recipitmo.service.TestService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import retrofit2.Retrofit;
 import retrofit2.Retrofit.Builder;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+@Component
 public class RetrofitClient {
-    private static final String BASE_URL = "http://local-recipit-api.com:8080/";
+    private static String BASE_URL;
+
+    @Value("${api.base-url}")
+    private void setBaseUrl(String baseUrl) {
+        BASE_URL = baseUrl;
+    }
 
     public RetrofitClient() {
     }
@@ -19,6 +27,6 @@ public class RetrofitClient {
 
     private static Retrofit getInstance() {
         Gson gson = (new GsonBuilder()).setLenient().create();
-        return (new Builder()).baseUrl("http://local-recipit-api.com:8080/").addConverterFactory(GsonConverterFactory.create(gson)).build();
+        return (new Builder()).baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create(gson)).build();
     }
 }
