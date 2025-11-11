@@ -5,10 +5,17 @@ import com.google.gson.GsonBuilder;
 import com.recipitmo.service.CommonService;
 import com.recipitmo.service.UserService;
 import retrofit2.Retrofit;
+import retrofit2.Retrofit.Builder;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+@Component
 public class RetrofitClient {
-    private static final String BASE_URL = "http://localhost:8080/";
+    private static String BASE_URL;
+
+    @Value("${api.base-url}")
+    private void setBaseUrl(String baseUrl) {
+        BASE_URL = baseUrl;
+    }
 
     public RetrofitClient() {
     }
