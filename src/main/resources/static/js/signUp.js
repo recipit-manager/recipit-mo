@@ -156,7 +156,6 @@ function initEmailValidation() {
     initEmailSendCode();
     initEmailVerifyCode();
 
-    // ✅ 인증코드 전송
     function initEmailSendCode() {
         const $sendCodeBtn = document.getElementById("btnSendCode");
         const $emailInfo = document.getElementById("emailInfo");
@@ -268,7 +267,6 @@ function initEmailValidation() {
         }
     }
 
-    // ✅ 인증코드 검증
     function initEmailVerifyCode() {
         const $verifyCode = document.getElementById("verifyCode");
         const $btnVerify = document.getElementById("checkVerifyCode");
@@ -326,7 +324,6 @@ function initPasswordValidation() {
     const $btnTooltip = document.getElementById("btnPwdTooltip");
     const $tooltip = document.getElementById("pwdTooltip");
 
-    // ✅ 비밀번호 유효성 규칙
     const isValidPassword = (pwd) => {
         const length = /^.{8,16}$/;
         const upper = /[A-Z]/;
@@ -344,7 +341,6 @@ function initPasswordValidation() {
         );
     };
 
-    // ✅ 비밀번호 입력 시 유효성 검사
     $pwd.addEventListener("input", () => {
         const val = $pwd.value;
         if (!val) {
@@ -362,7 +358,6 @@ function initPasswordValidation() {
         if ($pwdConfirm.value) comparePasswords();
     });
 
-    // ✅ 비밀번호 일치 여부 확인
     const comparePasswords = () => {
         if (!$pwdConfirm.value) {
             uiUtils.clearMsg($errorConfirm);
@@ -377,14 +372,12 @@ function initPasswordValidation() {
 
     $pwdConfirm.addEventListener("input", comparePasswords);
 
-    // ✅ 비밀번호 보기 토글
     $btnToggle.addEventListener("click", () => {
         const isHidden = $pwd.type === "password";
         $pwd.type = isHidden ? "text" : "password";
         $btnToggle.classList.toggle("active", isHidden);
     });
 
-    // ✅ 비밀번호 규칙 안내 툴팁
     $btnTooltip.addEventListener("click", () => {
         $tooltip.classList.toggle("show");
     });
@@ -394,7 +387,6 @@ function initPasswordValidation() {
         }
     });
 
-    // ✅ 회원가입 제출 전 비밀번호 검증
     window.validatePasswordBeforeSubmit = function () {
         const pwd = $pwd.value.trim();
         const confirm = $pwdConfirm.value.trim();
@@ -489,7 +481,7 @@ function initPhoneNumberValidation() {
             return false;
         }
 
-        if (!regex) return true; // 국가 선택에 따라 정규식 없을 수도 있음
+        if (!regex) return true;
 
         const pattern = new RegExp(regex);
 
@@ -516,7 +508,6 @@ function initSignUpButton() {
     const $password = document.getElementById("password");
     const $phoneNumber = document.getElementById("phoneNumber");
 
-    // ✅ 이름 검증
     const validateName = () => {
         const first = $firstName.value.trim();
         const last = $lastName.value.trim();
@@ -529,7 +520,6 @@ function initSignUpButton() {
         return true;
     };
 
-    // ✅ 회원가입 성공/오류 모달
     const showModal = (message, success = false) => {
         let $modal = document.getElementById("signUpModal");
         if (!$modal) {

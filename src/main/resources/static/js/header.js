@@ -21,33 +21,27 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-/* ===============================
-   🔹 WebSocket 연결
-================================ */
 function connectWebSocket() {
     if (socket && socket.readyState === WebSocket.OPEN) return;
 
     socket = new WebSocket("ws://localhost:8080/ws/notice");
 
-    socket.onopen = () => console.log("✅ WebSocket 연결됨");
+    socket.onopen = () => console.log("WebSocket 연결됨");
 
     socket.onmessage = (event) => {
         const message = event.data;
-        console.log("📩 서버로부터 수신:", message);
+        console.log("서버로부터 수신:", message);
         if (message === "NEW_NOTICE") showNoticeDot();
     };
 
     socket.onclose = () => {
-        console.log("⚠️ WebSocket 종료됨. 5초 후 재연결...");
+        console.log("WebSocket 종료됨. 5초 후 재연결...");
         setTimeout(connectWebSocket, 5000);
     };
 
-    socket.onerror = (err) => console.error("🚨 WebSocket 오류:", err);
+    socket.onerror = (err) => console.error("WebSocket 오류:", err);
 }
 
-/* ===============================
-   🔹 알림 뱃지 표시
-================================ */
 function showNoticeDot() {
     const dot = document.getElementById("noticeDot");
     if (dot) dot.style.display = "block";

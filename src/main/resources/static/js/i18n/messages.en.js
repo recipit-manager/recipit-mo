@@ -56,7 +56,7 @@ window.I18N_EN = {
         verify_label: "Verification Code",
         verify_placeholder: "Enter code",
         password_label: "Password",
-        password_placeholder: "8–16 chars with letters, numbers & symbols",
+        password_placeholder: "8–16 chars with letters, numbers, symbols",
         password_confirm_label: "Confirm Password",
         password_confirm_placeholder: "Re-enter password",
         password_rule_1: "8 to 16 characters",
