@@ -21,23 +21,23 @@
         });
     }
 
-    window.t = function t(key, params) {
+    window.translate = function translate(key, params) {
         const dict = getDict();
         const val = getByPath(dict, key);
         return typeof val === "string" ? interpolate(val, params) : val;
     };
 
     window.applyI18nTexts = function applyI18nTexts() {
-        document.querySelectorAll("[data-i18n]").forEach((el) => {
-            const key = el.getAttribute("data-i18n");
-            const text = t(key);
-            if (text != null) el.textContent = text;
+        document.querySelectorAll("[data-i18n]").forEach(($el) => {
+            const key = $el.getAttribute("data-i18n");
+            const text = translate(key);
+            if (text != null) $el.textContent = text;
         });
 
-        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-            const key = el.getAttribute("data-i18n-placeholder");
-            const text = t(key);
-            if (text != null) el.setAttribute("placeholder", text);
+        document.querySelectorAll("[data-i18n-placeholder]").forEach(($el) => {
+            const key = $el.getAttribute("data-i18n-placeholder");
+            const text = translate(key);
+            if (text != null) $el.setAttribute("placeholder", text);
         });
 
     };

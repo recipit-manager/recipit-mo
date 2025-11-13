@@ -29,7 +29,7 @@
             </span>
         </a>
 
-        <select class="language-select">
+        <select id="languageSelect">
             <option value="KO" ${selectedLanguage == 'KO' ? 'selected' : ''}>언어선택(한국어)</option>
             <option value="EN" ${selectedLanguage == 'EN' ? 'selected' : ''}>언어선택(English)</option>
         </select>

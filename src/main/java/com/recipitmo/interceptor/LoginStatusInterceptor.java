@@ -2,7 +2,7 @@ package com.recipitmo.interceptor;
 
 import com.recipitmo.client.RetrofitClient;
 import com.recipitmo.common.Constants;
-import com.recipitmo.dto.apiResponse;
+import com.recipitmo.dto.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -15,10 +15,12 @@ public class LoginStatusInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
                            Object handler, ModelAndView modelAndView) throws Exception {
 
-        if (modelAndView == null) return;
+        if (modelAndView == null) {
+            return;
+        }
 
         try {
-            Response<apiResponse<String>> apiResponse = RetrofitClient
+            Response<ApiResponse<String>> apiResponse = RetrofitClient
                     .getUserApiService()
                     .getLoginStatus(request.getHeader("Cookie"))
                     .execute();
@@ -27,10 +29,9 @@ public class LoginStatusInterceptor implements HandlerInterceptor {
                 response.addHeader("Set-Cookie", cookie);
             }
 
-            apiResponse<String> body = apiResponse.body();
+            ApiResponse<String> body = apiResponse.body();
 
-            boolean isLogin = body != null
-                    && Constants.responseCode.SUCCESS.equals(body.getCode());
+            boolean isLogin = body != null && Constants.responseCode.SUCCESS.equals(body.getCode());
 
             modelAndView.addObject("isLogin", isLogin);
             modelAndView.addObject("userNickname",

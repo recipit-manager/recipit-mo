@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     console.log(isLogin);
 
-    const $languageSelect = document.querySelector(".language-select");
+    const $languageSelect = document.getElementById("languageSelect");
     if (!$languageSelect) return;
 
     $languageSelect.value = localStorage.getItem("language") || "KO";
@@ -43,6 +43,6 @@ function connectWebSocket() {
 }
 
 function showNoticeDot() {
-    const dot = document.getElementById("noticeDot");
-    if (dot) dot.style.display = "block";
+    const $dot = document.getElementById("noticeDot");
+    if ($dot) $dot.style.display = "block";
 }

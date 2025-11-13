@@ -2,7 +2,7 @@ package com.recipitmo.client.api;
 
 import com.recipitmo.client.RetrofitClient;
 import com.recipitmo.dto.CountryDto;
-import com.recipitmo.dto.apiResponse;
+import com.recipitmo.dto.ApiResponse;
 import com.recipitmo.service.CommonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +22,9 @@ public class CommonApi {
         this.commonService = RetrofitClient.getCommonService();
     }
 
-    public List<String> getEmailDomainList(String lang) {
+    public List<String> getEmailDomainList(String language) {
         try {
-            Response<apiResponse<List<String>>> response = commonService.getEmailDomainList(lang).execute();
+            Response<ApiResponse<List<String>>> response = commonService.getEmailDomainList(language).execute();
 
             if (response.isSuccessful() && response.body() != null) {
                 return response.body().getData();
@@ -40,8 +40,7 @@ public class CommonApi {
 
     public List<CountryDto> getCountryList(String language) {
         try {
-            Response<apiResponse<List<CountryDto>>> response =
-                    commonService.getCountryList(language, language).execute();
+            Response<ApiResponse<List<CountryDto>>> response = commonService.getCountryList(language, language).execute();
 
             if (response.isSuccessful() && response.body() != null) {
                 return response.body().getData();
