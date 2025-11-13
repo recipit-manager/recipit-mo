@@ -20,18 +20,19 @@
         </a>
 
         <a href="${isLogin eq 'true' ? '/mypage' : '/login'}" class="icon-btn">
-            <img src="/images/profile.png" alt="마이페이지">
-            <span>
-                <c:choose>
-                    <c:when test="${isLogin eq 'true'}">${userNickname}</c:when>
-                    <c:otherwise>로그인</c:otherwise>
-                </c:choose>
+            <img src="/images/profile.png">
+            <span data-i18n="${isLogin eq 'true' ? '' : 'ui.login_link'}">
+                <c:if test="${isLogin eq 'true'}">${userNickname}</c:if>
             </span>
         </a>
 
         <select id="languageSelect">
-            <option value="KO" ${selectedLanguage == 'KO' ? 'selected' : ''}>언어선택(한국어)</option>
-            <option value="EN" ${selectedLanguage == 'EN' ? 'selected' : ''}>언어선택(English)</option>
+            <option value="KO"
+            ${selectedLanguage == 'KO' ? 'selected' : ''}
+                    data-i18n="ui.language_korean"></option>
+            <option value="EN"
+            ${selectedLanguage == 'EN' ? 'selected' : ''}
+                    data-i18n="ui.language_english"></option>
         </select>
     </div>
 </header>

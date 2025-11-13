@@ -1,11 +1,16 @@
-document.addEventListener("DOMContentLoaded",  () => {
+import { uiUtil } from "/js/common/uiUtil.js";
+import { translate, applyI18nTexts } from "/js/i18n/i18n.js";
+import { formatUtil } from "/js/common/formatUtil.js";
+import { validationUtil } from "/js/common/validationUtil.js";
+
+export function initSignUp() {
     initNicknameValidation();
     initEmailValidation();
     initPasswordValidation();
     initPhoneNumberValidation();
     initSignUpButton();
     applyI18nTexts();
-});
+}
 
 const API_BASE = "http://localhost:8080";
 const API_URL = {
@@ -14,28 +19,6 @@ const API_URL = {
     EMAIL_VERIFY: (code, email) =>
         `${API_BASE}/user/email/authentication/${encodeURIComponent(code)}?email=${encodeURIComponent(email)}`,
     SIGN_UP: `${API_BASE}/user`,
-};
-const COLORS = {
-    ERROR: "#c00",
-    SUCCESS: "#2e7d32",
-    WARNING: "#555",
-};
-const uiUtils = {
-    showMsg($el, text, color = COLORS.ERROR) {
-        if (!$el) return;
-        $el.textContent = text || "";
-        $el.style.color = color;
-    },
-    clearMsg($el) {
-        if (!$el) return;
-        $el.textContent = "";
-    },
-    showSuccess($el, text) {
-        this.showMsg($el, text, COLORS.SUCCESS);
-    },
-    showWarning($el, text) {
-        this.showMsg($el, text, COLORS.WARNING);
-    },
 };
 
 async function fetchJson(url, options = {}) {
@@ -57,21 +40,19 @@ function initNicknameValidation() {
     let nicknameVerified = false;
     let lastCheckedNickname = "";
 
-    const isValidNickname = (v) => /^[A-Za-z0-9가-힣]{2,8}$/.test(v);
-
     $nickname.addEventListener("input", (e) => {
-        if (e.isComposing) return;
+        if (e.isComposing) { return; }
 
         const cleaned = $nickname.value.replace(/[^A-Za-z0-9가-힣]/g, "");
         if (cleaned !== $nickname.value) $nickname.value = cleaned;
 
         if (nicknameVerified && $nickname.value !== lastCheckedNickname) {
             nicknameVerified = false;
-            uiUtils.showWarning($msg, translate("nickname.check_needed"));
+            uiUtil.showWarning($msg, translate("nickname.check_needed"));
         }
 
         if ($nickname.value.length >= 1 && $msg.textContent === translate("nickname.input_required")) {
-            uiUtils.clearMsg($msg);
+            uiUtil.clearMsg($msg);
         }
     });
 
@@ -79,12 +60,13 @@ function initNicknameValidation() {
         const nick = ($nickname.value || "").trim();
 
         if (!nick) {
-            uiUtils.showMsg($msg, translate("nickname.input_required"));
+            uiUtil.showMsg($msg, translate("nickname.input_required"));
             nicknameVerified = false;
             return;
         }
-        if (!isValidNickname(nick)) {
-            uiUtils.showMsg($msg, translate("nickname.invalid"));
+
+        if (!validationUtil.isValidNickname(nick)) {
+            uiUtil.showMsg($msg, translate("nickname.invalid"));
             nicknameVerified = false;
             return;
         }
@@ -98,24 +80,24 @@ function initNicknameValidation() {
             });
 
             if (data.code !== "0000") {
-                uiUtils.showMsg($msg, data.message || translate("common.server_error"));
+                uiUtil.showMsg($msg, data.message || translate("common.server_error"));
                 nicknameVerified = false;
                 return;
             }
 
             if (data.data === "Y") {
-                uiUtils.showMsg($msg, translate("nickname.already_used"));
+                uiUtil.showMsg($msg, translate("nickname.already_used"));
                 nicknameVerified = false;
             } else if (data.data === "N") {
-                uiUtils.showSuccess($msg, translate("nickname.available"));
+                uiUtil.showSuccess($msg, translate("nickname.available"));
                 nicknameVerified = true;
                 lastCheckedNickname = nick;
             } else {
-                uiUtils.showMsg($msg, translate("nickname.bad_response"));
+                uiUtil.showMsg($msg, translate("nickname.bad_response"));
                 nicknameVerified = false;
             }
         } catch (e) {
-            uiUtils.showMsg($msg, translate("common.server_error"));
+            uiUtil.showMsg($msg, translate("common.server_error"));
             nicknameVerified = false;
         }
     });
@@ -124,15 +106,15 @@ function initNicknameValidation() {
         const nick = ($nickname.value || "").trim();
 
         if (!nick) {
-            uiUtils.showMsg($msg, translate("nickname.input_required"));
+            uiUtil.showMsg($msg, translate("nickname.input_required"));
             return false;
         }
-        if (!isValidNickname(nick)) {
-            uiUtils.showMsg($msg, translate("nickname.invalid"));
+        if (!validationUtil.isValidNickname(nick)) {
+            uiUtil.showMsg($msg, translate("nickname.invalid"));
             return false;
         }
         if (!nicknameVerified || nick !== lastCheckedNickname) {
-            uiUtils.showWarning($msg, translate("nickname.check_needed"));
+            uiUtil.showWarning($msg, translate("nickname.check_needed"));
             return false;
         }
 
@@ -154,9 +136,6 @@ function initEmailValidation() {
         if (!local || !domain) return "";
         return `${local}@${domain}`;
     };
-
-    const isValidEmail = (email) =>
-        /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email);
 
     initEmailSendCode();
     initEmailVerifyCode();
@@ -186,7 +165,7 @@ function initEmailValidation() {
             el.addEventListener("input", () => {
                 $sendCodeBtn.disabled = false;
                 $sendCodeBtn.textContent = translate("ui.send_code");
-                uiUtils.clearMsg($emailInfo);
+                uiUtil.clearMsg($emailInfo);
                 if (waitTimer) {
                     clearInterval(waitTimer);
                     waitTimer = null;
@@ -199,15 +178,15 @@ function initEmailValidation() {
             const email = getEmailValue();
 
             if (!email) {
-                return uiUtils.showMsg($emailInfo, translate("email.input_required"));
+                return uiUtil.showMsg($emailInfo, translate("email.input_required"));
             }
 
-            if (!isValidEmail(email)) {
-                return uiUtils.showMsg($emailInfo, translate("email.invalid"));
+            if (!validationUtil.isValidEmail(email)) {
+                return uiUtil.showMsg($emailInfo, translate("email.invalid"));
             }
 
             if (isWaiting) {
-                return uiUtils.showMsg($emailInfo, translate("email.try_later", { sec: remainSeconds }));
+                return uiUtil.showMsg($emailInfo, translate("email.try_later", { sec: remainSeconds }));
             }
 
             $sendCodeBtn.disabled = true;
@@ -230,7 +209,7 @@ function initEmailValidation() {
                     const remain = Math.max(0, 60 - diffSec);
 
                     if (sendEmailResult === true) {
-                        uiUtils.showSuccess($emailInfo, translate("email.sent"));
+                        uiUtil.showSuccess($emailInfo, translate("email.sent"));
                         $sendCodeBtn.textContent = translate("ui.resend_code");
                         lastSentEmail = email;
 
@@ -239,18 +218,18 @@ function initEmailValidation() {
 
                         startCooldown(60);
                     } else if (remain > 0) {
-                        uiUtils.showMsg($emailInfo, translate("email.try_later", { sec: remain }));
+                        uiUtil.showMsg($emailInfo, translate("email.try_later", { sec: remain }));
                         startCooldown(remain);
                     } else {
-                        uiUtils.showWarning($emailInfo, translate("email.retry_available"));
+                        uiUtil.showWarning($emailInfo, translate("email.retry_available"));
                         resetButton();
                     }
                 } else {
-                    uiUtils.showMsg($emailInfo, data.message || translate("email.send_failed"));
+                    uiUtil.showMsg($emailInfo, data.message || translate("email.send_failed"));
                 }
             } catch (e) {
                 console.error("[signUp] 이메일 전송 실패:", e);
-                uiUtils.showMsg($emailInfo, translate("common.server_error"));
+                uiUtil.showMsg($emailInfo, translate("common.server_error"));
             } finally {
                 if (!isWaiting) $sendCodeBtn.disabled = false;
             }
@@ -291,13 +270,14 @@ function initEmailValidation() {
             const verifyCode = ($verifyCode.value || "").trim();
 
             if (!verifyCode)
-                return uiUtils.showMsg($verifyInfo, translate("email.code_required"));
-            if (!/^[A-Z0-9]{8}$/.test(verifyCode))
-                return uiUtils.showMsg($verifyInfo, translate("email.code_invalid_rule"));
+                return uiUtil.showMsg($verifyInfo, translate("email.code_required"));
+
+            if (!validationUtil.isValidVerifyCode(verifyCode))
+                return uiUtil.showMsg($verifyInfo, translate("email.code_invalid_rule"));
 
             const email = getEmailValue();
-            if (!isValidEmail(email))
-                return uiUtils.showMsg($verifyInfo, translate("email.invalid"));
+            if (!validationUtil.isValidEmail(email))
+                return uiUtil.showMsg($verifyInfo, translate("email.invalid"));
 
             try {
                 const data = await fetchJson(API_URL.EMAIL_VERIFY(verifyCode, email), {
@@ -308,23 +288,23 @@ function initEmailValidation() {
                 });
 
                 if (data.code === "0000" && data.data === true) {
-                    uiUtils.showSuccess($verifyInfo, translate("email.verified"));
+                    uiUtil.showSuccess($verifyInfo, translate("email.verified"));
                     window.isEmailVerified = true;
                     $verifyCode.disabled = true;
                     $btnVerify.disabled = true;
                 } else {
-                    uiUtils.showMsg($verifyInfo, translate("email.code_wrong"));
+                    uiUtil.showMsg($verifyInfo, translate("email.code_wrong"));
                     window.isEmailVerified = false;
                 }
             } catch (e) {
-                uiUtils.showMsg($verifyInfo, translate("common.server_error"));
+                uiUtil.showMsg($verifyInfo, translate("common.server_error"));
                 window.isEmailVerified = false;
             }
         });
 
         window.validateEmailBeforeSubmit = function () {
             if (!window.isEmailVerified) {
-                uiUtils.showMsg($verifyInfo, translate("email.verify_required"));
+                uiUtil.showMsg($verifyInfo, translate("email.verify_required"));
                 return false;
             }
             return true;
@@ -342,35 +322,18 @@ function initPasswordValidation() {
     const $btnTooltip = document.getElementById("btnPwdTooltip");
     const $tooltip = document.getElementById("pwdTooltip");
 
-    const isValidPassword = (pwd) => {
-        const length = /^.{8,16}$/;
-        const upper = /[A-Z]/;
-        const lower = /[a-z]/;
-        const number = /[0-9]/;
-        const special = /[!@#$%^&*]/;
-        const repeat = /(.)\1\1/;
-        return (
-            length.test(pwd) &&
-            upper.test(pwd) &&
-            lower.test(pwd) &&
-            number.test(pwd) &&
-            special.test(pwd) &&
-            !repeat.test(pwd)
-        );
-    };
-
     $pwd.addEventListener("input", () => {
         const val = $pwd.value;
         if (!val) {
-            uiUtils.clearMsg($errorPwd);
-            uiUtils.clearMsg($errorConfirm);
+            uiUtil.clearMsg($errorPwd);
+            uiUtil.clearMsg($errorConfirm);
             return;
         }
 
-        if (!isValidPassword(val)) {
-            uiUtils.showMsg($errorPwd, translate("password.invalid"));
+        if (!validationUtil.isValidPassword(val)) {
+            uiUtil.showMsg($errorPwd, translate("password.invalid"));
         } else {
-            uiUtils.clearMsg($errorPwd);
+            uiUtil.clearMsg($errorPwd);
         }
 
         if ($pwdConfirm.value) comparePasswords();
@@ -378,13 +341,13 @@ function initPasswordValidation() {
 
     const comparePasswords = () => {
         if (!$pwdConfirm.value) {
-            uiUtils.clearMsg($errorConfirm);
+            uiUtil.clearMsg($errorConfirm);
             return;
         }
         if ($pwd.value === $pwdConfirm.value) {
-            uiUtils.showSuccess($errorConfirm, translate("password.match"));
+            uiUtil.showSuccess($errorConfirm, translate("password.match"));
         } else {
-            uiUtils.showMsg($errorConfirm, translate("password.mismatch"));
+            uiUtil.showMsg($errorConfirm, translate("password.mismatch"));
         }
     };
 
@@ -410,24 +373,24 @@ function initPasswordValidation() {
         const confirm = $pwdConfirm.value.trim();
 
         if (!pwd) {
-            uiUtils.showMsg($errorPwd, translate("password.input_required"));
+            uiUtil.showMsg($errorPwd, translate("password.input_required"));
             return false;
         }
-        if (!isValidPassword(pwd)) {
-            uiUtils.showMsg($errorPwd, translate("password.invalid"));
+        if (!validationUtil.isValidPassword(pwd)) {
+            uiUtil.showMsg($errorPwd, translate("password.invalid"));
             return false;
         }
         if (!confirm) {
-            uiUtils.showMsg($errorConfirm, translate("password.confirm_required"));
+            uiUtil.showMsg($errorConfirm, translate("password.confirm_required"));
             return false;
         }
         if (pwd !== confirm) {
-            uiUtils.showMsg($errorConfirm, translate("password.mismatch"));
+            uiUtil.showMsg($errorConfirm, translate("password.mismatch"));
             return false;
         }
 
-        uiUtils.clearMsg($errorPwd);
-        uiUtils.showSuccess($errorConfirm, translate("password.match"));
+        uiUtil.clearMsg($errorPwd);
+        uiUtil.showSuccess($errorConfirm, translate("password.match"));
         return true;
     };
 }
@@ -445,48 +408,23 @@ function initPhoneNumberValidation() {
         };
     };
 
-    const parseFormatGroups = (format) => {
-        if (!format) return [];
-        const parts = format.split(/[^0-9]/).filter(Boolean);
-        return parts.map((p) => p.length);
-    };
-
-    const autoFormatNumber = (digits, format) => {
-        if (!format) return digits;
-        const groups = parseFormatGroups(format);
-        let formatted = "";
-        let idx = 0;
-
-        for (let i = 0; i < groups.length; i++) {
-            const groupLen = groups[i];
-            const part = digits.slice(idx, idx + groupLen);
-            formatted += part;
-            idx += groupLen;
-
-            if (idx < digits.length && i < groups.length - 1) {
-                formatted += " ";
-            }
-        }
-        return formatted.trim();
-    };
-
     $countryCode.addEventListener("change", () => {
         const { format } = getSelectedCountry();
         $phoneNumber.placeholder = format;
         $phoneNumber.value = "";
-        uiUtils.clearMsg($phoneError);
+        uiUtil.clearMsg($phoneError);
     });
 
     $phoneNumber.addEventListener("input", (e) => {
-        uiUtils.clearMsg($phoneError);
+        uiUtil.clearMsg($phoneError);
         const { regex, format } = getSelectedCountry();
 
         let digits = e.target.value.replace(/\D/g, "");
-        e.target.value = autoFormatNumber(digits, format);
+        e.target.value = formatUtil.autoFormatNumber(digits, format);
 
         const pattern = new RegExp(regex);
         if (digits && !pattern.test(e.target.value)) {
-            uiUtils.showMsg($phoneError, translate("phone.invalid"));
+            uiUtil.showMsg($phoneError, translate("phone.invalid"));
         }
     });
 
@@ -495,7 +433,7 @@ function initPhoneNumberValidation() {
         const value = $phoneNumber.value.trim();
 
         if (!value) {
-            uiUtils.showMsg($phoneError, translate("phone.input_required"));
+            uiUtil.showMsg($phoneError, translate("phone.input_required"));
             return false;
         }
 
@@ -504,11 +442,11 @@ function initPhoneNumberValidation() {
         const pattern = new RegExp(regex);
 
         if (!pattern.test(value)) {
-            uiUtils.showMsg($phoneError, translate("phone.invalid"));
+            uiUtil.showMsg($phoneError, translate("phone.invalid"));
             return false;
         }
 
-        uiUtils.clearMsg($phoneError);
+        uiUtil.clearMsg($phoneError);
         return true;
     };
 }
@@ -531,37 +469,11 @@ function initSignUpButton() {
         const last = $lastName.value.trim();
 
         if (!first || !last) {
-            uiUtils.showMsg($nameError, translate("signup.need_full_name"));
+            uiUtil.showMsg($nameError, translate("signup.need_full_name"));
             return false;
         }
-        uiUtils.clearMsg($nameError);
+        uiUtil.clearMsg($nameError);
         return true;
-    };
-
-    const showModal = (message, success = false) => {
-        let $modal = document.getElementById("signUpModal");
-        if (!$modal) {
-            $modal = document.createElement("div");
-            $modal.id = "signUpModal";
-            $modal.className = "modal-overlay";
-            $modal.innerHTML = `
-                <div class="modal-box">
-                    <p id="modalMsg"></p>
-                    <button id="modalClose" class="btn-small">${translate("common.confirm")}</button>
-                </div>
-            `;
-            document.body.appendChild($modal);
-        }
-
-        const $msg = document.getElementById("modalMsg");
-        $msg.textContent = message;
-        $msg.style.color = success ? COLORS.SUCCESS : COLORS.ERROR;
-        $modal.style.display = "flex";
-
-        document.getElementById("modalClose").onclick = () => {
-            $modal.style.display = "none";
-            if (success) window.location.href = "/login";
-        };
     };
 
     $btnSignUp.addEventListener("click", async () => {
@@ -573,8 +485,9 @@ function initSignUpButton() {
 
         const $countrySelect = document.getElementById("countryCode");
         const selected = $countrySelect.options[$countrySelect.selectedIndex];
-        const countryGroupCode = selected.dataset.groupcode;
         const countryCode = selected.value;
+
+        console.log("countryCode: ", typeof countryCode);
 
         const email = (() => {
             const local = $emailLocal.value.trim();
@@ -594,10 +507,7 @@ function initSignUpButton() {
             nickname: $nickname.value.trim(),
             email: email,
             password: $password.value.trim(),
-            countryCode: {
-                groupCode: countryGroupCode,
-                code: countryCode,
-            },
+            countryCode: countryCode,
             phoneNumber: $phoneNumber.value.trim(),
         };
 
@@ -612,12 +522,12 @@ function initSignUpButton() {
             });
 
             if (data.code === "0000") {
-                showModal(translate("signup.success"), true);
+                uiUtil.showModal(translate("signup.success"), true);
             } else {
-                showModal(data.message);
+                uiUtil.showModal(data.message);
             }
         } catch (err) {
-            showModal(translate("common.server_error"));
+            uiUtil.showModal(translate("common.server_error"));
         }
     });
 }

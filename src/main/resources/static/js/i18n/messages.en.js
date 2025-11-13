@@ -53,6 +53,7 @@ window.I18N_EN = {
         email_domain_placeholder: "Enter domain",
         email_custom_domain: "Custom",
         send_code: "Send Code",
+        resend_code: "Resend",
         verify_label: "Verification Code",
         verify_placeholder: "Enter code",
         password_label: "Password",
@@ -66,6 +67,8 @@ window.I18N_EN = {
         phone_placeholder: "Enter phone number",
         signup_button: "Sign Up",
         login_guide: "Already have an account?",
-        login_link: "Log In"
+        login_link: "Log In",
+        language_korean: "Select Language (Korean)",
+        language_english: "Select Language (English)"
     }
 };

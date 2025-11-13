@@ -53,6 +53,7 @@ window.I18N_KO = {
         email_domain_placeholder: "도메인 입력",
         email_custom_domain: "직접입력",
         send_code: "인증코드 전송",
+        resend_code: "재전송",
         verify_label: "인증코드",
         verify_placeholder: "인증코드 입력",
         password_label: "비밀번호",
@@ -66,6 +67,8 @@ window.I18N_KO = {
         phone_placeholder: "전화번호 입력",
         signup_button: "회원가입",
         login_guide: "이미 계정이 있으신가요?",
-        login_link: "로그인"
+        login_link: "로그인",
+        language_korean: "언어선택(한국어)",
+        language_english: "언어선택(English)"
     }
 };

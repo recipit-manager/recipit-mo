@@ -71,7 +71,7 @@
         <label class="form-label required" data-i18n="ui.verify_label">인증코드</label>
         <div class="verify-input">
             <input type="text" id="verifyCode" data-i18n-placeholder="ui.verify_placeholder" placeholder="인증코드 입력">
-            <button type="button" id="checkVerifyCode" class="btn-small" data-i18n="ui.confirm_btn">확인</button>
+            <button type="button" id="checkVerifyCode" class="btn-small" data-i18n="common.confirm">확인</button>
         </div>
         <p class="error-text" id="verifyCodeInfo"></p>
     </section>
@@ -109,7 +109,6 @@
                 <c:forEach var="country" items="${countries}">
                     <option
                             value="${country.code}"
-                            data-groupCode="${country.groupCode}"
                             data-regex="${country.regex}"
                             data-format="${country.format}">
                             ${country.name} (${country.dialCode})
@@ -138,8 +137,13 @@
 
 <script src="/js/i18n/messages.ko.js"></script>
 <script src="/js/i18n/messages.en.js"></script>
-<script src="/js/i18n/i18n.js"></script>
-<script src="/js/header.js" defer></script>
-<script src="/js/signUp.js" defer></script>
+<script src="/js/common/header.js" defer></script>
+<script type="module">
+    import { initSignUp } from "/js/page/signUp.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        initSignUp();
+    });
+</script>
 </body>
 </html>

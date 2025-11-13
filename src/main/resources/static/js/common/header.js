@@ -1,12 +1,14 @@
 let socket;
 
 window.addEventListener("DOMContentLoaded", () => {
+    // applyI18nTexts();
+
     const isLogin = document.body.getAttribute("data-is-login");
     if (isLogin === "true") {
         connectWebSocket();
     }
 
-    console.log(isLogin);
+    console.log("login status: ", isLogin);
 
     const $languageSelect = document.getElementById("languageSelect");
     if (!$languageSelect) return;
