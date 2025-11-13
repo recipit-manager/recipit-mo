@@ -50,6 +50,7 @@ window.I18N_EN = {
         nickname_check_duplicate: "check duplicate",
         email_label: "Email",
         email_placeholder: "example",
+        email_select_domain: "select",
         email_domain_placeholder: "Enter domain",
         email_custom_domain: "Custom",
         send_code: "Send Code",

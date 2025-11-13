@@ -54,7 +54,7 @@
             <input type="text" id="emailLocal" data-i18n-placeholder="ui.email_placeholder" placeholder="example">
             <span class="at-symbol">@</span>
             <select id="emailDomain">
-                <option value="">선택</option>
+                <option value="" data-i18n="ui.email_select_domain">선택</option>
                 <c:forEach var="domain" items="${emailDomains}">
                     <option value="${domain}">${domain}</option>
                 </c:forEach>

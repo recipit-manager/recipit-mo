@@ -50,6 +50,7 @@ window.I18N_KO = {
         nickname_check_duplicate: "중복확인",
         email_label: "이메일",
         email_placeholder: "example",
+        email_select_domain: "선택",
         email_domain_placeholder: "도메인 입력",
         email_custom_domain: "직접입력",
         send_code: "인증코드 전송",
