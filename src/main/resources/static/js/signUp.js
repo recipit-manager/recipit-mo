@@ -90,7 +90,12 @@ function initNicknameValidation() {
         }
 
         try {
-            const data = await fetchJson(API_URL.NICKNAME_DUPLICATE(nick));
+            const data = await fetchJson(API_URL.NICKNAME_DUPLICATE(nick), {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept-Language": localStorage.getItem("language") || "KO"
+                }
+            });
 
             if (data.code !== "0000") {
                 uiUtils.showMsg($msg, data.message || translate("common.server_error"));
@@ -205,7 +210,10 @@ function initEmailValidation() {
             try {
                 const data = await fetchJson(API_URL.EMAIL_SEND, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept-Language": localStorage.getItem("language") || "KO"
+                    },
                     body: JSON.stringify({ email }),
                 });
 
@@ -287,7 +295,12 @@ function initEmailValidation() {
                 return uiUtils.showMsg($verifyInfo, translate("email.invalid"));
 
             try {
-                const data = await fetchJson(API_URL.EMAIL_VERIFY(verifyCode, email));
+                const data = await fetchJson(API_URL.EMAIL_VERIFY(verifyCode, email), {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept-Language": localStorage.getItem("language") || "KO"
+                    }
+                });
 
                 if (data.code === "0000" && data.data === true) {
                     uiUtils.showSuccess($verifyInfo, translate("email.verified"));
@@ -551,7 +564,7 @@ function initSignUpButton() {
         if (!window.validateNicknameBeforeSubmit()) return $nickname.focus();
         if (!window.validateEmailBeforeSubmit()) return $emailLocal.focus();
         if (!window.validatePasswordBeforeSubmit()) return $password.focus();
-        // if (!window.validatePhoneBeforeSubmit()) return $phoneNumber.focus();
+        if (!window.validatePhoneBeforeSubmit()) return $phoneNumber.focus();
 
         const $countrySelect = document.getElementById("countryCode");
         const selected = $countrySelect.options[$countrySelect.selectedIndex];
@@ -586,7 +599,10 @@ function initSignUpButton() {
         try {
             const data = await fetchJson(API_URL.SIGN_UP, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept-Language": localStorage.getItem("language") || "KO"
+                },
                 body: JSON.stringify(payload),
             });
 
