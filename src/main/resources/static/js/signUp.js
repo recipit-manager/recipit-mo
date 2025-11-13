@@ -198,12 +198,17 @@ function initEmailValidation() {
         $sendCodeBtn.addEventListener("click", async () => {
             const email = getEmailValue();
 
-            if (!email)
+            if (!email) {
                 return uiUtils.showMsg($emailInfo, translate("email.input_required"));
-            if (!isValidEmail(email))
+            }
+
+            if (!isValidEmail(email)) {
                 return uiUtils.showMsg($emailInfo, translate("email.invalid"));
-            if (isWaiting)
+            }
+
+            if (isWaiting) {
                 return uiUtils.showMsg($emailInfo, translate("email.try_later", { sec: remainSeconds }));
+            }
 
             $sendCodeBtn.disabled = true;
 
