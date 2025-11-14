@@ -24,7 +24,9 @@ const API_URL = {
 async function fetchJson(url, options = {}) {
     try {
         const res = await fetch(url, options);
-        if (!res.ok) throw new Error("network");
+        if (!res.ok) {
+            throw new Error("network");
+        }
         return await res.json();
     } catch (err) {
         console.error(`[fetchJson] ${url}`, err);
@@ -44,7 +46,9 @@ function initNicknameValidation() {
         if (e.isComposing) { return; }
 
         const cleaned = $nickname.value.replace(/[^A-Za-z0-9가-힣]/g, "");
-        if (cleaned !== $nickname.value) $nickname.value = cleaned;
+        if (cleaned !== $nickname.value) {
+            $nickname.value = cleaned;
+        }
 
         if (nicknameVerified && $nickname.value !== lastCheckedNickname) {
             nicknameVerified = false;
@@ -57,7 +61,7 @@ function initNicknameValidation() {
     });
 
     $btnCheck.addEventListener("click", async () => {
-        const nick = ($nickname.value || "").trim();
+        const nick = $nickname.value.trim();
 
         if (!nick) {
             uiUtil.showMsg($msg, translate("nickname.input_required"));
@@ -128,12 +132,16 @@ function initEmailValidation() {
     const $emailDomainDirect = document.getElementById("emailDomainDirect");
 
     const getEmailValue = () => {
-        const local = ($emailLocal.value || "").trim();
+        const local = $emailLocal.value.trim();
         const domain =
             $emailDomain.value === "direct"
-                ? ($emailDomainDirect.value || "").trim()
+                ? $emailDomainDirect.value.trim()
                 : $emailDomain.value;
-        if (!local || !domain) return "";
+
+        if (!local || !domain) {
+            return "";
+        }
+
         return `${local}@${domain}`;
     };
 
@@ -213,8 +221,7 @@ function initEmailValidation() {
                         $sendCodeBtn.textContent = translate("ui.resend_code");
                         lastSentEmail = email;
 
-                        const verifySection = document.getElementById("verifySection");
-                        if (verifySection) verifySection.style.display = "block";
+                        document.getElementById("verifySection").style.display = "block";
 
                         startCooldown(60);
                     } else if (remain > 0) {
@@ -231,7 +238,9 @@ function initEmailValidation() {
                 console.error("[signUp] 이메일 전송 실패:", e);
                 uiUtil.showMsg($emailInfo, translate("common.server_error"));
             } finally {
-                if (!isWaiting) $sendCodeBtn.disabled = false;
+                if (!isWaiting) {
+                    $sendCodeBtn.disabled = false;
+                }
             }
         });
 
@@ -267,7 +276,7 @@ function initEmailValidation() {
         window.isEmailVerified = false;
 
         $btnVerify.addEventListener("click", async () => {
-            const verifyCode = ($verifyCode.value || "").trim();
+            const verifyCode = $verifyCode.value.trim();
 
             if (!verifyCode)
                 return uiUtil.showMsg($verifyInfo, translate("email.code_required"));
@@ -287,7 +296,7 @@ function initEmailValidation() {
                     }
                 });
 
-                if (data.code === "0000" && data.data === true) {
+                if (data.code === "0000") {
                     uiUtil.showSuccess($verifyInfo, translate("email.verified"));
                     window.isEmailVerified = true;
                     $verifyCode.disabled = true;
@@ -336,7 +345,9 @@ function initPasswordValidation() {
             uiUtil.clearMsg($errorPwd);
         }
 
-        if ($pwdConfirm.value) comparePasswords();
+        if ($pwdConfirm.value) {
+            comparePasswords();
+        }
     });
 
     const comparePasswords = () => {
@@ -437,7 +448,9 @@ function initPhoneNumberValidation() {
             return false;
         }
 
-        if (!regex) return true;
+        if (!regex) {
+            return true;
+        }
 
         const pattern = new RegExp(regex);
 
@@ -477,17 +490,15 @@ function initSignUpButton() {
     };
 
     $btnSignUp.addEventListener("click", async () => {
-        if (!validateName()) return $firstName.focus();
-        if (!window.validateNicknameBeforeSubmit()) return $nickname.focus();
-        if (!window.validateEmailBeforeSubmit()) return $emailLocal.focus();
-        if (!window.validatePasswordBeforeSubmit()) return $password.focus();
-        if (!window.validatePhoneBeforeSubmit()) return $phoneNumber.focus();
+        if (!validateName()) { return $firstName.focus(); }
+        if (!window.validateNicknameBeforeSubmit()) { return $nickname.focus(); }
+        if (!window.validateEmailBeforeSubmit()) { return $emailLocal.focus(); }
+        if (!window.validatePasswordBeforeSubmit()) { return $password.focus(); }
+        if (!window.validatePhoneBeforeSubmit()) { return $phoneNumber.focus(); }
 
         const $countrySelect = document.getElementById("countryCode");
         const selected = $countrySelect.options[$countrySelect.selectedIndex];
         const countryCode = selected.value;
-
-        console.log("countryCode: ", typeof countryCode);
 
         const email = (() => {
             const local = $emailLocal.value.trim();

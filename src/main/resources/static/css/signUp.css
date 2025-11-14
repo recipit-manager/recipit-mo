@@ -237,6 +237,7 @@ select:focus {
 .modal-box p {
     margin-bottom: 16px;
     font-size: 15px;
+    color: #333;
 }
 
 .modal-box .btn-small {

@@ -8,8 +8,6 @@ window.addEventListener("DOMContentLoaded", () => {
         connectWebSocket();
     }
 
-    console.log("login status: ", isLogin);
-
     const $languageSelect = document.getElementById("languageSelect");
     if (!$languageSelect) return;
 

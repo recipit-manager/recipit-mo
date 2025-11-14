@@ -47,7 +47,6 @@ export const uiUtil = {
         $close.textContent = confirmText
             ? confirmText
             : translate("common.confirm");
-        $close.style.color = success ? COLORS.SUCCESS : COLORS.ERROR;
 
         modal.style.display = "flex";
 
