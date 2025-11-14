@@ -186,8 +186,10 @@ function initEmailValidation() {
 
                 isWaiting = false;
 
+                window.isEmailVerified = false;
                 $verifyCode.disabled = false;
                 $btnVerify.disabled = false;
+                uiUtil.clearMsg($verifyInfo);
             });
         });
 
@@ -231,6 +233,12 @@ function initEmailValidation() {
                         lastSentEmail = email;
 
                         document.getElementById("verifySection").style.display = "block";
+
+                        window.isEmailVerified = false;
+                        $verifyCode.disabled = false;
+                        $btnVerify.disabled = false;
+                        $verifyCode.value = "";
+                        uiUtil.clearMsg($verifyInfo);
 
                         startCooldown(60);
                     } else if (remain > 0) {
@@ -301,7 +309,7 @@ function initEmailValidation() {
                     }
                 });
 
-                if (data.code === "0000") {
+                if (data.code === "0000" && data.data === true) {
                     uiUtil.showSuccess($verifyInfo, translate("email.verified"));
                     window.isEmailVerified = true;
                     $verifyCode.disabled = true;
