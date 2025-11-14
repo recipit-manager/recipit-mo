@@ -7,7 +7,6 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     const $languageSelect = document.getElementById("languageSelect");
-    if (!$languageSelect) return;
 
     $languageSelect.value = localStorage.getItem("language") || "KO";
 
@@ -20,7 +19,9 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function connectWebSocket() {
-    if (socket && socket.readyState === WebSocket.OPEN) return;
+    if (socket && socket.readyState === WebSocket.OPEN) {
+        return;
+    }
 
     socket = new WebSocket("ws://localhost:8080/ws/notice");
 
@@ -29,7 +30,9 @@ function connectWebSocket() {
     socket.onmessage = (event) => {
         const message = event.data;
         console.log("서버로부터 수신:", message);
-        if (message === "NEW_NOTICE") showNoticeDot();
+        if (message === "NEW_NOTICE") {
+            showNoticeDot();
+        }
     };
 
     socket.onclose = () => {
@@ -41,6 +44,5 @@ function connectWebSocket() {
 }
 
 function showNoticeDot() {
-    const $dot = document.getElementById("noticeDot");
-    if ($dot) $dot.style.display = "block";
+    document.getElementById("noticeDot").style.display = "block";
 }

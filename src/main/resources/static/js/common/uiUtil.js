@@ -8,13 +8,13 @@ export const COLORS = {
 
 export const uiUtil = {
     showMsg($el, text, color = COLORS.ERROR) {
-        if (!$el) return;
+        if (!$el) { return; }
         $el.textContent = text || "";
         $el.style.color = color;
     },
 
     clearMsg($el) {
-        if (!$el) return;
+        if (!$el) { return; }
         $el.textContent = "";
     },
 

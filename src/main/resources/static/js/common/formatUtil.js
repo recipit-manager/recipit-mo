@@ -1,12 +1,16 @@
 export const formatUtil = {
     parseGroups(formatStr) {
-        if (!formatStr) return [];
+        if (!formatStr) {
+            return [];
+        }
         const parts = formatStr.split(/[^0-9]/).filter(Boolean);
         return parts.map((p) => p.length);
     },
 
     autoFormatNumber(digits, formatStr) {
-        if (!formatStr) return digits;
+        if (!formatStr) {
+            return digits;
+        }
 
         const groups = this.parseGroups(formatStr);
         let formatted = "";

@@ -44,12 +44,16 @@ export function applyI18nTexts() {
     document.querySelectorAll("[data-i18n]").forEach(($el) => {
         const key = $el.getAttribute("data-i18n");
         const text = translate(key);
-        if (text != null) $el.textContent = text;
+        if (text != null) {
+            $el.textContent = text;
+        }
     });
 
     document.querySelectorAll("[data-i18n-placeholder]").forEach(($el) => {
         const key = $el.getAttribute("data-i18n-placeholder");
         const text = translate(key);
-        if (text != null) $el.setAttribute("placeholder", text);
+        if (text != null) {
+            $el.setAttribute("placeholder", text);
+        }
     });
 }
