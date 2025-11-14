@@ -1,4 +1,4 @@
-window.I18N_KO = {
+export default {
     common: {
         server_error: "서버 통신 중 오류가 발생했습니다.",
         confirm: "확인",

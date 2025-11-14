@@ -1,4 +1,4 @@
-window.I18N_EN = {
+export default {
     common: {
         server_error: "An error occurred while communicating with the server.",
         confirm: "OK",

@@ -1,13 +1,27 @@
 const DEFAULT_LANGUAGE = "KO";
 
+let cache = {};
+
 function getLanguage() {
     return localStorage.getItem("language") || DEFAULT_LANGUAGE;
 }
 
-function getDict() {
+export async function loadLanguageFile() {
     const language = getLanguage();
-    const languageFile = language === "EN" ? window.I18N_EN : window.I18N_KO;
-    return languageFile || window.I18N_KO;
+
+    if (cache[language]) { return cache[language]; }
+
+    let file = `/js/i18n/messages.${language}.js`;
+
+    try {
+        const module = await import(file);
+        cache[language] = module.default;
+        return cache[language];
+    } catch (e) {
+        const koModule = await import('/js/i18n/messages.ko.js');
+        cache["KO"] = koModule.default;
+        return cache["KO"];
+    }
 }
 
 function getByPath(obj, path) {
@@ -21,7 +35,7 @@ function interpolate(str, params = {}) {
 }
 
 export function translate(key, params) {
-    const dict = getDict();
+    const dict = cache[getLanguage()];
     const val = getByPath(dict, key);
     return typeof val === "string" ? interpolate(val, params) : val;
 }

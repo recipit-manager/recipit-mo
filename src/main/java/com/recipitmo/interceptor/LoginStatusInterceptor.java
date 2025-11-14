@@ -29,6 +29,7 @@ public class LoginStatusInterceptor implements HandlerInterceptor {
                 response.addHeader("Set-Cookie", cookie);
             }
 
+
             ApiResponse<String> body = apiResponse.body();
 
             boolean isLogin = body != null && Constants.responseCode.SUCCESS.equals(body.getCode());

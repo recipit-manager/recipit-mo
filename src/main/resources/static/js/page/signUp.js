@@ -1,15 +1,17 @@
 import { uiUtil } from "/js/common/uiUtil.js";
-import { translate, applyI18nTexts } from "/js/i18n/i18n.js";
+import { translate, applyI18nTexts, loadLanguageFile } from "/js/i18n/i18n.js";
 import { formatUtil } from "/js/common/formatUtil.js";
 import { validationUtil } from "/js/common/validationUtil.js";
 
-export function initSignUp() {
+export async function initSignUp() {
+    await loadLanguageFile();
+    applyI18nTexts();
+
     initNicknameValidation();
     initEmailValidation();
     initPasswordValidation();
     initPhoneNumberValidation();
     initSignUpButton();
-    applyI18nTexts();
 }
 
 const API_BASE = "http://localhost:8080";
@@ -130,6 +132,11 @@ function initEmailValidation() {
     const $emailLocal = document.getElementById("emailLocal");
     const $emailDomain = document.getElementById("emailDomain");
     const $emailDomainDirect = document.getElementById("emailDomainDirect");
+    const $verifyCode = document.getElementById("verifyCode");
+    const $btnVerify = document.getElementById("checkVerifyCode");
+    const $verifyInfo = document.getElementById("verifyCodeInfo");
+    const $sendCodeBtn = document.getElementById("btnSendCode");
+    const $emailInfo = document.getElementById("emailInfo");
 
     const getEmailValue = () => {
         const local = $emailLocal.value.trim();
@@ -149,9 +156,6 @@ function initEmailValidation() {
     initEmailVerifyCode();
 
     function initEmailSendCode() {
-        const $sendCodeBtn = document.getElementById("btnSendCode");
-        const $emailInfo = document.getElementById("emailInfo");
-
         let lastSentEmail = "";
         let isWaiting = false;
         let waitTimer = null;
@@ -174,11 +178,16 @@ function initEmailValidation() {
                 $sendCodeBtn.disabled = false;
                 $sendCodeBtn.textContent = translate("ui.send_code");
                 uiUtil.clearMsg($emailInfo);
+
                 if (waitTimer) {
                     clearInterval(waitTimer);
                     waitTimer = null;
                 }
+
                 isWaiting = false;
+
+                $verifyCode.disabled = false;
+                $btnVerify.disabled = false;
             });
         });
 
@@ -269,10 +278,6 @@ function initEmailValidation() {
     }
 
     function initEmailVerifyCode() {
-        const $verifyCode = document.getElementById("verifyCode");
-        const $btnVerify = document.getElementById("checkVerifyCode");
-        const $verifyInfo = document.getElementById("verifyCodeInfo");
-
         window.isEmailVerified = false;
 
         $btnVerify.addEventListener("click", async () => {

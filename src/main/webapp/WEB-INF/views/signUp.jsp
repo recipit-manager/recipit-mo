@@ -135,8 +135,6 @@
 
 </main>
 
-<script src="/js/i18n/messages.ko.js"></script>
-<script src="/js/i18n/messages.en.js"></script>
 <script src="/js/common/header.js" defer></script>
 <script type="module">
     import { initSignUp } from "/js/page/signUp.js";
