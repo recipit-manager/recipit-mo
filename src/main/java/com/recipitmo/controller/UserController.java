@@ -1,0 +1,50 @@
+package com.recipitmo.controller;
+
+import com.recipitmo.client.api.CommonApi;
+import com.recipitmo.dto.CountryDto;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+
+@Slf4j
+@Controller
+@RequiredArgsConstructor
+@RequestMapping("/user")
+public class UserController {
+    private final CommonApi commonApi = new CommonApi();
+
+    @GetMapping("/signUp")
+    public ModelAndView signUp(
+            HttpServletRequest request, HttpServletResponse response,
+            @CookieValue(value = "language", required = false, defaultValue = "KO") String language) {
+
+        ModelAndView mv = new ModelAndView("signUp");
+
+        try {
+            List<String> emailDomains = commonApi.getEmailDomainList(language);
+            List<CountryDto> countries = commonApi.getCountryList(language);
+
+            mv.addObject("emailDomains", emailDomains);
+            mv.addObject("countries", countries);
+            mv.addObject("selectedLanguage", language);
+
+        } catch (Exception e) {
+            log.error("회원가입 초기화 실패", e);
+            mv.addObject("emailDomains", List.of());
+            mv.addObject("countries", List.of());
+            mv.addObject("selectedLanguage", language);
+        }
+
+        return mv;
+    }
+}
