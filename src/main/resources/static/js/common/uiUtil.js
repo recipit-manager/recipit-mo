@@ -1,3 +1,5 @@
+import {applyI18nTexts, translate} from "/js/i18n/i18n.js";
+
 export const COLORS = {
     ERROR: "#c00",
     SUCCESS: "#2e7d32",
@@ -24,7 +26,7 @@ export const uiUtil = {
         this.showMsg($el, text, COLORS.WARNING);
     },
 
-    showModal(message, { onClose = null, confirmText = "확인", success = false } = {}) {
+    showModal(message, { onClose = null, confirmText = null, success = false } = {}) {
         let modal = document.getElementById("globalModal");
 
         if (!modal) {
@@ -42,14 +44,18 @@ export const uiUtil = {
 
         document.getElementById("modalMsg").textContent = message;
         const $close = document.getElementById("modalClose");
-        $close.textContent = confirmText;
+        $close.textContent = confirmText
+            ? confirmText
+            : translate("common.confirm");
         $close.style.color = success ? COLORS.SUCCESS : COLORS.ERROR;
 
         modal.style.display = "flex";
 
         $close.onclick = () => {
             modal.style.display = "none";
-            if (onClose) onClose();
+            if (onClose) { onClose() }
         };
+
+        applyI18nTexts();
     }
 };

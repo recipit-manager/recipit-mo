@@ -522,7 +522,10 @@ function initSignUpButton() {
             });
 
             if (data.code === "0000") {
-                uiUtil.showModal(translate("signup.success"), true);
+                uiUtil.showModal(translate("signup.success"), {
+                    success: true,
+                    onClose: () => window.location.href = "/user/login"
+                });
             } else {
                 uiUtil.showModal(data.message);
             }
@@ -531,4 +534,3 @@ function initSignUpButton() {
         }
     });
 }
-
