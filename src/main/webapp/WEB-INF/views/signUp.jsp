@@ -106,16 +106,17 @@
         <label class="form-label required" data-i18n="ui.phone_label">휴대전화</label>
         <div class="phone-input">
             <select id="countryCode">
-                <c:forEach var="country" items="${countries}">
+                <c:forEach var="country" items="${countries}" varStatus="vs">
                     <option
                             value="${country.code}"
                             data-regex="${country.regex}"
-                            data-format="${country.format}">
+                            data-format="${country.format}"
+                            ${vs.first ? 'selected' : ''}>
                             ${country.name} (${country.dialCode})
                     </option>
                 </c:forEach>
             </select>
-            <input type="text" id="phoneNumber" data-i18n-placeholder="ui.phone_placeholder" placeholder="${countries[0].format}">
+            <input type="text" id="phoneNumber" placeholder="${countries[0].format}">
         </div>
         <p class="error-text" id="phoneError"></p>
     </section>

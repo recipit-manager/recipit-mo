@@ -65,7 +65,6 @@ export default {
         password_rule_2: "At least one uppercase, lowercase, number, and symbol (!@#$%^&*)",
         password_rule_3: "No more than 2 identical consecutive characters (e.g., aaa, 111)",
         phone_label: "Phone Number",
-        phone_placeholder: "Enter phone number",
         signup_button: "Sign Up",
         login_guide: "Already have an account?",
         login_link: "Log In",

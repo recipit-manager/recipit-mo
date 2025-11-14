@@ -270,7 +270,7 @@ function initEmailValidation() {
             waitTimer = setInterval(() => {
                 remainSeconds--;
                 $sendCodeBtn.textContent = `${translate("ui.resend_code")} (${remainSeconds}s)`;
-                if (remainSeconds <= 0) resetButton();
+                if (remainSeconds <= 0) { resetButton(); }
             }, 1000);
         }
 
@@ -368,6 +368,7 @@ function initPasswordValidation() {
             uiUtil.clearMsg($errorConfirm);
             return;
         }
+
         if ($pwd.value === $pwdConfirm.value) {
             uiUtil.showSuccess($errorConfirm, translate("password.match"));
         } else {
@@ -459,10 +460,6 @@ function initPhoneNumberValidation() {
         if (!value) {
             uiUtil.showMsg($phoneError, translate("phone.input_required"));
             return false;
-        }
-
-        if (!regex) {
-            return true;
         }
 
         const pattern = new RegExp(regex);

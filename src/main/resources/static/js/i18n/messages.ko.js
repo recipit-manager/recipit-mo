@@ -65,7 +65,6 @@ export default {
         password_rule_2: "영문 대소문자, 숫자, 특수문자(!@#$%^&*) 각 1개 이상 포함",
         password_rule_3: "동일한 문자 3개 이상 반복 불가 (예: aaa, 111)",
         phone_label: "휴대전화",
-        phone_placeholder: "전화번호 입력",
         signup_button: "회원가입",
         login_guide: "이미 계정이 있으신가요?",
         login_link: "로그인",
