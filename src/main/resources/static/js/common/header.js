@@ -1,7 +1,6 @@
 import { apiUtil } from "/js/common/apiUtil.js";
 
 let socket;
-
 window.addEventListener("DOMContentLoaded", () => {
     const isLogin = document.body.getAttribute("data-is-login");
     if (isLogin === "true") {
