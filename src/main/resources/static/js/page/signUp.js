@@ -4,7 +4,9 @@ import { formatUtil } from "/js/common/formatUtil.js";
 import { validationUtil } from "/js/common/validationUtil.js";
 import { apiUtil } from "/js/common/apiUtil.js";
 
-export async function initSignUp() {
+document.addEventListener("DOMContentLoaded", initSignUp);
+
+async function initSignUp() {
     await loadLanguageFile();
     applyI18nTexts();
 
@@ -14,15 +16,6 @@ export async function initSignUp() {
     initPhoneNumberValidation();
     initSignUpButton();
 }
-
-const API_BASE = "http://localhost:8080";
-const API_URL = {
-    NICKNAME_DUPLICATE: (nick) => `${API_BASE}/user/nickname/${encodeURIComponent(nick)}/duplicateYn`,
-    EMAIL_SEND: `${API_BASE}/user/email/authentication`,
-    EMAIL_VERIFY: (code, email) =>
-        `${API_BASE}/user/email/authentication/${encodeURIComponent(code)}?email=${encodeURIComponent(email)}`,
-    SIGN_UP: `${API_BASE}/user`
-};
 
 function initNicknameValidation() {
     const $nickname = document.getElementById("nickname");
@@ -66,7 +59,7 @@ function initNicknameValidation() {
         }
 
         try {
-            const data = await apiUtil.get(API_URL.NICKNAME_DUPLICATE(nick));
+            const data = await apiUtil.get(apiUtil.url.NICKNAME_DUPLICATE(nick));
 
             if (data.code !== "0000") {
                 uiUtil.showMsg($msg, data.message || translate("common.server_error"));
@@ -194,7 +187,7 @@ function initEmailValidation() {
             $sendCodeBtn.disabled = true;
 
             try {
-                const data = await apiUtil.post(API_URL.EMAIL_SEND, { email });
+                const data = await apiUtil.post(apiUtil.url.EMAIL_SEND, { email });
 
                 if (data.code === "0000" && data.data) {
                     const { sendEmailResult, postDatetime } = data.data;
@@ -278,7 +271,7 @@ function initEmailValidation() {
                 return uiUtil.showMsg($verifyInfo, translate("email.invalid"));
 
             try {
-                const data = await apiUtil.get(API_URL.EMAIL_VERIFY(verifyCode, email));
+                const data = await apiUtil.get(apiUtil.url.EMAIL_VERIFY(verifyCode, email));
 
                 if (data.code === "0000" && data.data === true) {
                     uiUtil.showSuccess($verifyInfo, translate("email.verified"));

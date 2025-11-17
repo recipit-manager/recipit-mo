@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:if test="${isLogin eq true}">
-    <c:redirect url="/home"/>
-</c:if>
+<%--<c:if test="${isLogin eq true}">--%>
+<%--    <c:redirect url="/home"/>--%>
+<%--</c:if>--%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -136,13 +136,7 @@
 
 </main>
 
-<script src="/js/common/header.js" defer></script>
-<script type="module">
-    import { initSignUp } from "/js/page/signUp.js";
-
-    document.addEventListener("DOMContentLoaded", () => {
-        initSignUp();
-    });
-</script>
+<script type="module" src="/js/common/header.js"></script>
+<script type="module" src="/js/page/signUp.js"></script>
 </body>
 </html>

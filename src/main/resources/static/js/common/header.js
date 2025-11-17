@@ -1,9 +1,16 @@
+import { apiUtil } from "/js/common/apiUtil.js";
+
 let socket;
 
 window.addEventListener("DOMContentLoaded", () => {
     const isLogin = document.body.getAttribute("data-is-login");
     if (isLogin === "true") {
         connectWebSocket();
+    }
+
+    const logoutButton = document.getElementById("logoutButton");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", logout);
     }
 
     const $languageSelect = document.getElementById("languageSelect");
@@ -17,6 +24,32 @@ window.addEventListener("DOMContentLoaded", () => {
         location.reload();
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutButton = document.getElementById("logoutButton");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", logout);
+    }
+});
+
+async function logout() {
+    try {
+        const response = await apiUtil.request(apiUtil.url.LOGOUT, {
+            method: "DELETE"
+        });
+
+        if (response.code === "0000") {
+            sessionStorage.removeItem("keepLogin");
+
+            socket.close();
+            socket = null;
+
+            window.location.href = "/user/login";
+        }
+    } catch (err) {
+        console.error("Logout failed:", err);
+    }
+}
 
 function connectWebSocket() {
     if (socket && socket.readyState === WebSocket.OPEN) {

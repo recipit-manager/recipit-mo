@@ -3,7 +3,9 @@ import { uiUtil } from "/js/common/uiUtil.js";
 import { validationUtil } from "/js/common/validationUtil.js";
 import { apiUtil } from "/js/common/apiUtil.js";
 
-export async function initLogin() {
+document.addEventListener("DOMContentLoaded", initLogin);
+
+async function initLogin() {
     await loadLanguageFile();
     applyI18nTexts();
 
@@ -12,22 +14,21 @@ export async function initLogin() {
     initLoginButton();
 }
 
-const API_BASE = "http://localhost:8080";
-const API_URL = {
-    LOGIN: `${API_BASE}/user/login`
-};
-
 function initEmailValidation() {
     const $email = document.getElementById("emailInput");
     const $emailInfo = document.getElementById("emailInfo");
+    const $loginError =  document.getElementById("loginError");
 
     $email.addEventListener("input", () => {
+        uiUtil.clearMsg($loginError);
+
         const email = $email.value.trim();
 
         if (!validationUtil.isValidEmail(email)) {
             uiUtil.showMsg($emailInfo, translate("email.invalid"));
         } else {
             uiUtil.clearMsg($emailInfo);
+            uiUtil.clearMsg($loginError);
         }
     });
 }
@@ -38,9 +39,13 @@ function initPasswordValidation() {
     const $btnToggle = document.getElementById("btnTogglePassword");
     const $btnTooltip = document.getElementById("btnPasswordTooltip");
     const $tooltip = document.getElementById("passwordTooltip");
+    const $loginError =  document.getElementById("loginError");
 
     $password.addEventListener("input", () => {
+        uiUtil.clearMsg($loginError);
+
         const val = $password.value;
+
         if (!val) {
             uiUtil.clearMsg($passwordError);
             return;
@@ -115,16 +120,17 @@ function initLoginButton() {
         };
 
         try {
-            const response = await apiUtil.post(API_URL.LOGIN, bodyData);
+            const response = await apiUtil.post(apiUtil.url.LOGIN, bodyData);
 
-            if (response.code === "0000" && response.data === true) {
+            if (response.code === "0000") {
                 if ($keepLogin.checked) {
-                    sessionStorage.setItem
+                    sessionStorage.setItem("keepLogin", "true");
                 } else {
                     sessionStorage.removeItem("keepLogin");
                 }
-
-                location.href = "/home";
+                //TODO : 주석 풀기
+                //location.href = "/home";
+                window.location.href = "/user/login";
             } else {
                 uiUtil.showMsg($loginError, response.message);
             }

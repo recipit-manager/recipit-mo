@@ -1,5 +1,17 @@
 export const apiUtil = {
 
+    BASE_URL: "http://localhost:8080",
+
+    url: {
+        LOGIN: "/user/login",
+        SIGN_UP: "/user",
+        NICKNAME_DUPLICATE: (nickname) => `/user/nickname/${encodeURIComponent(nickname)}/duplicateYn`,
+        EMAIL_SEND: "/user/email/authentication",
+        EMAIL_VERIFY: (code, email) =>
+            `/user/email/authentication/${encodeURIComponent(code)}?email=${encodeURIComponent(email)}`,
+        LOGOUT: "/user/logout",
+    },
+
     getHeaders() {
         return {
             "Content-Type": "application/json",
@@ -8,6 +20,8 @@ export const apiUtil = {
     },
 
     async request(url, options = {}) {
+        const requestUrl = this.BASE_URL + url;
+
         const defaultHeaders = this.getHeaders();
 
         const mergedOptions = {
@@ -20,12 +34,7 @@ export const apiUtil = {
         };
 
         try {
-            const response = await fetch(url, mergedOptions);
-
-            if (!response.ok) {
-                console.error(`[apiUtil] Network error: ${response.status}`);
-                throw new Error("network");
-            }
+            const response = await fetch(requestUrl, mergedOptions);
 
             return await response.json();
 
