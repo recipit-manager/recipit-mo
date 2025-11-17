@@ -130,7 +130,7 @@
     <section class="form-section text-center">
         <p>
             <span data-i18n="ui.login_guide">이미 계정이 있으신가요?</span>
-            <a href="/login" class="link" data-i18n="ui.login_link">로그인</a>
+            <a href="/user/login" class="link" data-i18n="ui.login_link">로그인</a>
         </p>
     </section>
 

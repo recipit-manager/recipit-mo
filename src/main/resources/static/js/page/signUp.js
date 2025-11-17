@@ -2,6 +2,7 @@ import { uiUtil } from "/js/common/uiUtil.js";
 import { translate, applyI18nTexts, loadLanguageFile } from "/js/i18n/i18n.js";
 import { formatUtil } from "/js/common/formatUtil.js";
 import { validationUtil } from "/js/common/validationUtil.js";
+import { apiUtil } from "/js/common/apiUtil.js";
 
 export async function initSignUp() {
     await loadLanguageFile();
@@ -20,21 +21,8 @@ const API_URL = {
     EMAIL_SEND: `${API_BASE}/user/email/authentication`,
     EMAIL_VERIFY: (code, email) =>
         `${API_BASE}/user/email/authentication/${encodeURIComponent(code)}?email=${encodeURIComponent(email)}`,
-    SIGN_UP: `${API_BASE}/user`,
+    SIGN_UP: `${API_BASE}/user`
 };
-
-async function fetchJson(url, options = {}) {
-    try {
-        const res = await fetch(url, options);
-        if (!res.ok) {
-            throw new Error("network");
-        }
-        return await res.json();
-    } catch (err) {
-        console.error(`[fetchJson] ${url}`, err);
-        throw new Error("fetch-failed");
-    }
-}
 
 function initNicknameValidation() {
     const $nickname = document.getElementById("nickname");
@@ -78,12 +66,7 @@ function initNicknameValidation() {
         }
 
         try {
-            const data = await fetchJson(API_URL.NICKNAME_DUPLICATE(nick), {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept-Language": localStorage.getItem("language") || "KO"
-                }
-            });
+            const data = await apiUtil.get(API_URL.NICKNAME_DUPLICATE(nick));
 
             if (data.code !== "0000") {
                 uiUtil.showMsg($msg, data.message || translate("common.server_error"));
@@ -211,14 +194,7 @@ function initEmailValidation() {
             $sendCodeBtn.disabled = true;
 
             try {
-                const data = await fetchJson(API_URL.EMAIL_SEND, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept-Language": localStorage.getItem("language") || "KO"
-                    },
-                    body: JSON.stringify({ email }),
-                });
+                const data = await apiUtil.post(API_URL.EMAIL_SEND, { email });
 
                 if (data.code === "0000" && data.data) {
                     const { sendEmailResult, postDatetime } = data.data;
@@ -302,12 +278,7 @@ function initEmailValidation() {
                 return uiUtil.showMsg($verifyInfo, translate("email.invalid"));
 
             try {
-                const data = await fetchJson(API_URL.EMAIL_VERIFY(verifyCode, email), {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept-Language": localStorage.getItem("language") || "KO"
-                    }
-                });
+                const data = await apiUtil.get(API_URL.EMAIL_VERIFY(verifyCode, email));
 
                 if (data.code === "0000" && data.data === true) {
                     uiUtil.showSuccess($verifyInfo, translate("email.verified"));
@@ -533,14 +504,7 @@ function initSignUpButton() {
         };
 
         try {
-            const data = await fetchJson(API_URL.SIGN_UP, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept-Language": localStorage.getItem("language") || "KO"
-                },
-                body: JSON.stringify(payload),
-            });
+            const data = await apiUtil.post(API_URL.SIGN_UP, payload);
 
             if (data.code === "0000") {
                 uiUtil.showModal(translate("signup.success"), {
