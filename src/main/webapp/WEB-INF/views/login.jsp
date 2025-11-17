@@ -26,7 +26,6 @@
 
     <h2 class="page-title" data-i18n="ui.login_title">로그인</h2>
 
-    <!-- 이메일 영역 -->
     <section class="form-section">
         <label class="form-label required" data-i18n="ui.email_label">이메일</label>
         <div class="email-input">
@@ -35,7 +34,6 @@
         <p class="info-text" id="emailInfo"></p>
     </section>
 
-    <!-- 비밀번호 영역 -->
     <section class="form-section">
         <label class="form-label required" data-i18n="ui.password_label">비밀번호</label>
         <div class="password-input">
@@ -53,7 +51,6 @@
         <p class="error-text" id="passwordError"></p>
     </section>
 
-    <!-- 체크박스 영역 -->
     <section class="form-section checkbox-section">
         <label class="checkbox-row">
             <input type="checkbox" id="autoLogin">
@@ -66,13 +63,11 @@
         </label>
     </section>
 
-    <!-- 로그인 버튼 -->
     <section class="form-section">
         <p class="error-text" id="loginError"></p>
         <button type="button" id="btnLogin" class="btn-primary" data-i18n="ui.login_button">로그인</button>
     </section>
 
-    <!-- 로그인 하단 링크 -->
     <section class="login-links">
         <a href="/user/signup" class="login-link" data-i18n="ui.signup_button">회원가입</a>
         <span class="divider">|</span>

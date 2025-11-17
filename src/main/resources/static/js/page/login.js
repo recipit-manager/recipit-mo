@@ -33,14 +33,14 @@ function initEmailValidation() {
 }
 
 function initPasswordValidation() {
-    const $pwd = document.getElementById("password");
+    const $password = document.getElementById("password");
     const $passwordError = document.getElementById("passwordError");
     const $btnToggle = document.getElementById("btnTogglePwd");
     const $btnTooltip = document.getElementById("btnPwdTooltip");
     const $tooltip = document.getElementById("pwdTooltip");
 
-    $pwd.addEventListener("input", () => {
-        const val = $pwd.value;
+    $password.addEventListener("input", () => {
+        const val = $password.value;
         if (!val) {
             uiUtil.clearMsg($passwordError);
             return;
@@ -54,8 +54,8 @@ function initPasswordValidation() {
     });
 
     $btnToggle.addEventListener("click", () => {
-        const isHidden = $pwd.type === "password";
-        $pwd.type = isHidden ? "text" : "password";
+        const isHidden = $password.type === "password";
+        $password.type = isHidden ? "text" : "password";
         $btnToggle.classList.toggle("active", isHidden);
     });
 
