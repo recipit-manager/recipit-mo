@@ -8,9 +8,9 @@ window.addEventListener("DOMContentLoaded", () => {
         connectWebSocket();
     }
 
-    const logoutButton = document.getElementById("logoutButton");
-    if (logoutButton) {
-        logoutButton.addEventListener("click", logout);
+    const $logoutButton = document.getElementById("logoutButton");
+    if ($logoutButton) {
+        $logoutButton.addEventListener("click", logout);
     }
 
     const $languageSelect = document.getElementById("languageSelect");

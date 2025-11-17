@@ -36,11 +36,15 @@ export const apiUtil = {
         try {
             const response = await fetch(requestUrl, mergedOptions);
 
+            if (!response.ok) {
+                throw new Error("response-error");
+            }
+
             return await response.json();
 
         } catch (error) {
             console.error("[apiUtil] Fetch failed:", error);
-            throw new Error("fetch-failed");
+            throw new Error(error);
         }
     },
 
