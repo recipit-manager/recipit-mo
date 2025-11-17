@@ -25,13 +25,6 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const logoutButton = document.getElementById("logoutButton");
-    if (logoutButton) {
-        logoutButton.addEventListener("click", logout);
-    }
-});
-
 async function logout() {
     try {
         const response = await apiUtil.request(apiUtil.url.LOGOUT, {
