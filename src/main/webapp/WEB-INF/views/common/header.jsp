@@ -19,7 +19,7 @@
             <span class="notice-dot" id="noticeDot" style="display:none;"></span>
         </a>
 
-        <a href="${isLogin eq 'true' ? '/mypage' : '/login'}" class="icon-btn">
+        <a href="${isLogin eq 'true' ? '/mypage' : '/user/login'}" class="icon-btn">
             <img src="/images/profile.png">
             <span data-i18n="${isLogin eq 'true' ? '' : 'ui.login_link'}">
                 <c:if test="${isLogin eq 'true'}">${userNickname}</c:if>

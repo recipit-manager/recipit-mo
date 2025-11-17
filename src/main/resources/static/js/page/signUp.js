@@ -307,51 +307,51 @@ function initEmailValidation() {
 
 
 function initPasswordValidation() {
-    const $pwd = document.getElementById("password");
-    const $pwdConfirm = document.getElementById("passwordConfirm");
-    const $errorPwd = document.getElementById("passwordError");
+    const $password = document.getElementById("password");
+    const $passwordConfirm = document.getElementById("passwordConfirm");
+    const $errorPassword = document.getElementById("passwordError");
     const $errorConfirm = document.getElementById("passwordConfirmError");
-    const $btnToggle = document.getElementById("btnTogglePwd");
-    const $btnTooltip = document.getElementById("btnPwdTooltip");
-    const $tooltip = document.getElementById("pwdTooltip");
+    const $btnToggle = document.getElementById("btnTogglePassword");
+    const $btnTooltip = document.getElementById("btnPasswordTooltip");
+    const $tooltip = document.getElementById("passwordTooltip");
 
-    $pwd.addEventListener("input", () => {
-        const val = $pwd.value;
+    $password.addEventListener("input", () => {
+        const val = $password.value;
         if (!val) {
-            uiUtil.clearMsg($errorPwd);
+            uiUtil.clearMsg($password);
             uiUtil.clearMsg($errorConfirm);
             return;
         }
 
         if (!validationUtil.isValidPassword(val)) {
-            uiUtil.showMsg($errorPwd, translate("password.invalid"));
+            uiUtil.showMsg($errorPassword, translate("password.invalid"));
         } else {
-            uiUtil.clearMsg($errorPwd);
+            uiUtil.clearMsg($errorPassword);
         }
 
-        if ($pwdConfirm.value) {
+        if ($passwordConfirm.value) {
             comparePasswords();
         }
     });
 
     const comparePasswords = () => {
-        if (!$pwdConfirm.value) {
+        if (!$passwordConfirm.value) {
             uiUtil.clearMsg($errorConfirm);
             return;
         }
 
-        if ($pwd.value === $pwdConfirm.value) {
+        if ($password.value === $passwordConfirm.value) {
             uiUtil.showSuccess($errorConfirm, translate("password.match"));
         } else {
             uiUtil.showMsg($errorConfirm, translate("password.mismatch"));
         }
     };
 
-    $pwdConfirm.addEventListener("input", comparePasswords);
+    $passwordConfirm.addEventListener("input", comparePasswords);
 
     $btnToggle.addEventListener("click", () => {
-        const isHidden = $pwd.type === "password";
-        $pwd.type = isHidden ? "text" : "password";
+        const isHidden = $password.type === "password";
+        $password.type = isHidden ? "text" : "password";
         $btnToggle.classList.toggle("active", isHidden);
     });
 
@@ -365,27 +365,27 @@ function initPasswordValidation() {
     });
 
     window.validatePasswordBeforeSubmit = function () {
-        const pwd = $pwd.value.trim();
-        const confirm = $pwdConfirm.value.trim();
+        const password = $password.value.trim();
+        const confirm = $passwordConfirm.value.trim();
 
-        if (!pwd) {
-            uiUtil.showMsg($errorPwd, translate("password.input_required"));
+        if (!password) {
+            uiUtil.showMsg($errorPassword, translate("password.input_required"));
             return false;
         }
-        if (!validationUtil.isValidPassword(pwd)) {
-            uiUtil.showMsg($errorPwd, translate("password.invalid"));
+        if (!validationUtil.isValidPassword(password)) {
+            uiUtil.showMsg($errorPassword, translate("password.invalid"));
             return false;
         }
         if (!confirm) {
             uiUtil.showMsg($errorConfirm, translate("password.confirm_required"));
             return false;
         }
-        if (pwd !== confirm) {
+        if (password !== confirm) {
             uiUtil.showMsg($errorConfirm, translate("password.mismatch"));
             return false;
         }
 
-        uiUtil.clearMsg($errorPwd);
+        uiUtil.clearMsg($errorPassword);
         uiUtil.showSuccess($errorConfirm, translate("password.match"));
         return true;
     };

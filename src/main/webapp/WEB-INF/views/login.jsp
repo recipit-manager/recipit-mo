@@ -29,7 +29,7 @@
     <section class="form-section">
         <label class="form-label required" data-i18n="ui.email_label">이메일</label>
         <div class="email-input">
-            <input type="text" id="emailLocal" data-i18n-placeholder="ui.email_placeholder" placeholder="이메일을 입력하세요">
+            <input type="text" id="emailInput" data-i18n-placeholder="ui.email_placeholder" placeholder="이메일을 입력하세요">
         </div>
         <p class="info-text" id="emailInfo"></p>
     </section>
@@ -38,9 +38,13 @@
         <label class="form-label required" data-i18n="ui.password_label">비밀번호</label>
         <div class="password-input">
             <input type="password" id="password" data-i18n-placeholder="ui.password_placeholder" placeholder="8~16자 영문/숫자/특수문자 포함">
-            <button type="button" id="btnTogglePwd" class="icon-eye" aria-label="비밀번호 보기"></button>
-            <button type="button" id="btnPwdTooltip" class="icon-info" aria-label="비밀번호 안내"></button>
-            <div id="pwdTooltip" class="tooltip-box">
+            <button type="button" id="btnTogglePassword" class="icon-btn">
+                <img src="/images/eye.png">
+            </button>
+            <button type="button" id="btnPasswordTooltip" class="icon-btn">
+                <img src="/images/information.png">
+            </button>
+            <div id="passwordTooltip" class="tooltip-box">
                 <ul>
                     <li data-i18n="ui.password_rule_1">8자 이상 16자 이하</li>
                     <li data-i18n="ui.password_rule_2">영문 대소문자, 숫자, 특수문자(!@#$%^&*) 각 1개 이상 포함</li>
@@ -69,7 +73,7 @@
     </section>
 
     <section class="login-links">
-        <a href="/user/signup" class="login-link" data-i18n="ui.signup_button">회원가입</a>
+        <a href="/user/signUp" class="login-link" data-i18n="ui.signup_button">회원가입</a>
         <span class="divider">|</span>
         <a href="/user/find-id" class="login-link" data-i18n="ui.find_id">아이디 찾기</a>
         <span class="divider">|</span>

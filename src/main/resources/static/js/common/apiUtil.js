@@ -8,16 +8,13 @@ export const apiUtil = {
     },
 
     async request(url, options = {}) {
-        const defaultOptions = {
-            headers: this.getHeaders()
-        };
+        const defaultHeaders = this.getHeaders();
 
         const mergedOptions = {
             credentials: "include",
-            ...defaultOptions,
             ...options,
             headers: {
-                ...defaultOptions.headers,
+                ...defaultHeaders,
                 ...(options.headers || {})
             }
         };
@@ -26,11 +23,14 @@ export const apiUtil = {
             const response = await fetch(url, mergedOptions);
 
             if (!response.ok) {
+                console.error(`[apiUtil] Network error: ${response.status}`);
                 throw new Error("network");
             }
 
             return await response.json();
-        } catch (e) {
+
+        } catch (error) {
+            console.error("[apiUtil] Fetch failed:", error);
             throw new Error("fetch-failed");
         }
     },

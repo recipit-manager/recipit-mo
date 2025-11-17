@@ -1,6 +1,6 @@
 import { translate, applyI18nTexts, loadLanguageFile } from "/js/i18n/i18n.js";
-import {uiUtil} from "/js/common/uiUtil.js";
-import {validationUtil} from "/js/common/validationUtil.js";
+import { uiUtil } from "/js/common/uiUtil.js";
+import { validationUtil } from "/js/common/validationUtil.js";
 import { apiUtil } from "/js/common/apiUtil.js";
 
 export async function initLogin() {
@@ -18,11 +18,11 @@ const API_URL = {
 };
 
 function initEmailValidation() {
-    const $emailLocal = document.getElementById("emailLocal");
+    const $email = document.getElementById("emailInput");
     const $emailInfo = document.getElementById("emailInfo");
 
-    $emailLocal.addEventListener("input", () => {
-        const email = $emailLocal.value.trim();
+    $email.addEventListener("input", () => {
+        const email = $email.value.trim();
 
         if (!validationUtil.isValidEmail(email)) {
             uiUtil.showMsg($emailInfo, translate("email.invalid"));
@@ -35,9 +35,9 @@ function initEmailValidation() {
 function initPasswordValidation() {
     const $password = document.getElementById("password");
     const $passwordError = document.getElementById("passwordError");
-    const $btnToggle = document.getElementById("btnTogglePwd");
-    const $btnTooltip = document.getElementById("btnPwdTooltip");
-    const $tooltip = document.getElementById("pwdTooltip");
+    const $btnToggle = document.getElementById("btnTogglePassword");
+    const $btnTooltip = document.getElementById("btnPasswordTooltip");
+    const $tooltip = document.getElementById("passwordTooltip");
 
     $password.addEventListener("input", () => {
         const val = $password.value;
@@ -73,7 +73,7 @@ function initPasswordValidation() {
 function initLoginButton() {
     const $emailInfo = document.getElementById("emailInfo")
     const $btnLogin = document.getElementById("btnLogin");
-    const $emailLocal = document.getElementById("emailLocal");
+    const $email = document.getElementById("emailInput");
     const $password = document.getElementById("password");
 
     const $autoLogin = document.getElementById("autoLogin");
@@ -83,7 +83,7 @@ function initLoginButton() {
 
     $btnLogin.addEventListener("click", async () => {
 
-        const email = $emailLocal.value.trim();
+        const email = $email.value.trim();
         const password = $password.value.trim();
 
         if (!email) {
@@ -103,6 +103,7 @@ function initLoginButton() {
 
         if (!validationUtil.isValidPassword(password)) {
             uiUtil.showMsg($passwordError, translate("password.invalid"));
+            return;
         } else {
             uiUtil.clearMsg($passwordError);
         }
@@ -123,7 +124,7 @@ function initLoginButton() {
                     sessionStorage.removeItem("keepLogin");
                 }
 
-                //location.href = "/home";
+                location.href = "/home";
             } else {
                 uiUtil.showMsg($loginError, response.message);
             }
