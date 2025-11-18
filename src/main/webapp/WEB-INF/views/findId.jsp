@@ -24,7 +24,7 @@
 
 <main class="container">
 
-    <h2 class="page-title" data-i18n="ui.find_Id">아이디 찾기</h2>
+    <h2 class="page-title" data-i18n="ui.find_id">아이디 찾기</h2>
 
     <section class="form-section">
         <label class="form-label required" data-i18n="ui.name_label">이름</label>
@@ -57,7 +57,7 @@
 
     <section class="form-section">
         <p class="error-text" id="findIdError"></p>
-        <button type="button" id="btnFindId" class="btn-primary" data-i18n="ui.find_Id">아이디 찾기</button>
+        <button type="button" id="btnFindId" class="btn-primary" data-i18n="ui.find_id">아이디 찾기</button>
     </section>
 
     <section class="links">
