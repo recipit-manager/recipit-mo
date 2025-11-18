@@ -2,8 +2,11 @@ import { uiUtil } from "/js/common/uiUtil.js";
 import { translate, applyI18nTexts, loadLanguageFile } from "/js/i18n/i18n.js";
 import { formatUtil } from "/js/common/formatUtil.js";
 import { validationUtil } from "/js/common/validationUtil.js";
+import { apiUtil } from "/js/common/apiUtil.js";
 
-export async function initSignUp() {
+document.addEventListener("DOMContentLoaded", initSignUp);
+
+async function initSignUp() {
     await loadLanguageFile();
     applyI18nTexts();
 
@@ -12,28 +15,6 @@ export async function initSignUp() {
     initPasswordValidation();
     initPhoneNumberValidation();
     initSignUpButton();
-}
-
-const API_BASE = "http://localhost:8080";
-const API_URL = {
-    NICKNAME_DUPLICATE: (nick) => `${API_BASE}/user/nickname/${encodeURIComponent(nick)}/duplicateYn`,
-    EMAIL_SEND: `${API_BASE}/user/email/authentication`,
-    EMAIL_VERIFY: (code, email) =>
-        `${API_BASE}/user/email/authentication/${encodeURIComponent(code)}?email=${encodeURIComponent(email)}`,
-    SIGN_UP: `${API_BASE}/user`,
-};
-
-async function fetchJson(url, options = {}) {
-    try {
-        const res = await fetch(url, options);
-        if (!res.ok) {
-            throw new Error("network");
-        }
-        return await res.json();
-    } catch (err) {
-        console.error(`[fetchJson] ${url}`, err);
-        throw new Error("fetch-failed");
-    }
 }
 
 function initNicknameValidation() {
@@ -78,12 +59,7 @@ function initNicknameValidation() {
         }
 
         try {
-            const data = await fetchJson(API_URL.NICKNAME_DUPLICATE(nick), {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept-Language": localStorage.getItem("language") || "KO"
-                }
-            });
+            const data = await apiUtil.get(apiUtil.url.NICKNAME_DUPLICATE(nick));
 
             if (data.code !== "0000") {
                 uiUtil.showMsg($msg, data.message || translate("common.server_error"));
@@ -211,14 +187,7 @@ function initEmailValidation() {
             $sendCodeBtn.disabled = true;
 
             try {
-                const data = await fetchJson(API_URL.EMAIL_SEND, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept-Language": localStorage.getItem("language") || "KO"
-                    },
-                    body: JSON.stringify({ email }),
-                });
+                const data = await apiUtil.post(apiUtil.url.EMAIL_SEND, { email });
 
                 if (data.code === "0000" && data.data) {
                     const { sendEmailResult, postDatetime } = data.data;
@@ -302,12 +271,7 @@ function initEmailValidation() {
                 return uiUtil.showMsg($verifyInfo, translate("email.invalid"));
 
             try {
-                const data = await fetchJson(API_URL.EMAIL_VERIFY(verifyCode, email), {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept-Language": localStorage.getItem("language") || "KO"
-                    }
-                });
+                const data = await apiUtil.get(apiUtil.url.EMAIL_VERIFY(verifyCode, email));
 
                 if (data.code === "0000" && data.data === true) {
                     uiUtil.showSuccess($verifyInfo, translate("email.verified"));
@@ -336,51 +300,51 @@ function initEmailValidation() {
 
 
 function initPasswordValidation() {
-    const $pwd = document.getElementById("password");
-    const $pwdConfirm = document.getElementById("passwordConfirm");
-    const $errorPwd = document.getElementById("passwordError");
+    const $password = document.getElementById("password");
+    const $passwordConfirm = document.getElementById("passwordConfirm");
+    const $errorPassword = document.getElementById("passwordError");
     const $errorConfirm = document.getElementById("passwordConfirmError");
-    const $btnToggle = document.getElementById("btnTogglePwd");
-    const $btnTooltip = document.getElementById("btnPwdTooltip");
-    const $tooltip = document.getElementById("pwdTooltip");
+    const $btnToggle = document.getElementById("btnTogglePassword");
+    const $btnTooltip = document.getElementById("btnPasswordTooltip");
+    const $tooltip = document.getElementById("passwordTooltip");
 
-    $pwd.addEventListener("input", () => {
-        const val = $pwd.value;
+    $password.addEventListener("input", () => {
+        const val = $password.value;
         if (!val) {
-            uiUtil.clearMsg($errorPwd);
+            uiUtil.clearMsg($password);
             uiUtil.clearMsg($errorConfirm);
             return;
         }
 
         if (!validationUtil.isValidPassword(val)) {
-            uiUtil.showMsg($errorPwd, translate("password.invalid"));
+            uiUtil.showMsg($errorPassword, translate("password.invalid"));
         } else {
-            uiUtil.clearMsg($errorPwd);
+            uiUtil.clearMsg($errorPassword);
         }
 
-        if ($pwdConfirm.value) {
+        if ($passwordConfirm.value) {
             comparePasswords();
         }
     });
 
     const comparePasswords = () => {
-        if (!$pwdConfirm.value) {
+        if (!$passwordConfirm.value) {
             uiUtil.clearMsg($errorConfirm);
             return;
         }
 
-        if ($pwd.value === $pwdConfirm.value) {
+        if ($password.value === $passwordConfirm.value) {
             uiUtil.showSuccess($errorConfirm, translate("password.match"));
         } else {
             uiUtil.showMsg($errorConfirm, translate("password.mismatch"));
         }
     };
 
-    $pwdConfirm.addEventListener("input", comparePasswords);
+    $passwordConfirm.addEventListener("input", comparePasswords);
 
     $btnToggle.addEventListener("click", () => {
-        const isHidden = $pwd.type === "password";
-        $pwd.type = isHidden ? "text" : "password";
+        const isHidden = $password.type === "password";
+        $password.type = isHidden ? "text" : "password";
         $btnToggle.classList.toggle("active", isHidden);
     });
 
@@ -394,27 +358,27 @@ function initPasswordValidation() {
     });
 
     window.validatePasswordBeforeSubmit = function () {
-        const pwd = $pwd.value.trim();
-        const confirm = $pwdConfirm.value.trim();
+        const password = $password.value.trim();
+        const confirm = $passwordConfirm.value.trim();
 
-        if (!pwd) {
-            uiUtil.showMsg($errorPwd, translate("password.input_required"));
+        if (!password) {
+            uiUtil.showMsg($errorPassword, translate("password.input_required"));
             return false;
         }
-        if (!validationUtil.isValidPassword(pwd)) {
-            uiUtil.showMsg($errorPwd, translate("password.invalid"));
+        if (!validationUtil.isValidPassword(password)) {
+            uiUtil.showMsg($errorPassword, translate("password.invalid"));
             return false;
         }
         if (!confirm) {
             uiUtil.showMsg($errorConfirm, translate("password.confirm_required"));
             return false;
         }
-        if (pwd !== confirm) {
+        if (password !== confirm) {
             uiUtil.showMsg($errorConfirm, translate("password.mismatch"));
             return false;
         }
 
-        uiUtil.clearMsg($errorPwd);
+        uiUtil.clearMsg($errorPassword);
         uiUtil.showSuccess($errorConfirm, translate("password.match"));
         return true;
     };
@@ -533,14 +497,7 @@ function initSignUpButton() {
         };
 
         try {
-            const data = await fetchJson(API_URL.SIGN_UP, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept-Language": localStorage.getItem("language") || "KO"
-                },
-                body: JSON.stringify(payload),
-            });
+            const data = await apiUtil.post(API_URL.SIGN_UP, payload);
 
             if (data.code === "0000") {
                 uiUtil.showModal(translate("signup.success"), {

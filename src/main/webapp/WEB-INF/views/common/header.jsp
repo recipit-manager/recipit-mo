@@ -13,18 +13,22 @@
     </div>
 
     <div class="header-icons">
-        <a href="/notice/list" class="icon-btn notice-btn"
+        <a href="/notice/list" class="header-icon-btn notice-btn"
            style="${isLogin eq 'true' ? 'display:flex;' : 'display:none;'}">
             <img src="/images/notice.png">
             <span class="notice-dot" id="noticeDot" style="display:none;"></span>
         </a>
 
-        <a href="${isLogin eq 'true' ? '/mypage' : '/login'}" class="icon-btn">
+        <a href="${isLogin eq 'true' ? '/mypage' : '/user/login'}" class="header-icon-btn">
             <img src="/images/profile.png">
             <span data-i18n="${isLogin eq 'true' ? '' : 'ui.login_link'}">
                 <c:if test="${isLogin eq 'true'}">${userNickname}</c:if>
             </span>
         </a>
+
+        <c:if test="${isLogin eq 'true'}">
+            <button id="logoutButton" class="header-icon-btn logout-btn">로그아웃</button>
+        </c:if>
 
         <select id="languageSelect">
             <option value="KO"

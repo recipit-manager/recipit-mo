@@ -2,12 +2,8 @@ package com.recipitmo.controller;
 
 import com.recipitmo.client.api.CommonApi;
 import com.recipitmo.dto.CountryDto;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +21,6 @@ public class UserController {
 
     @GetMapping("/signUp")
     public ModelAndView signUp(
-            HttpServletRequest request, HttpServletResponse response,
             @CookieValue(value = "language", required = false, defaultValue = "KO") String language) {
 
         ModelAndView mv = new ModelAndView("signUp");
@@ -46,5 +41,10 @@ public class UserController {
         }
 
         return mv;
+    }
+
+    @GetMapping("/login")
+    public ModelAndView login() {
+        return new ModelAndView("login");
     }
 }

@@ -49,7 +49,7 @@ export default {
         nickname_placeholder: "2–8 characters",
         nickname_check_duplicate: "check duplicate",
         email_label: "Email",
-        email_placeholder: "example",
+        email_placeholder: "input email",
         email_select_domain: "select",
         email_domain_placeholder: "Enter domain",
         email_custom_domain: "Custom",
@@ -69,6 +69,11 @@ export default {
         login_guide: "Already have an account?",
         login_link: "Log In",
         language_korean: "Select Language (Korean)",
-        language_english: "Select Language (English)"
+        language_english: "Select Language (English)",
+        auto_login: "auto login",
+        keep_login: "keep login",
+        login_button: "Log In",
+        find_id: "Find Id",
+        find_password: "Find Password"
     }
 };

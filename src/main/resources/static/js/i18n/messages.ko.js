@@ -49,7 +49,7 @@ export default {
         nickname_placeholder: "2~8자",
         nickname_check_duplicate: "중복확인",
         email_label: "이메일",
-        email_placeholder: "example",
+        email_placeholder: "이메일을 입력하세요",
         email_select_domain: "선택",
         email_domain_placeholder: "도메인 입력",
         email_custom_domain: "직접입력",
@@ -69,6 +69,11 @@ export default {
         login_guide: "이미 계정이 있으신가요?",
         login_link: "로그인",
         language_korean: "언어선택(한국어)",
-        language_english: "언어선택(English)"
+        language_english: "언어선택(English)",
+        auto_login: "자동로그인",
+        keep_login: "로그인 유지",
+        login_button: "로그인",
+        find_id: "아이디 찾기",
+        find_password: "비밀번호 찾기"
     }
 };

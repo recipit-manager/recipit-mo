@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:if test="${isLogin eq true}">
-    <c:redirect url="/home"/>
-</c:if>
+<%--<c:if test="${isLogin eq true}">--%>
+<%--    <c:redirect url="/home"/>--%>
+<%--</c:if>--%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -81,9 +81,9 @@
         <label class="form-label required" data-i18n="ui.password_label">비밀번호</label>
         <div class="password-input">
             <input type="password" id="password" data-i18n-placeholder="ui.password_placeholder" placeholder="8~16자 영문/숫자/특수문자 포함">
-            <button type="button" id="btnTogglePwd" class="icon-eye" aria-label="비밀번호 보기"></button>
-            <button type="button" id="btnPwdTooltip" class="icon-info" aria-label="비밀번호 안내"></button>
-            <div id="pwdTooltip" class="tooltip-box">
+            <button type="button" id="btnTogglePassword" class="icon-eye" aria-label="비밀번호 보기"></button>
+            <button type="button" id="btnPasswordTooltip" class="icon-info" aria-label="비밀번호 안내"></button>
+            <div id="passwordTooltip" class="tooltip-box">
                 <ul>
                     <li data-i18n="ui.password_rule_1">8자 이상 16자 이하</li>
                     <li data-i18n="ui.password_rule_2">영문 대소문자, 숫자, 특수문자(!@#$%^&*) 각 1개 이상 포함</li>
@@ -130,19 +130,13 @@
     <section class="form-section text-center">
         <p>
             <span data-i18n="ui.login_guide">이미 계정이 있으신가요?</span>
-            <a href="/login" class="link" data-i18n="ui.login_link">로그인</a>
+            <a href="/user/login" class="link" data-i18n="ui.login_link">로그인</a>
         </p>
     </section>
 
 </main>
 
-<script src="/js/common/header.js" defer></script>
-<script type="module">
-    import { initSignUp } from "/js/page/signUp.js";
-
-    document.addEventListener("DOMContentLoaded", () => {
-        initSignUp();
-    });
-</script>
+<script type="module" src="/js/common/header.js"></script>
+<script type="module" src="/js/page/signUp.js"></script>
 </body>
 </html>
