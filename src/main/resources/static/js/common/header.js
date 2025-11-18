@@ -1,5 +1,5 @@
 import { apiUtil } from "/js/common/apiUtil.js";
-import { log } from "/js/common/constants.js";
+import { log, responseCode } from "/js/common/constants.js";
 
 let socket;
 
@@ -39,7 +39,7 @@ async function logout() {
             method: "DELETE"
         });
 
-        if (response.code === "0000") {
+        if (response.code === responseCode.SUCCESS) {
             sessionStorage.removeItem("keepLogin");
 
             socket.close();
@@ -91,7 +91,7 @@ async function refreshSession() {
     try {
         const response = await apiUtil.post(apiUtil.url.REFRESH);
 
-        if (response.code !== "0000") {
+        if (response.code !== responseCode.SUCCESS) {
             console.warn(log.REFRESH_FAILED, response.message);
         }
     } catch (err) {
