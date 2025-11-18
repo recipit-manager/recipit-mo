@@ -21,8 +21,8 @@ public class UserController {
 
     @GetMapping("/signUp")
     public ModelAndView signUp(
-            @CookieValue(value = "language", required = false, defaultValue = "KO") String language) {
-
+            @CookieValue(value = "language", required = false, defaultValue = "KO") String language
+    ) {
         ModelAndView mv = new ModelAndView("signUp");
 
         try {
@@ -31,13 +31,11 @@ public class UserController {
 
             mv.addObject("emailDomains", emailDomains);
             mv.addObject("countries", countries);
-            mv.addObject("selectedLanguage", language);
 
         } catch (Exception e) {
             log.error("회원가입 초기화 실패", e);
             mv.addObject("emailDomains", List.of());
             mv.addObject("countries", List.of());
-            mv.addObject("selectedLanguage", language);
         }
 
         return mv;
@@ -46,5 +44,22 @@ public class UserController {
     @GetMapping("/login")
     public ModelAndView login() {
         return new ModelAndView("login");
+    }
+
+    @GetMapping("/findId")
+    public ModelAndView findId(
+            @CookieValue(value = "language", required = false, defaultValue = "KO") String language
+    ) {
+        ModelAndView mv = new ModelAndView("findId");
+
+        try {
+            List<CountryDto> countries = commonApi.getCountryList(language);
+            mv.addObject("countries", countries);
+        } catch (Exception e) {
+            log.error("아이디 찾기 초기화 실패", e);
+            mv.addObject("countries", List.of());
+        }
+
+        return mv;
     }
 }

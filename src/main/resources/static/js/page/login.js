@@ -1,6 +1,6 @@
 import { translate, applyI18nTexts, loadLanguageFile } from "/js/i18n/i18n.js";
 import { uiUtil } from "/js/common/uiUtil.js";
-import { validationUtil } from "/js/common/validationUtil.js";
+import { validationUtil } from "/js/common/form/validationUtil.js";
 import { apiUtil } from "/js/common/apiUtil.js";
 import { responseCode } from "/js/common/constants.js";
 
@@ -10,70 +10,9 @@ async function initLogin() {
     await loadLanguageFile();
     applyI18nTexts();
 
-    initEmailValidation();
-    initPasswordValidation();
+    validationUtil.initEmailValidation();
+    validationUtil.initPasswordValidation();
     initLoginButton();
-}
-
-function initEmailValidation() {
-    const $email = document.getElementById("emailInput");
-    const $emailInfo = document.getElementById("emailInfo");
-    const $loginError =  document.getElementById("loginError");
-
-    $email.addEventListener("input", () => {
-        uiUtil.clearMsg($loginError);
-
-        const email = $email.value.trim();
-
-        if (!validationUtil.isValidEmail(email)) {
-            uiUtil.showMsg($emailInfo, translate("email.invalid"));
-        } else {
-            uiUtil.clearMsg($emailInfo);
-            uiUtil.clearMsg($loginError);
-        }
-    });
-}
-
-function initPasswordValidation() {
-    const $password = document.getElementById("password");
-    const $passwordError = document.getElementById("passwordError");
-    const $btnToggle = document.getElementById("btnTogglePassword");
-    const $btnTooltip = document.getElementById("btnPasswordTooltip");
-    const $tooltip = document.getElementById("passwordTooltip");
-    const $loginError =  document.getElementById("loginError");
-
-    $password.addEventListener("input", () => {
-        uiUtil.clearMsg($loginError);
-
-        const val = $password.value;
-
-        if (!val) {
-            uiUtil.clearMsg($passwordError);
-            return;
-        }
-
-        if (!validationUtil.isValidPassword(val)) {
-            uiUtil.showMsg($passwordError, translate("password.invalid"));
-        } else {
-            uiUtil.clearMsg($passwordError);
-        }
-    });
-
-    $btnToggle.addEventListener("click", () => {
-        const isHidden = $password.type === "password";
-        $password.type = isHidden ? "text" : "password";
-        $btnToggle.classList.toggle("active", isHidden);
-    });
-
-    $btnTooltip.addEventListener("click", () => {
-        $tooltip.classList.toggle("show");
-    });
-
-    document.addEventListener("click", (e) => {
-        if (!$btnTooltip.contains(e.target) && !$tooltip.contains(e.target)) {
-            $tooltip.classList.remove("show");
-        }
-    });
 }
 
 function initLoginButton() {
