@@ -3,6 +3,7 @@ import { translate, applyI18nTexts, loadLanguageFile } from "/js/i18n/i18n.js";
 import { formatUtil } from "/js/common/formatUtil.js";
 import { validationUtil } from "/js/common/validationUtil.js";
 import { apiUtil } from "/js/common/apiUtil.js";
+import { log, responseCode } from "/js/common/constants.js";
 
 document.addEventListener("DOMContentLoaded", initSignUp);
 
@@ -61,7 +62,7 @@ function initNicknameValidation() {
         try {
             const data = await apiUtil.get(apiUtil.url.NICKNAME_DUPLICATE(nick));
 
-            if (data.code !== "0000") {
+            if (data.code !== responseCode.SUCCESS) {
                 uiUtil.showMsg($msg, data.message || translate("common.server_error"));
                 nicknameVerified = false;
                 return;
@@ -189,7 +190,7 @@ function initEmailValidation() {
             try {
                 const data = await apiUtil.post(apiUtil.url.EMAIL_SEND, { email });
 
-                if (data.code === "0000" && data.data) {
+                if (data.code === responseCode.SUCCESS && data.data) {
                     const { sendEmailResult, postDatetime } = data.data;
                     const postTime = new Date(`${postDatetime}Z`);
                     const now = new Date();
@@ -221,7 +222,7 @@ function initEmailValidation() {
                     uiUtil.showMsg($emailInfo, data.message || translate("email.send_failed"));
                 }
             } catch (e) {
-                console.error("[signUp] 이메일 전송 실패:", e);
+                console.error(log.EMAIL_SEND_FAILED, e);
                 uiUtil.showMsg($emailInfo, translate("common.server_error"));
             } finally {
                 if (!isWaiting) {
@@ -273,7 +274,7 @@ function initEmailValidation() {
             try {
                 const data = await apiUtil.get(apiUtil.url.EMAIL_VERIFY(verifyCode, email));
 
-                if (data.code === "0000" && data.data === true) {
+                if (data.code === responseCode.SUCCESS && data.data === true) {
                     uiUtil.showSuccess($verifyInfo, translate("email.verified"));
                     window.isEmailVerified = true;
                     $verifyCode.disabled = true;
@@ -497,9 +498,9 @@ function initSignUpButton() {
         };
 
         try {
-            const data = await apiUtil.post(API_URL.SIGN_UP, payload);
+            const data = await apiUtil.post(apiUtil.url.SIGN_UP, payload);
 
-            if (data.code === "0000") {
+            if (data.code === responseCode.SUCCESS) {
                 uiUtil.showModal(translate("signup.success"), {
                     success: true,
                     onClose: () => window.location.href = "/user/login"
