@@ -10,6 +10,7 @@ export const apiUtil = {
         EMAIL_VERIFY: (code, email) =>
             `/user/email/authentication/${encodeURIComponent(code)}?email=${encodeURIComponent(email)}`,
         LOGOUT: "/user/logout",
+        REFRESH: "/user/refresh"
     },
 
     getHeaders() {

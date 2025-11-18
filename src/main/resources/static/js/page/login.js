@@ -128,9 +128,7 @@ function initLoginButton() {
                 } else {
                     sessionStorage.removeItem("keepLogin");
                 }
-                //TODO : 주석 풀기
-                //location.href = "/home";
-                window.location.href = "/user/login";
+                location.href = "/home";
             } else {
                 uiUtil.showMsg($loginError, response.message);
             }

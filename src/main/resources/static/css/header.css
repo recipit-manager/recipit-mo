@@ -62,12 +62,15 @@
     border-radius: 50%;
 }
 
-.lang-select {
-    padding: 5px 8px;
-    font-size: 13px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    height: 32px;
-    background-color: #fff;
+.language {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+    line-height: 1.2;
+    width: 94%;
+    padding: 10px;
+    background-color: #fff;
 }

@@ -34,12 +34,26 @@ public class LoginStatusInterceptor implements HandlerInterceptor {
 
             boolean isLogin = body != null && Constants.responseCode.SUCCESS.equals(body.getCode());
 
+            if (isLogin) {
+                Response<ApiResponse<Boolean>> notificationResponse = RetrofitClient
+                        .getUserApiService()
+                        .getNotificationUnreadExists(request.getHeader("Cookie"))
+                        .execute();
+
+                ApiResponse<Boolean> notificationBody = notificationResponse.body();
+
+                modelAndView.addObject("isUnreadNotification", notificationBody != null && notificationBody.getData());
+            } else {
+                modelAndView.addObject("isUnreadNotification", false);
+            }
+
             modelAndView.addObject("isLogin", isLogin);
             modelAndView.addObject("userNickname",
                     isLogin ? body.getData() : null);
-
         } catch (Exception e) {
             modelAndView.addObject("isLogin", false);
+            modelAndView.addObject("userNickname", null);
+            modelAndView.addObject("isUnreadNotification", false);
         }
     }
 }

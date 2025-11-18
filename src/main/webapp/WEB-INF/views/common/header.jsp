@@ -30,7 +30,7 @@
             <button id="logoutButton" class="header-icon-btn logout-btn">로그아웃</button>
         </c:if>
 
-        <select id="languageSelect">
+        <select class="language" id="languageSelect">
             <option value="KO"
             ${selectedLanguage == 'KO' ? 'selected' : ''}
                     data-i18n="ui.language_korean"></option>
