@@ -2,6 +2,7 @@ import { translate, applyI18nTexts, loadLanguageFile } from "/js/i18n/i18n.js";
 import { uiUtil } from "/js/common/uiUtil.js";
 import { validationUtil } from "/js/common/validationUtil.js";
 import { apiUtil } from "/js/common/apiUtil.js";
+import { responseCode } from "/js/common/constants.js";
 
 document.addEventListener("DOMContentLoaded", initLogin);
 
@@ -122,7 +123,7 @@ function initLoginButton() {
         try {
             const response = await apiUtil.post(apiUtil.url.LOGIN, bodyData);
 
-            if (response.code === "0000") {
+            if (response.code === responseCode.SUCCESS) {
                 if ($keepLogin.checked) {
                     sessionStorage.setItem("keepLogin", "true");
                 } else {

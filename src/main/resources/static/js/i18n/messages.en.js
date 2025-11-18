@@ -74,6 +74,7 @@ export default {
         keep_login: "keep login",
         login_button: "Log In",
         find_id: "Find Id",
-        find_password: "Find Password"
+        find_password: "Find Password",
+        logout: "Logout"
     }
 };

@@ -1,3 +1,5 @@
+import { log } from "/js/common/constants.js";
+
 export const apiUtil = {
 
     BASE_URL: "http://localhost:8080",
@@ -44,7 +46,7 @@ export const apiUtil = {
             return await response.json();
 
         } catch (error) {
-            console.error("[apiUtil] Fetch failed:", error);
+            console.error(log.REQUEST_FAILED, error);
             throw new Error(error);
         }
     },

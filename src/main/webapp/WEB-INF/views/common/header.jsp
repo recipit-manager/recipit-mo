@@ -27,7 +27,7 @@
         </a>
 
         <c:if test="${isLogin eq 'true'}">
-            <button id="logoutButton" class="header-icon-btn logout-btn">로그아웃</button>
+            <button id="logoutButton" class="header-icon-btn logout-btn" data-i18n="ui.logout">로그아웃</button>
         </c:if>
 
         <select class="language" id="languageSelect">

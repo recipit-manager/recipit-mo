@@ -1,4 +1,5 @@
 import { apiUtil } from "/js/common/apiUtil.js";
+import { log } from "/js/common/constants.js";
 
 let socket;
 
@@ -47,7 +48,7 @@ async function logout() {
             window.location.href = "/user/login";
         }
     } catch (err) {
-        console.error("Logout failed:", err);
+        console.error(log.LOGOUT_FAILED, err);
     }
 }
 
@@ -58,7 +59,7 @@ function connectWebSocket() {
 
     socket = new WebSocket("ws://localhost:8080/ws/notice");
 
-    socket.onopen = () => console.log("WebSocket connected");
+    socket.onopen = () => console.log(log.WEBSOCKET_CONNECTED);
 
     socket.onmessage = (event) => {
         const message = event.data;
@@ -71,7 +72,7 @@ function connectWebSocket() {
         setTimeout(connectWebSocket, 5000);
     };
 
-    socket.onerror = (err) => console.error("WebSocket Error:", err);
+    socket.onerror = (err) => console.error(log.WEBSOCKET_ERROR, err);
 }
 
 function showNoticeDot() {
@@ -90,11 +91,10 @@ async function refreshSession() {
     try {
         const response = await apiUtil.post(apiUtil.url.REFRESH);
 
-        if (response.code === "0000") {
-        } else {
-            console.warn("session refresh failed: ", response.message);
+        if (response.code !== "0000") {
+            console.warn(log.REFRESH_FAILED, response.message);
         }
     } catch (err) {
-        console.error("refresh API Error:", err);
+        console.error(log.REFRESH_ERROR, err);
     }
 }
