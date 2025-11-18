@@ -15,7 +15,7 @@ async function initFindId() {
 }
 
 function initFindIdButton() {
-    const btnFindId = document.getElementById("btnFindId");
+    const $btnFindId = document.getElementById("btnFindId");
 
     const $firstName = document.getElementById("firstName");
     const $middleName = document.getElementById("middleName");

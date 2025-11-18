@@ -34,8 +34,6 @@ public class UserController {
 
         } catch (Exception e) {
             log.error("회원가입 초기화 실패", e);
-            mv.addObject("emailDomains", List.of());
-            mv.addObject("countries", List.of());
         }
 
         return mv;
@@ -57,7 +55,6 @@ public class UserController {
             mv.addObject("countries", countries);
         } catch (Exception e) {
             log.error("아이디 찾기 초기화 실패", e);
-            mv.addObject("countries", List.of());
         }
 
         return mv;
