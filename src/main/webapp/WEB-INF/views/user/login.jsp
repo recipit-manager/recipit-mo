@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% request.setAttribute("pageTitleKey", "ui.login_link"); %>
 
-<%--<c:if test="${isLogin eq true}">--%>
-<%--    <c:redirect url="/home"/>--%>
-<%--</c:if>--%>
+<c:if test="${isLogin eq true}">
+    <c:redirect url="/home"/>
+</c:if>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -13,6 +14,7 @@
     <title>로그인</title>
 
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/pageHeader.css">
     <link rel="stylesheet" href="/css/login.css">
 
 </head>
@@ -22,9 +24,11 @@
     <jsp:param name="userNickname" value="${userNickname}" />
 </jsp:include>
 
+<jsp:include page="/WEB-INF/views/common/pageHeader.jsp" />
+
 <main class="login-container">
 
-    <h2 class="page-title" data-i18n="ui.login_title">로그인</h2>
+    <h2 class="page-title" data-i18n="ui.login_link">로그인</h2>
 
     <section class="form-section">
         <label class="form-label required" data-i18n="ui.email_label">이메일</label>

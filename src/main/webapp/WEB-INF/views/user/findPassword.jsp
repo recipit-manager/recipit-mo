@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% request.setAttribute("pageTitleKey", "ui.find_password"); %>
 
-<%--<c:if test="${isLogin eq true}">--%>
-<%--    <c:redirect url="/home"/>--%>
-<%--</c:if>--%>
+<c:if test="${isLogin eq true}">
+    <c:redirect url="/home"/>
+</c:if>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -13,6 +14,7 @@
     <title>로그인</title>
 
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/pageHeader.css">
     <link rel="stylesheet" href="/css/findPassword.css">
 
 </head>
@@ -21,6 +23,8 @@
     <jsp:param name="isLogin" value="${isLogin}" />
     <jsp:param name="userNickname" value="${userNickname}" />
 </jsp:include>
+
+<jsp:include page="/WEB-INF/views/common/pageHeader.jsp" />
 
 <main class="container">
 
