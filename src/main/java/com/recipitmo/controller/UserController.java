@@ -59,4 +59,20 @@ public class UserController {
 
         return mv;
     }
+
+    @GetMapping("/findPassword")
+    public ModelAndView initFindPasswordPage(
+            @CookieValue(value = "language", required = false, defaultValue = "KO") String language
+    ) {
+        ModelAndView mv = new ModelAndView("/user/findPassword");
+
+        try {
+            List<CountryDto> countries = commonApi.getCountryList(language);
+            mv.addObject("countries", countries);
+        } catch (Exception e) {
+            log.error("비밀번호 찾기 초기화 실패", e);
+        }
+
+        return mv;
+    }
 }

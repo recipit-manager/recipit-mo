@@ -44,8 +44,6 @@ public class LoginStatusInterceptor implements HandlerInterceptor {
                 ApiResponse<Boolean> notificationBody = notificationResponse.body();
 
                 modelAndView.addObject("isUnreadNotification", notificationBody != null && notificationBody.getData());
-            } else {
-                modelAndView.addObject("isUnreadNotification", false);
             }
 
             modelAndView.addObject("isLogin", isLogin);

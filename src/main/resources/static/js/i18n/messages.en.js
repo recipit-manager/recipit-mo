@@ -76,6 +76,8 @@ export default {
         find_id: "Find Id",
         find_password: "Find Password",
         logout: "Logout",
-        findId_modal_title: "My Email"
+        findId_modal_title: "My Email",
+        find_password_modal_content:
+            "A temporary password has been sent to the email address you entered. Please check your email.",
     }
 };

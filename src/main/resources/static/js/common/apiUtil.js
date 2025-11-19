@@ -14,6 +14,7 @@ export const apiUtil = {
         LOGOUT: "/user/logout",
         REFRESH: "/user/refresh",
         FIND_ID: "/user/id",
+        FIND_PASSWORD: "/user/password/temporary",
     },
 
     getHeaders() {

@@ -31,7 +31,7 @@
         <div class="email-input">
             <input type="text" id="emailInput" data-i18n-placeholder="ui.email_placeholder" placeholder="이메일을 입력하세요">
         </div>
-        <p class="info-text" id="emailInfo"></p>
+        <p class="info-text" id="emailError"></p>
     </section>
 
     <section class="form-section">
@@ -68,7 +68,7 @@
     </section>
 
     <section class="form-section">
-        <p class="error-text" id="loginError"></p>
+        <p class="error-text" id="errorInfo"></p>
         <button type="button" id="btnLogin" class="btn-primary" data-i18n="ui.login_button">로그인</button>
     </section>
 
