@@ -63,7 +63,7 @@
     <section class="links">
         <a href="/user/findPassword" class="link" data-i18n="ui.find_password">비밀번호 찾기</a>
         <span class="divider">|</span>
-        <a href="/user/findId" class="link" data-i18n="ui.login_button">로그인</a>
+        <a href="/user/login" class="link" data-i18n="ui.login_button">로그인</a>
         <span class="divider">|</span>
         <a href="/user/signUp" class="link" data-i18n="ui.signup_button">회원가입</a>
 

@@ -42,6 +42,11 @@ function initFindIdButton() {
             return;
         }
 
+        if (!window.validatePhoneBeforeSubmit()) {
+            uiUtil.showMsg($phoneNumber, translate("ui.phone_number_required"));
+            return;
+        }
+
         const $countrySelect = document.getElementById("countryCode");
         const selected = $countrySelect.options[$countrySelect.selectedIndex];
         const countryCode = selected.value;
