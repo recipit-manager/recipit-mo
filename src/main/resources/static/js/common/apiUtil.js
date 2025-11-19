@@ -5,16 +5,20 @@ export const apiUtil = {
     BASE_URL: "http://localhost:8080",
 
     url: {
-        LOGIN: "/user/login",
-        SIGN_UP: "/user",
-        NICKNAME_DUPLICATE: (nickname) => `/user/nickname/${encodeURIComponent(nickname)}/duplicateYn`,
-        EMAIL_SEND: "/user/email/authentication",
-        EMAIL_VERIFY: (code, email) =>
-            `/user/email/authentication/${encodeURIComponent(code)}?email=${encodeURIComponent(email)}`,
-        LOGOUT: "/user/logout",
-        REFRESH: "/user/refresh",
-        FIND_ID: "/user/id",
-        FIND_PASSWORD: "/user/password/temporary",
+        USER : {
+            LOGIN: "/user/login",
+            SIGN_UP: "/user",
+            NICKNAME_DUPLICATE: (nickname) => `/user/nickname/${encodeURIComponent(nickname)}/duplicateYn`,
+            EMAIL_SEND: "/user/email/authentication",
+            EMAIL_VERIFY: (code, email) =>
+                `/user/email/authentication/${encodeURIComponent(code)}?email=${encodeURIComponent(email)}`,
+            LOGOUT: "/user/logout",
+            REFRESH: "/user/refresh",
+            FIND_ID: "/user/id",
+            FIND_PASSWORD: "/user/password/temporary",
+        },
+        RECIPE : {},
+        NOTICE : {},
     },
 
     getHeaders() {

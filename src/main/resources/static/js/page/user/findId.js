@@ -60,7 +60,7 @@ function initFindIdButton() {
         };
 
         try {
-            const data = await apiUtil.get(apiUtil.url.FIND_ID, params);
+            const data = await apiUtil.get(apiUtil.url.USER.FIND_ID, params);
 
             if (data.code === responseCode.SUCCESS) {
                 uiUtil.showModal(data.data, {

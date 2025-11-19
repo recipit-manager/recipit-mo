@@ -60,7 +60,7 @@ function initLoginButton() {
         };
 
         try {
-            const response = await apiUtil.post(apiUtil.url.LOGIN, bodyData);
+            const response = await apiUtil.post(apiUtil.url.USER.LOGIN, bodyData);
 
             if (response.code === responseCode.SUCCESS) {
                 if ($keepLogin.checked) {

@@ -78,7 +78,7 @@ function initFindPasswordButton() {
         };
 
         try {
-            const data = await apiUtil.post(apiUtil.url.FIND_PASSWORD, payload);
+            const data = await apiUtil.post(apiUtil.url.USER.FIND_PASSWORD, payload);
 
             if (data.code === responseCode.SUCCESS) {
                 uiUtil.showModal(translate("ui.find_password_modal_content"), {
