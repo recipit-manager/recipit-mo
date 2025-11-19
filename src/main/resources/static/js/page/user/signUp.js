@@ -59,7 +59,7 @@ function initNicknameValidation() {
         }
 
         try {
-            const data = await apiUtil.get(apiUtil.url.NICKNAME_DUPLICATE(nick));
+            const data = await apiUtil.get(apiUtil.url.USER.NICKNAME_DUPLICATE(nick));
 
             if (data.code !== responseCode.SUCCESS) {
                 uiUtil.showMsg($msg, data.message || translate("common.server_error"));
@@ -187,7 +187,7 @@ function initEmailValidation() {
             $sendCodeBtn.disabled = true;
 
             try {
-                const data = await apiUtil.post(apiUtil.url.EMAIL_SEND, { email });
+                const data = await apiUtil.post(apiUtil.url.USER.EMAIL_SEND, { email });
 
                 if (data.code === responseCode.SUCCESS && data.data) {
                     const { sendEmailResult, postDatetime } = data.data;
@@ -271,7 +271,7 @@ function initEmailValidation() {
                 return uiUtil.showMsg($verifyInfo, translate("email.invalid"));
 
             try {
-                const data = await apiUtil.get(apiUtil.url.EMAIL_VERIFY(verifyCode, email));
+                const data = await apiUtil.get(apiUtil.url.USER.EMAIL_VERIFY(verifyCode, email));
 
                 if (data.code === responseCode.SUCCESS && data.data === true) {
                     uiUtil.showSuccess($verifyInfo, translate("email.verified"));
@@ -357,7 +357,7 @@ function initSignUpButton() {
         };
 
         try {
-            const data = await apiUtil.post(apiUtil.url.SIGN_UP, payload);
+            const data = await apiUtil.post(apiUtil.url.USER.SIGN_UP, payload);
 
             if (data.code === responseCode.SUCCESS) {
                 uiUtil.showModal(translate("signup.success"), {

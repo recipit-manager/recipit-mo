@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<% request.setAttribute("pageTitleKey", "ui.find_id"); %>
+<% request.setAttribute("pageTitleKey", "ui.find_password"); %>
 
 <c:if test="${isLogin eq true}">
     <c:redirect url="/home"/>
@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/pageHeader.css">
-    <link rel="stylesheet" href="/css/findId.css">
+    <link rel="stylesheet" href="/css/findPassword.css">
 
 </head>
 <body data-page="login" data-is-login="${isLogin}">
@@ -28,7 +28,7 @@
 
 <main class="container">
 
-    <h2 class="page-title" data-i18n="ui.find_id">아이디 찾기</h2>
+    <h2 class="page-title" data-i18n="ui.find_password">비밀번호 찾기</h2>
 
     <section class="form-section">
         <label class="form-label required" data-i18n="ui.name_label">이름</label>
@@ -60,12 +60,20 @@
     </section>
 
     <section class="form-section">
-        <p class="error-text" id="findIdError"></p>
-        <button type="button" id="btnFindId" class="btn-primary" data-i18n="ui.find_id">아이디 찾기</button>
+        <label class="form-label required" data-i18n="ui.email_label">이메일</label>
+        <div class="email-input">
+            <input type="text" id="emailInput" data-i18n-placeholder="ui.email_placeholder" placeholder="이메일을 입력하세요">
+        </div>
+        <p class="info-text" id="emailError"></p>
+    </section>
+
+    <section class="form-section">
+        <p class="error-text" id="errorInfo"></p>
+        <button type="button" id="btnFindPassword" class="btn-primary" data-i18n="ui.find_password">비밀번호 찾기</button>
     </section>
 
     <section class="links">
-        <a href="/user/findPassword" class="link" data-i18n="ui.find_password">비밀번호 찾기</a>
+        <a href="/user/findId" class="link" data-i18n="ui.find_id">아이디 찾기</a>
         <span class="divider">|</span>
         <a href="/user/login" class="link" data-i18n="ui.login_button">로그인</a>
         <span class="divider">|</span>
@@ -76,6 +84,6 @@
 </main>
 
 <script type="module" src="/js/common/header.js"></script>
-<script type="module" src="/js/page/user/findId.js"></script>
+<script type="module" src="/js/page/user/findPassword.js"></script>
 </body>
 </html>

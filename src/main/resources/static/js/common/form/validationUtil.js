@@ -88,19 +88,19 @@ export const validationUtil = {
 
     initEmailValidation() {
         const $email = document.getElementById("emailInput");
-        const $emailInfo = document.getElementById("emailInfo");
-        const $loginError =  document.getElementById("loginError");
+        const $emailError = document.getElementById("emailError");
+        const $errorInfo =  document.getElementById("errorInfo");
 
         $email.addEventListener("input", () => {
-            uiUtil.clearMsg($loginError);
+            uiUtil.clearMsg($errorInfo);
 
             const email = $email.value.trim();
 
             if (!validationUtil.isValidEmail(email)) {
-                uiUtil.showMsg($emailInfo, translate("email.invalid"));
+                uiUtil.showMsg($emailError, translate("email.invalid"));
             } else {
-                uiUtil.clearMsg($emailInfo);
-                uiUtil.clearMsg($loginError);
+                uiUtil.clearMsg($emailError);
+                uiUtil.clearMsg($errorInfo);
             }
         });
     },
@@ -111,10 +111,10 @@ export const validationUtil = {
         const $btnToggle = document.getElementById("btnTogglePassword");
         const $btnTooltip = document.getElementById("btnPasswordTooltip");
         const $tooltip = document.getElementById("passwordTooltip");
-        const $loginError = document.getElementById("loginError");
+        const $errorInfo = document.getElementById("errorInfo");
 
         $password.addEventListener("input", () => {
-            uiUtil.clearMsg($loginError);
+            uiUtil.clearMsg($errorInfo);
 
             const val = $password.value;
 

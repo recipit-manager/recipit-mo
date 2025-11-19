@@ -30,7 +30,6 @@ public class LoginStatusInterceptor implements HandlerInterceptor {
                 response.addHeader("Set-Cookie", cookie);
             }
 
-
             ApiResponse<String> body = apiResponse.body();
 
             boolean isLogin = body != null && Constants.responseCode.SUCCESS.equals(body.getCode());
@@ -44,8 +43,6 @@ public class LoginStatusInterceptor implements HandlerInterceptor {
                 ApiResponse<Boolean> notificationBody = notificationResponse.body();
 
                 modelAndView.addObject("isUnreadNotification", notificationBody != null && notificationBody.getData());
-            } else {
-                modelAndView.addObject("isUnreadNotification", false);
             }
 
             modelAndView.addObject("isLogin", isLogin);

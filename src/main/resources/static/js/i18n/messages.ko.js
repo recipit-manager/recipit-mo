@@ -76,6 +76,8 @@ export default {
         find_id: "아이디 찾기",
         find_password: "비밀번호 찾기",
         logout: "로그아웃",
-        findId_modal_title: "내 아이디"
+        findId_modal_title: "내 아이디",
+        find_password_modal_content:
+            "입력하신 이메일로 임시 비밀번호를 전송했습니다. 메일을 확인해주세요.",
     }
 };

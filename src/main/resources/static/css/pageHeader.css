@@ -1,0 +1,32 @@
+.sub-header-container {
+    position: sticky;
+    top: 63px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #fff;
+}
+
+.btn-back {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.btn-back img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.sub-header-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+}

@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //TODO : 테스트용 로그아웃 - 추후 삭제
 async function logout() {
     try {
-        const response = await apiUtil.request(apiUtil.url.LOGOUT, {
+        const response = await apiUtil.request(apiUtil.url.USER.LOGOUT, {
             method: "DELETE"
         });
 
@@ -89,7 +89,7 @@ function startSessionRefresh() {
 
 async function refreshSession() {
     try {
-        const response = await apiUtil.post(apiUtil.url.REFRESH);
+        const response = await apiUtil.post(apiUtil.url.USER.REFRESH);
 
         if (response.code !== responseCode.SUCCESS) {
             console.warn(log.REFRESH_FAILED, response.message);

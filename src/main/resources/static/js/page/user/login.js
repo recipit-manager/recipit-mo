@@ -24,7 +24,7 @@ function initLoginButton() {
     const $autoLogin = document.getElementById("autoLogin");
     const $keepLogin = document.getElementById("keepLogin");
     const $passwordError =  document.getElementById("passwordError");
-    const $loginError =  document.getElementById("loginError");
+    const $errorInfo =  document.getElementById("errorInfo");
 
     $btnLogin.addEventListener("click", async () => {
 
@@ -60,7 +60,7 @@ function initLoginButton() {
         };
 
         try {
-            const response = await apiUtil.post(apiUtil.url.LOGIN, bodyData);
+            const response = await apiUtil.post(apiUtil.url.USER.LOGIN, bodyData);
 
             if (response.code === responseCode.SUCCESS) {
                 if ($keepLogin.checked) {
@@ -70,10 +70,10 @@ function initLoginButton() {
                 }
                 location.href = "/home";
             } else {
-                uiUtil.showMsg($loginError, response.message);
+                uiUtil.showMsg($errorInfo, response.message);
             }
         } catch (e) {
-            uiUtil.showMsg($loginError, translate("common.server_error"));
+            uiUtil.showMsg($errorInfo, translate("common.server_error"));
         }
     });
 }
