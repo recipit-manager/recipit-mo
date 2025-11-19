@@ -23,7 +23,7 @@ public class UserController {
     public ModelAndView initSignUpPage(
             @CookieValue(value = "language", required = false, defaultValue = "KO") String language
     ) {
-        ModelAndView mv = new ModelAndView("signUp");
+        ModelAndView mv = new ModelAndView("/user/signUp");
 
         try {
             List<String> emailDomains = commonApi.getEmailDomainList(language);
@@ -41,14 +41,14 @@ public class UserController {
 
     @GetMapping("/login")
     public ModelAndView initLoginPage() {
-        return new ModelAndView("login");
+        return new ModelAndView("/user/login");
     }
 
     @GetMapping("/findId")
     public ModelAndView initFindIdPage(
             @CookieValue(value = "language", required = false, defaultValue = "KO") String language
     ) {
-        ModelAndView mv = new ModelAndView("findId");
+        ModelAndView mv = new ModelAndView("/user/findId");
 
         try {
             List<CountryDto> countries = commonApi.getCountryList(language);

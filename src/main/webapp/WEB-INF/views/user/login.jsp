@@ -83,6 +83,6 @@
 </main>
 
 <script type="module" src="/js/common/header.js"></script>
-<script type="module" src="/js/page/login.js"></script>
+<script type="module" src="/js/page/user/login.js"></script>
 </body>
 </html>

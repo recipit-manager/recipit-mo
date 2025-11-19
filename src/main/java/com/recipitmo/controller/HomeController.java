@@ -14,6 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
     @GetMapping()
     public ModelAndView initHomePage() {
-        return new ModelAndView("home");
+        return new ModelAndView("/recipe/home");
     }
 }

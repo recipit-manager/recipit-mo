@@ -72,6 +72,6 @@
 </main>
 
 <script type="module" src="/js/common/header.js"></script>
-<script type="module" src="/js/page/findId.js"></script>
+<script type="module" src="/js/page/user/findId.js"></script>
 </body>
 </html>

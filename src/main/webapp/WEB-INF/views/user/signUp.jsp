@@ -137,6 +137,6 @@
 </main>
 
 <script type="module" src="/js/common/header.js"></script>
-<script type="module" src="/js/page/signUp.js"></script>
+<script type="module" src="/js/page/user/signUp.js"></script>
 </body>
 </html>
