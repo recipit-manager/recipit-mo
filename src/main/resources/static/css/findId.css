@@ -1,0 +1,269 @@
+
+body {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #222;
+}
+
+main.container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+    box-sizing: border-box;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 32px;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.form-label.required::after {
+    content: " *";
+    color: #000;
+    font-weight: bold;
+}
+
+input,
+select,
+button {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    line-height: 1.2;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 94%;
+    padding: 10px;
+    background-color: #fff;
+}
+
+input:focus,
+select:focus {
+    border-color: #000;
+}
+
+.name-inputs {
+    display: flex;
+    gap: 8px;
+}
+
+.name-inputs input {
+    flex: 1;
+}
+
+.input-row,
+.nickname-input,
+.email-input,
+.verify-input,
+.phone-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.email-input input,
+.email-input select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.email-input .at-symbol {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+    user-select: none;
+}
+
+#emailDomainDirect[disabled] {
+    background-color: #f3f3f3;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.btn-small {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    min-width: 90px;
+    padding: 0 10px;
+    border: 1px solid #000;
+    background-color: #fff;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+.btn-small:hover {
+    background-color: #f5f5f5;
+}
+
+.password-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input input {
+    flex: 1;
+    padding-right: 70px;
+}
+
+.icon-eye::before {
+    content: "👁️";
+    font-size: 16px;
+}
+
+.icon-info::before {
+    content: "ℹ️";
+    font-size: 16px;
+}
+
+.icon-eye,
+.icon-info {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+}
+
+.tooltip-box {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 260px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.tooltip-box ul {
+    margin: 0;
+    padding-left: 16px;
+}
+
+.tooltip-box.show {
+    display: block;
+}
+
+.error-text {
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+.info-text {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 4px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+.btn-primary:hover {
+    background-color: #222;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.link {
+    color: #000;
+    text-decoration: underline;
+}
+
+.link:hover {
+    text-decoration: none;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #555;
+}
+
+.link {
+    color: #555;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-box {
+    background: #fff;
+    padding: 20px 28px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    min-width: 260px;
+}
+
+.modal-box p {
+    margin-bottom: 16px;
+    font-size: 15px;
+    color: #333;
+}
+
+.modal-box .btn-small {
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-box .btn-small:hover {
+    background: #276b2c;
+}

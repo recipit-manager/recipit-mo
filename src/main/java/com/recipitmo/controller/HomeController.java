@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/home")
 public class HomeController {
     @GetMapping()
-    public ModelAndView homePage() {
-        return new ModelAndView("home");
+    public ModelAndView initHomePage() {
+        return new ModelAndView("/recipe/home");
     }
 }

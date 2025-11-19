@@ -12,7 +12,8 @@ export const apiUtil = {
         EMAIL_VERIFY: (code, email) =>
             `/user/email/authentication/${encodeURIComponent(code)}?email=${encodeURIComponent(email)}`,
         LOGOUT: "/user/logout",
-        REFRESH: "/user/refresh"
+        REFRESH: "/user/refresh",
+        FIND_ID: "/user/id",
     },
 
     getHeaders() {
@@ -51,8 +52,15 @@ export const apiUtil = {
         }
     },
 
-    async get(url) {
-        return this.request(url, { method: "GET" });
+    async get(url, params = null) {
+        let finalUrl = url;
+
+        if (params) {
+            const query = new URLSearchParams(params).toString();
+            finalUrl = `${url}?${query}`;
+        }
+
+        return this.request(finalUrl, { method: "GET" });
     },
 
     async post(url, body) {

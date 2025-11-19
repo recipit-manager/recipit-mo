@@ -75,6 +75,7 @@ export default {
         login_button: "Log In",
         find_id: "Find Id",
         find_password: "Find Password",
-        logout: "Logout"
+        logout: "Logout",
+        findId_modal_title: "My Email"
     }
 };

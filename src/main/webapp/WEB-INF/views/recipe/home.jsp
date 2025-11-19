@@ -19,6 +19,6 @@
     </main>
 
     <script type="module" src="/js/common/header.js"></script>
-    <script type="module" src="/js/page/home.js"></script>
+    <script type="module" src="/js/page/recipe/home.js"></script>
     </body>
 </html>

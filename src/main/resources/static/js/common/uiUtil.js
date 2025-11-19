@@ -26,7 +26,7 @@ export const uiUtil = {
         this.showMsg($el, text, COLORS.WARNING);
     },
 
-    showModal(message, { onClose = null, confirmText = null, success = false } = {}) {
+    showModal(message, {title = null, onClose = null, confirmText = null, success = false } = {}) {
         let modal = document.getElementById("globalModal");
 
         if (!modal) {
@@ -35,11 +35,20 @@ export const uiUtil = {
             modal.className = "modal-overlay";
             modal.innerHTML = `
                 <div class="modal-box">
+                    <h3 id="modalTitle"></h3>
                     <p id="modalMsg"></p>
                     <button id="modalClose" class="btn-small"></button>
                 </div>
             `;
             document.body.appendChild(modal);
+        }
+
+        const $title = document.getElementById("modalTitle");
+        if (title) {
+            $title.style.display = "block";
+            $title.textContent = title;
+        } else {
+            $title.style.display = "none";
         }
 
         document.getElementById("modalMsg").textContent = message;

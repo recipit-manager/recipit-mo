@@ -75,6 +75,7 @@ export default {
         login_button: "로그인",
         find_id: "아이디 찾기",
         find_password: "비밀번호 찾기",
-        logout: "로그아웃"
+        logout: "로그아웃",
+        findId_modal_title: "내 아이디"
     }
 };

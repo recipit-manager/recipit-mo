@@ -20,10 +20,10 @@ public class UserController {
     private final CommonApi commonApi = new CommonApi();
 
     @GetMapping("/signUp")
-    public ModelAndView signUp(
-            @CookieValue(value = "language", required = false, defaultValue = "KO") String language) {
-
-        ModelAndView mv = new ModelAndView("signUp");
+    public ModelAndView initSignUpPage(
+            @CookieValue(value = "language", required = false, defaultValue = "KO") String language
+    ) {
+        ModelAndView mv = new ModelAndView("/user/signUp");
 
         try {
             List<String> emailDomains = commonApi.getEmailDomainList(language);
@@ -31,20 +31,32 @@ public class UserController {
 
             mv.addObject("emailDomains", emailDomains);
             mv.addObject("countries", countries);
-            mv.addObject("selectedLanguage", language);
 
         } catch (Exception e) {
             log.error("회원가입 초기화 실패", e);
-            mv.addObject("emailDomains", List.of());
-            mv.addObject("countries", List.of());
-            mv.addObject("selectedLanguage", language);
         }
 
         return mv;
     }
 
     @GetMapping("/login")
-    public ModelAndView login() {
-        return new ModelAndView("login");
+    public ModelAndView initLoginPage() {
+        return new ModelAndView("/user/login");
+    }
+
+    @GetMapping("/findId")
+    public ModelAndView initFindIdPage(
+            @CookieValue(value = "language", required = false, defaultValue = "KO") String language
+    ) {
+        ModelAndView mv = new ModelAndView("/user/findId");
+
+        try {
+            List<CountryDto> countries = commonApi.getCountryList(language);
+            mv.addObject("countries", countries);
+        } catch (Exception e) {
+            log.error("아이디 찾기 초기화 실패", e);
+        }
+
+        return mv;
     }
 }
