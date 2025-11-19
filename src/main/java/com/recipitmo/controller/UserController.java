@@ -20,7 +20,7 @@ public class UserController {
     private final CommonApi commonApi = new CommonApi();
 
     @GetMapping("/signUp")
-    public ModelAndView signUp(
+    public ModelAndView initSignUpPage(
             @CookieValue(value = "language", required = false, defaultValue = "KO") String language
     ) {
         ModelAndView mv = new ModelAndView("signUp");
@@ -40,12 +40,12 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public ModelAndView login() {
+    public ModelAndView initLoginPage() {
         return new ModelAndView("login");
     }
 
     @GetMapping("/findId")
-    public ModelAndView findId(
+    public ModelAndView initFindIdPage(
             @CookieValue(value = "language", required = false, defaultValue = "KO") String language
     ) {
         ModelAndView mv = new ModelAndView("findId");
