@@ -36,7 +36,7 @@ function initFindIdButton() {
         return true;
     };
 
-    btnFindId.addEventListener("click", async () => {
+    $btnFindId.addEventListener("click", async () => {
         if (!validateName()) {
             uiUtil.showMsg($nameError, translate("signup.need_full_name"));
             return;
