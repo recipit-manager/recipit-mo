@@ -15,7 +15,7 @@ export const apiUtil = {
             LOGOUT: "/user/logout",
             REFRESH: "/user/refresh",
             FIND_ID: "/user/id",
-            FIND_PASSWORD: "/user/password/temporary",
+            FIND_PASSWORD: "/user/password/temporary"
         },
         RECIPE : {},
         NOTICE : {},
@@ -72,6 +72,19 @@ export const apiUtil = {
         return this.request(url, {
             method: "POST",
             body: JSON.stringify(body)
+        });
+    },
+
+    async patch(url, body) {
+        return this.request(url, {
+            method: "PATCH",
+            body: JSON.stringify(body)
+        });
+    },
+
+    async delete(url) {
+        return this.request(url, {
+            method: "DELETE"
         });
     }
 };

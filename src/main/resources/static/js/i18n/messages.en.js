@@ -30,6 +30,11 @@ export default {
         confirm_required: "Please re-enter your password.",
         mismatch: "Passwords do not match.",
         match: "Passwords match.",
+        change_success: "Successfully changed password.",
+        change_required: "New password is required.",
+        change_info_line1: "You are currently logged in with a temporary password.",
+        change_info_line2: "Please set a new password for security purposes.",
+        change_button: "Change Password",
     },
     phone: {
         input_required: "Please enter your phone number.",
@@ -42,9 +47,9 @@ export default {
     ui: {
         signup_title: "Sign Up",
         name_label: "Name",
-        name_last_placeholder: "Last Name",
-        name_middle_placeholder: "Middle Name",
         name_first_placeholder: "First Name",
+        name_middle_placeholder: "Middle Name",
+        name_last_placeholder: "Last Name",
         nickname_label: "Nickname",
         nickname_placeholder: "2–8 characters",
         nickname_check_duplicate: "check duplicate",
@@ -79,5 +84,8 @@ export default {
         findId_modal_title: "My Email",
         find_password_modal_content:
             "A temporary password has been sent to the email address you entered. Please check your email.",
+        notice: "Notice",
+        password_change_title: "Change Password",
+        close: "Close"
     }
 };

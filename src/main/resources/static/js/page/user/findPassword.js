@@ -16,7 +16,7 @@ async function initFindPassword() {
 }
 
 function initFindPasswordButton() {
-    const $btnFindId = document.getElementById("btnFindPassword");
+    const $btnFindPassword = document.getElementById("btnFindPassword");
 
     const $firstName = document.getElementById("firstName");
     const $middleName = document.getElementById("middleName");
@@ -41,7 +41,7 @@ function initFindPasswordButton() {
         return true;
     };
 
-    $btnFindId.addEventListener("click", async () => {
+    $btnFindPassword.addEventListener("click", async () => {
         const email = $email.value.trim();
 
         if (!validateName()) {

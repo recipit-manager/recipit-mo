@@ -75,4 +75,9 @@ public class UserController {
 
         return mv;
     }
+
+    @GetMapping("/password/change")
+    public ModelAndView initChangePasswordPage() {
+        return new ModelAndView("/user/passwordChange");
+    }
 }

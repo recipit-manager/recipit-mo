@@ -4,6 +4,10 @@ import { log, responseCode } from "/js/common/constants.js";
 let socket;
 
 document.addEventListener("DOMContentLoaded", () => {
+    if (window.isAccountLocked === true) {
+        openPasswordChangePopupWindow();
+    }
+
     const isLogin = document.body.getAttribute("data-is-login");
     if (isLogin === "true") {
         connectWebSocket();
@@ -97,4 +101,19 @@ async function refreshSession() {
     } catch (err) {
         console.error(log.REFRESH_ERROR, err);
     }
+}
+
+function openPasswordChangePopupWindow() {
+    console.log("openPasswordChangePopupWindow");
+    const popupWidth = 420;
+    const popupHeight = 600;
+
+    const left = (screen.width - popupWidth) / 2;
+    const top = (screen.height - popupHeight) / 3;
+
+    window.open(
+        "/user/password/change-popup",
+        "passwordChangePopup",
+        `width=${popupWidth},height=${popupHeight},top=${top},left=${left},resizable=no`
+    );
 }

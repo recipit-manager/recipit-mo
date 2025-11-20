@@ -6,6 +6,8 @@
     <c:redirect url="/home"/>
 </c:if>
 
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -33,9 +35,9 @@
     <section class="form-section">
         <label class="form-label required" data-i18n="ui.name_label">이름</label>
         <div class="name-inputs">
-            <input type="text" id="firstName" data-i18n-placeholder="ui.name_last_placeholder" placeholder="성" maxlength="10">
+            <input type="text" id="firstName" data-i18n-placeholder="ui.name_first_placeholder" placeholder="성" maxlength="10">
             <input type="text" id="middleName" data-i18n-placeholder="ui.name_middle_placeholder" placeholder="중간이름" maxlength="20">
-            <input type="text" id="lastName" data-i18n-placeholder="ui.name_first_placeholder" placeholder="이름" maxlength="20">
+            <input type="text" id="lastName" data-i18n-placeholder="ui.name_last_placeholder" placeholder="이름" maxlength="20">
         </div>
         <p class="error-text" id="nameError"></p>
     </section>
