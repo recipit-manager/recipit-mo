@@ -1,5 +1,5 @@
-import { apiUtil } from "/js/common/apiUtil.js";
-import { log, responseCode } from "/js/common/constants.js";
+import {apiUtil} from "/js/common/apiUtil.js";
+import {log, responseCode} from "/js/common/constants.js";
 
 let socket;
 
@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
         $logoutButton.addEventListener("click", logout);
     }
 
-    const $languageSelect = document.getElementById("languageSelect");
+    initLanguageSelect();
 
-    $languageSelect.value = localStorage.getItem("language") || "KO";
+    const $languageSelect = document.getElementById("languageSelect");
 
     $languageSelect.addEventListener("change", () => {
         const newLang = $languageSelect.value;
@@ -31,6 +31,18 @@ document.addEventListener("DOMContentLoaded", () => {
         location.reload();
     });
 });
+
+window.addEventListener("pageshow", (event) => {
+    initLanguageSelect();
+});
+
+function initLanguageSelect() {
+    const $languageSelect = document.getElementById("languageSelect");
+
+    if ($languageSelect) {
+        $languageSelect.value = localStorage.getItem("language") || "KO";
+    }
+}
 
 //TODO : 테스트용 로그아웃 - 추후 삭제
 async function logout() {
