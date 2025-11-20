@@ -49,7 +49,7 @@ function initFindPasswordButton() {
             return;
         }
 
-        if (!window.validatePhoneBeforeSubmit()) {
+        if (!validationUtil.validatePhoneBeforeSubmit()) {
             uiUtil.showMsg($phoneNumberError, translate("ui.phone_number_required"));
             return;
         }

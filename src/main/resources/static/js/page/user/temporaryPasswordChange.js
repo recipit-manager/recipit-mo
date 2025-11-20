@@ -17,7 +17,7 @@ function initChangePasswordButton() {
     const $btnChangePassword = document.getElementById("btnChangePassword");
 
     $btnChangePassword.addEventListener("click", async () => {
-        if(validatePasswordBeforeSubmit()) {
+        if(validationUtil.validatePasswordBeforeSubmit()) {
             const payload = {
                 password: document.getElementById("password").value.trim()
             }

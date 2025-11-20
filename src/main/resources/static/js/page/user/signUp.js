@@ -84,7 +84,7 @@ function initNicknameValidation() {
         }
     });
 
-    window.validateNicknameBeforeSubmit = function () {
+    validationUtil.validateNicknameBeforeSubmit = function () {
         const nick = ($nickname.value || "").trim();
 
         if (!nick) {
@@ -105,6 +105,8 @@ function initNicknameValidation() {
 }
 
 function initEmailValidation() {
+    let isEmailVerified = false;
+
     const $emailLocal = document.getElementById("emailLocal");
     const $emailDomain = document.getElementById("emailDomain");
     const $emailDomainDirect = document.getElementById("emailDomainDirect");
@@ -162,7 +164,7 @@ function initEmailValidation() {
 
                 isWaiting = false;
 
-                window.isEmailVerified = false;
+                isEmailVerified = false;
                 $verifyCode.disabled = false;
                 $btnVerify.disabled = false;
                 uiUtil.clearMsg($verifyInfo);
@@ -203,7 +205,7 @@ function initEmailValidation() {
 
                         document.getElementById("verifySection").style.display = "block";
 
-                        window.isEmailVerified = false;
+                        isEmailVerified = false;
                         $verifyCode.disabled = false;
                         $btnVerify.disabled = false;
                         $verifyCode.value = "";
@@ -255,7 +257,7 @@ function initEmailValidation() {
     }
 
     function initEmailVerifyCode() {
-        window.isEmailVerified = false;
+        isEmailVerified = false;
 
         $btnVerify.addEventListener("click", async () => {
             const verifyCode = $verifyCode.value.trim();
@@ -275,21 +277,21 @@ function initEmailValidation() {
 
                 if (data.code === responseCode.SUCCESS && data.data === true) {
                     uiUtil.showSuccess($verifyInfo, translate("email.verified"));
-                    window.isEmailVerified = true;
+                    isEmailVerified = true;
                     $verifyCode.disabled = true;
                     $btnVerify.disabled = true;
                 } else {
                     uiUtil.showMsg($verifyInfo, translate("email.code_wrong"));
-                    window.isEmailVerified = false;
+                    isEmailVerified = false;
                 }
             } catch (e) {
                 uiUtil.showMsg($verifyInfo, translate("common.server_error"));
-                window.isEmailVerified = false;
+                isEmailVerified = false;
             }
         });
 
-        window.validateEmailBeforeSubmit = function () {
-            if (!window.isEmailVerified) {
+        validationUtil.validateEmailBeforeSubmit = function () {
+            if (!isEmailVerified) {
                 uiUtil.showMsg($verifyInfo, translate("email.verify_required"));
                 return false;
             }
@@ -325,10 +327,10 @@ function initSignUpButton() {
 
     $btnSignUp.addEventListener("click", async () => {
         if (!validateName()) { return $firstName.focus(); }
-        if (!window.validateNicknameBeforeSubmit()) { return $nickname.focus(); }
-        if (!window.validateEmailBeforeSubmit()) { return $emailLocal.focus(); }
-        if (!window.validatePasswordBeforeSubmit()) { return $password.focus(); }
-        if (!window.validatePhoneBeforeSubmit()) { return $phoneNumber.focus(); }
+        if (!validationUtil.validateNicknameBeforeSubmit()) { return $nickname.focus(); }
+        if (!validationUtil.validateEmailBeforeSubmit()) { return $emailLocal.focus(); }
+        if (!validationUtil.validatePasswordBeforeSubmit()) { return $password.focus(); }
+        if (!validationUtil.validatePhoneBeforeSubmit()) { return $phoneNumber.focus(); }
 
         const $countrySelect = document.getElementById("countryCode");
         const selected = $countrySelect.options[$countrySelect.selectedIndex];

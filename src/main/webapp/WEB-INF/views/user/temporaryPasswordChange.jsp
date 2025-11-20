@@ -13,7 +13,7 @@
     <title data-i18n="ui.password_change_title">비밀번호 변경</title>
 
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/passwordChange.css">
+    <link rel="stylesheet" href="/css/temporaryPasswordChange.css">
 
 </head>
 
@@ -66,7 +66,7 @@
 
 </div>
 
-<script type="module" src="/js/page/user/passwordChange.js"></script>
+<script type="module" src="/js/page/user/temporaryPasswordChange.js"></script>
 
 </body>
 </html>

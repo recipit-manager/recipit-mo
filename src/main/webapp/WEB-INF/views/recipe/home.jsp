@@ -3,7 +3,7 @@
 
 
 <c:if test="${isAccountLocked eq true}">
-    <c:redirect url="/user/password/change"/>
+    <c:redirect url="/user/temporary/password/change"/>
 </c:if>
 
 <html>
