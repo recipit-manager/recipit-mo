@@ -65,7 +65,7 @@ export const validationUtil = {
             }
         });
 
-        window.validatePhoneBeforeSubmit = function () {
+        this.validatePhoneBeforeSubmit = function () {
             const {regex} = getSelectedCountry();
             const value = $phoneNumber.value.trim();
 
@@ -205,7 +205,7 @@ export const validationUtil = {
             }
         });
 
-        window.validatePasswordBeforeSubmit = function () {
+        this.validatePasswordBeforeSubmit = function () {
             const password = $password.value.trim();
             const confirm = $passwordConfirm.value.trim();
 

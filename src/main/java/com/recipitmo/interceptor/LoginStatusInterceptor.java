@@ -14,27 +14,53 @@ import retrofit2.Response;
 public class LoginStatusInterceptor implements HandlerInterceptor {
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response,
-                           Object handler, ModelAndView modelAndView) throws Exception {
-        if (modelAndView == null) {
-            return;
-        }
-
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+                             Object handler) throws Exception {
         try {
             Response<ApiResponse<String>> apiResponse = RetrofitClient
                     .getUserApiService()
                     .getLoginStatus(request.getHeader("Cookie"))
                     .execute();
 
+            ApiResponse<String> body = apiResponse.body();
+            String code = (body != null) ? body.getCode() : null;
+
+            boolean isAccountLocked = Constants.responseCode.ACCOUNT_LOCK.equals(code);
+            boolean isLogin = Constants.responseCode.SUCCESS.equals(code) || isAccountLocked;
+
             for (String cookie : apiResponse.headers().values("Set-Cookie")) {
                 response.addHeader("Set-Cookie", cookie);
+                log.info("Set-Cookie added: {}", cookie);
             }
 
-            ApiResponse<String> body = apiResponse.body();
+            request.setAttribute("isLogin", isLogin);
+            request.setAttribute("isAccountLocked", isAccountLocked);
+            request.setAttribute("userNickname", isLogin ? body.getData() : null);
 
-            boolean isLogin = body != null && Constants.responseCode.SUCCESS.equals(body.getCode());
+        } catch (Exception e) {
+            log.error("Login status check failed", e);
+        }
 
-            if (isLogin) {
+        return true;
+    }
+
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response,
+                           Object handler, ModelAndView modelAndView) throws Exception {
+        if (modelAndView == null) {
+            return;
+        }
+
+        if ((Boolean)request.getAttribute("isAccountLocked")) {
+            modelAndView.addObject("isAccountLocked", true);
+            return;
+        }
+
+        Boolean isLogin = (Boolean) request.getAttribute("isLogin");
+
+        if (isLogin != null && isLogin) {
+            try {
                 Response<ApiResponse<Boolean>> notificationResponse = RetrofitClient
                         .getUserApiService()
                         .getNotificationUnreadExists(request.getHeader("Cookie"))
@@ -42,14 +68,18 @@ public class LoginStatusInterceptor implements HandlerInterceptor {
 
                 ApiResponse<Boolean> notificationBody = notificationResponse.body();
 
-                modelAndView.addObject("isUnreadNotification", notificationBody != null && notificationBody.getData());
-            }
+                modelAndView.addObject(
+                        "isUnreadNotification",
+                        Boolean.TRUE.equals(notificationBody != null ? notificationBody.getData() : null)
+                );
 
-            modelAndView.addObject("isLogin", isLogin);
-            modelAndView.addObject("userNickname",
-                    isLogin ? body.getData() : null);
-        } catch (Exception e) {
-            log.error("Login status check failed", e);
+            } catch (Exception e) {
+                log.error("Notification check failed", e);
+            }
         }
+
+        modelAndView.addObject("isLogin", isLogin);
+        modelAndView.addObject("userNickname",
+                request.getAttribute("userNickname"));
     }
 }

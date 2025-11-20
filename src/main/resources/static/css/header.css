@@ -33,9 +33,12 @@
     gap: 6px;
     text-decoration: none;
     color: #333;
-    font-size: 14px;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
     white-space: nowrap;
     text-overflow: ellipsis;
+    line-height: 1.2;
 }
 
 .header-icon-btn img {
@@ -50,6 +53,11 @@
     border: none;
     cursor: pointer;
     padding: 4px;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.2;
 }
 
 .notice-dot {
@@ -63,14 +71,20 @@
 }
 
 .language {
-    font-family: inherit;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
     font-size: 0.95rem;
     font-weight: 500;
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.2s ease;
     line-height: 1.2;
-    width: 94%;
     padding: 10px;
     background-color: #fff;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.language:focus {
+    border-color: #000;
+    outline: none;
 }

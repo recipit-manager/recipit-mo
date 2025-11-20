@@ -42,7 +42,7 @@ function initFindIdButton() {
             return;
         }
 
-        if (!window.validatePhoneBeforeSubmit()) {
+        if (!validationUtil.validatePhoneBeforeSubmit()) {
             uiUtil.showMsg($phoneNumber, translate("ui.phone_number_required"));
             return;
         }

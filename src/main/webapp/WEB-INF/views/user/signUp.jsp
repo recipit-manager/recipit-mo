@@ -82,18 +82,24 @@
 
     <!-- 비밀번호 영역 -->
     <section class="form-section">
-        <label class="form-label required" data-i18n="ui.password_label">비밀번호</label>
+        <div class="label-row">
+            <label class="form-label required" data-i18n="ui.password_label">비밀번호</label>
+            <button type="button" id="btnPasswordTooltip" class="icon-btn label-tooltip-btn">
+                <img src="/images/information.png">
+            </button>
+        </div>
+        <div id="passwordTooltip" class="tooltip-box">
+            <ul>
+                <li data-i18n="ui.password_rule_1">8자 이상 16자 이하</li>
+                <li data-i18n="ui.password_rule_2">영문 대소문자, 숫자, 특수문자(!@#$%^&*) 각 1개 이상 포함</li>
+                <li data-i18n="ui.password_rule_3">동일한 문자 3개 이상 반복 불가 (예: aaa, 111)</li>
+            </ul>
+        </div>
         <div class="password-input">
             <input type="password" id="password" data-i18n-placeholder="ui.password_placeholder" placeholder="8~16자 영문/숫자/특수문자 포함">
-            <button type="button" id="btnTogglePassword" class="icon-eye" aria-label="비밀번호 보기"></button>
-            <button type="button" id="btnPasswordTooltip" class="icon-info" aria-label="비밀번호 안내"></button>
-            <div id="passwordTooltip" class="tooltip-box">
-                <ul>
-                    <li data-i18n="ui.password_rule_1">8자 이상 16자 이하</li>
-                    <li data-i18n="ui.password_rule_2">영문 대소문자, 숫자, 특수문자(!@#$%^&*) 각 1개 이상 포함</li>
-                    <li data-i18n="ui.password_rule_3">동일한 문자 3개 이상 반복 불가 (예: aaa, 111)</li>
-                </ul>
-            </div>
+            <button type="button" id="btnTogglePassword" class="icon-btn">
+                <img src="/images/eye.png">
+            </button>
         </div>
         <p class="error-text" id="passwordError"></p>
     </section>

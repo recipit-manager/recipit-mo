@@ -30,6 +30,11 @@ export default {
         confirm_required: "비밀번호를 다시 입력해주세요.",
         mismatch: "비밀번호가 일치하지 않습니다.",
         match: "비밀번호가 일치합니다.",
+        change_success: "비밀번호 변경이 완료되었습니다.",
+        change_required: "비밀번호 변경이 필요합니다.",
+        change_info_line1: "현재 임시 비밀번호로 로그인하셨습니다.",
+        change_info_line2: "보안을 위해 새 비밀번호를 설정해주세요.",
+        change_button: "비밀번호 변경",
     },
     phone: {
         input_required: "전화번호를 입력해주세요.",
@@ -42,9 +47,9 @@ export default {
     ui: {
         signup_title: "회원가입",
         name_label: "이름",
-        name_last_placeholder: "성",
+        name_first_placeholder: "성",
         name_middle_placeholder: "중간이름",
-        name_first_placeholder: "이름",
+        name_last_placeholder: "이름",
         nickname_label: "닉네임",
         nickname_placeholder: "2~8자",
         nickname_check_duplicate: "중복확인",
@@ -79,5 +84,8 @@ export default {
         findId_modal_title: "내 아이디",
         find_password_modal_content:
             "입력하신 이메일로 임시 비밀번호를 전송했습니다. 메일을 확인해주세요.",
+        notice: "알림",
+        password_change_title: "비밀번호 변경",
+        close: "닫기"
     }
 };

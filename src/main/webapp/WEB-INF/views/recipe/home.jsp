@@ -1,6 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+<c:if test="${isAccountLocked eq true}">
+    <c:redirect url="/user/temporary/password/change"/>
+</c:if>
+
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>Recipit Home</title>
         <link rel="stylesheet" href="/css/header.css">
     </head>
