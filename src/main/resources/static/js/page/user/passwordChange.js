@@ -26,17 +26,19 @@ function initChangePasswordButton() {
                 const response = await apiUtil.patch(apiUtil.url.USER.FIND_PASSWORD, payload);
 
                 if (response.code === responseCode.SUCCESS) {
+
+                    try {
+                        await apiUtil.delete(apiUtil.url.USER.LOGOUT);
+                    } catch (logoutErr) {
+                        console.error(log.LOGOUT_FAILED, logoutErr);
+                    }
+
                     uiUtil.showModal(
                         translate("password.change_success"),
                         {
                             title: translate("ui.notice"),
                             confirmText: translate("common.confirm"),
                             onClose: async () => {
-                                try {
-                                    await apiUtil.delete(apiUtil.url.USER.LOGOUT);
-                                } catch (logoutErr) {
-                                    console.error(log.LOGOUT_FAILED, logoutErr);
-                                }
                                 window.location.href = "/user/login";
                             }
                         }
