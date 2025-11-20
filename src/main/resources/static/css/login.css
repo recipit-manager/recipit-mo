@@ -269,3 +269,14 @@ select:focus {
 .divider {
     color: #bbb;
 }
+
+.label-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.label-tooltip-btn {
+    margin-left: 0;
+}

@@ -7,7 +7,7 @@
 </c:if>
 
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,14 +39,16 @@
     </section>
 
     <section class="form-section">
-        <label class="form-label required" data-i18n="ui.password_label">비밀번호</label>
+        <div class="label-row">
+            <label class="form-label required" data-i18n="ui.password_label">비밀번호</label>
+            <button type="button" id="btnPasswordTooltip" class="icon-btn label-tooltip-btn">
+                <img src="/images/information.png">
+            </button>
+        </div>
         <div class="password-input">
             <input type="password" id="password" data-i18n-placeholder="ui.password_placeholder" placeholder="8~16자 영문/숫자/특수문자 포함">
             <button type="button" id="btnTogglePassword" class="icon-btn">
                 <img src="/images/eye.png">
-            </button>
-            <button type="button" id="btnPasswordTooltip" class="icon-btn">
-                <img src="/images/information.png">
             </button>
             <div id="passwordTooltip" class="tooltip-box">
                 <ul>

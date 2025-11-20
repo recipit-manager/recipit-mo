@@ -130,24 +130,23 @@ select:focus {
     padding-right: 70px;
 }
 
-.icon-eye::before {
-    content: "👁️";
-    font-size: 16px;
-}
-
-.icon-info::before {
-    content: "ℹ️";
-    font-size: 16px;
-}
-
-.icon-eye,
-.icon-info {
+.icon-btn {
     background: none;
     border: none;
+    padding: 0;
+    margin-left: 6px;
     cursor: pointer;
-    width: 24px;
-    height: 24px;
-    margin-left: 4px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn img {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
 }
 
 .tooltip-box {
@@ -163,11 +162,6 @@ select:focus {
     font-size: 0.85rem;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     z-index: 10;
-}
-
-.tooltip-box ul {
-    margin: 0;
-    padding-left: 16px;
 }
 
 .tooltip-box.show {
@@ -251,4 +245,15 @@ select:focus {
 
 .modal-box .btn-small:hover {
     background: #276b2c;
+}
+
+.label-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.label-tooltip-btn {
+    margin-left: 0;
 }
