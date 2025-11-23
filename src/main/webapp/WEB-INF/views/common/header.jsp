@@ -13,7 +13,7 @@
     </div>
 
     <div class="header-icons">
-        <a href="/notice/list" class="header-icon-btn notice-btn"
+        <a href="/user/notice" class="header-icon-btn notice-btn"
            style="${isLogin eq 'true' ? 'display:flex;' : 'display:none;'}">
             <img src="/images/notice.png">
             <span class="notice-dot" id="noticeDot" style="display:none;"></span>
