@@ -1,4 +1,4 @@
-import { translate, applyI18nTexts, loadLanguageFile } from "/js/i18n/i18n.js";
+import { translate } from "/js/i18n/i18n.js";
 
 export const formatUtil = {
     parseGroups(formatStr) {
