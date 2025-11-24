@@ -78,8 +78,7 @@ async function markSelectedAsRead() {
 
         if (data.code === responseCode.SUCCESS) {
             notificationIdList.forEach(id => {
-                const $item = document.querySelector(`.notice-check[data-id='${id}']`)
-                    .closest(".notice-item");
+                const $item = document.querySelector(`.notice-item[data-id='${id}']`);
                 $item.classList.remove("unread");
             });
 
