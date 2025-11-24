@@ -15,10 +15,10 @@ export const apiUtil = {
             LOGOUT: "/user/logout",
             REFRESH: "/user/refresh",
             FIND_ID: "/user/id",
-            FIND_PASSWORD: "/user/password/temporary"
+            FIND_PASSWORD: "/user/password/temporary",
+            NOTICE_READ: "/user/notification/list/read",
         },
         RECIPE : {},
-        NOTICE : {},
     },
 
     getHeaders() {

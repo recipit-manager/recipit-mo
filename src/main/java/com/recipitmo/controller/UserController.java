@@ -1,7 +1,10 @@
 package com.recipitmo.controller;
 
 import com.recipitmo.client.api.CommonApi;
+import com.recipitmo.client.api.NoticeApi;
 import com.recipitmo.dto.CountryDto;
+import com.recipitmo.dto.NotificationDto;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     private final CommonApi commonApi = new CommonApi();
+    private final NoticeApi noticeApi = new NoticeApi();
 
     @GetMapping("/signUp")
     public ModelAndView initSignUpPage(
@@ -79,5 +83,15 @@ public class UserController {
     @GetMapping("/temporary/password/change")
     public ModelAndView initChangePasswordPage() {
         return new ModelAndView("/user/temporaryPasswordChange");
+    }
+
+    @GetMapping("/notice")
+    public ModelAndView initNoticePage(HttpServletRequest request) {
+
+        ModelAndView mav = new ModelAndView("/user/notice");
+
+        mav.addObject("notificationList", noticeApi.getNoticeList(request));
+
+        return mav;
     }
 }
