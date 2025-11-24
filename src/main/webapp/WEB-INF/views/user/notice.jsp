@@ -43,7 +43,7 @@
 
             <span id="selectedCountBox" class="selected-count hidden">
                 <span id="selectedCount">0</span>
-                <span data-i18n="ui.notice_selected_count">개 선택됨</span>
+                <span data-i18n="ui.notice_selected_count"> 개 선택됨</span>
             </span>
         </div>
     </div>
