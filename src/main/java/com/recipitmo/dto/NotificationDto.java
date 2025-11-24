@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 public class NotificationDto {
     private String id;
     private String contents;
+    private String recipeNo;
     private CommonCode notificationType;
     private String readYn;
     private String receivedTime;

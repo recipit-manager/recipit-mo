@@ -84,8 +84,23 @@ export default {
         findId_modal_title: "내 아이디",
         find_password_modal_content:
             "입력하신 이메일로 임시 비밀번호를 전송했습니다. 메일을 확인해주세요.",
-        notice: "알림",
         password_change_title: "비밀번호 변경",
-        close: "닫기"
+        close: "닫기",
+
+        notice: "알림",
+        notice_mark_read: "읽음",
+        notice_selected_count: " 개 선택됨",
+        notice_empty: " 알림이 없습니다.",
+        notice_info: "30일이 지난 알림은 자동으로 삭제됩니다."
+    },
+    time: {
+        period: {
+            am: "오전",
+            pm: "오후"
+        },
+        date: {
+            month_suffix: "월",
+            day_suffix: "일"
+        }
     }
 };

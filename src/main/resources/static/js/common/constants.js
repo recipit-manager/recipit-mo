@@ -9,8 +9,19 @@ export const log = {
     EMAIL_SEND_FAILED: "Email send failed:",
 
     REQUEST_FAILED: "Request failed:",
+
+    NOTIFICATION_READ_FAILED: "Notification read failed:",
 };
 
 export const responseCode = {
     SUCCESS: "0000"
+}
+
+export const commonCode = {
+    NOTICE_TYPE: {
+        DRAFT: "NT01",
+        USER_REACTION: "NT02",
+        RECIPE_STATUS: "NT03",
+        REPORT: "NT04",
+    }
 }

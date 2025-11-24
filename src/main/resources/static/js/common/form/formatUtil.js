@@ -1,3 +1,5 @@
+import { translate, applyI18nTexts, loadLanguageFile } from "/js/i18n/i18n.js";
+
 export const formatUtil = {
     parseGroups(formatStr) {
         if (!formatStr) {
@@ -27,5 +29,28 @@ export const formatUtil = {
             }
         }
         return formatted.trim();
+    },
+
+    formatTime(isoString) {
+        const date = new Date(isoString);
+        const language = localStorage.getItem("language") || "KO";
+
+        const kr = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+
+        const month = kr.getMonth() + 1;
+        const day = kr.getDate();
+
+        let hours = kr.getHours();
+        const minutes = kr.getMinutes().toString().padStart(2, "0");
+
+        const isPM = hours >= 12;
+        const period = translate(isPM ? "time.period.pm" : "time.period.am");
+
+        hours = hours % 12 || 12;
+
+        const monthSuffix = translate("time.date.month_suffix");
+        const daySuffix   = translate("time.date.day_suffix");
+
+        return `${month}${monthSuffix} ${day}${daySuffix} ${period} ${hours}:${minutes}`;
     }
 };

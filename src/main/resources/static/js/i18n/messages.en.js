@@ -84,8 +84,23 @@ export default {
         findId_modal_title: "My Email",
         find_password_modal_content:
             "A temporary password has been sent to the email address you entered. Please check your email.",
-        notice: "Notice",
         password_change_title: "Change Password",
-        close: "Close"
+        close: "Close",
+
+        notice: "notice",
+        notice_mark_read: "Read",
+        notice_selected_count: " selected",
+        notice_empty: "No notice.",
+        notice_info: "Notifications older than 30 days are automatically deleted."
+    },
+    time: {
+        period: {
+            am: "AM",
+            pm: "PM"
+        },
+        date: {
+            month_suffix: "Month",
+            day_suffix: "Day"
+        }
     }
 };
