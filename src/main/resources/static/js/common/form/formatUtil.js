@@ -33,7 +33,6 @@ export const formatUtil = {
 
     formatTime(isoString) {
         const date = new Date(isoString);
-        const language = localStorage.getItem("language") || "KO";
 
         const kr = new Date(date.getTime() + 9 * 60 * 60 * 1000);
 

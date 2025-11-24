@@ -11,8 +11,8 @@ async function initNotice() {
 
     initEvents();
 
-    document.querySelectorAll("#noticeList .time").forEach(el => {
-        el.textContent = formatUtil.formatTime(el.textContent);
+    document.querySelectorAll("#noticeList .time").forEach($el => {
+        $el.textContent = formatUtil.formatTime($el.textContent);
     });
 }
 
@@ -23,14 +23,17 @@ function initEvents() {
 
     $checkAll.addEventListener("change", () => {
         const checked = $checkAll.checked;
-        const items = document.querySelectorAll(".notice-check");
+        const $items = document.querySelectorAll(".notice-check");
 
-        items.forEach(chk => chk.checked = checked);
+        $items.forEach(chk => chk.checked = checked);
         refreshSelectedCount();
     });
 
     $noticeList.addEventListener("change", (e) => {
-        if (!e.target.classList.contains("notice-check")) return;
+        if (!e.target.classList.contains("notice-check")) {
+            return;
+        }
+
         refreshSelectedCount();
     });
 
@@ -58,8 +61,8 @@ function refreshSelectedCount() {
         $btnRead.classList.remove("enabled");
     }
 
-    const all = document.querySelectorAll(".notice-check");
-    document.getElementById("checkAll").checked = count === all.length;
+    const $all = document.querySelectorAll(".notice-check");
+    document.getElementById("checkAll").checked = count === $all.length;
 }
 
 async function markSelectedAsRead() {
@@ -75,13 +78,13 @@ async function markSelectedAsRead() {
 
         if (data.code === responseCode.SUCCESS) {
             notificationIdList.forEach(id => {
-                const item = document.querySelector(`.notice-check[data-id='${id}']`)
+                const $item = document.querySelector(`.notice-check[data-id='${id}']`)
                     .closest(".notice-item");
-                item.classList.remove("unread");
+                $item.classList.remove("unread");
             });
 
             document.getElementById("checkAll").checked = false;
-            document.querySelectorAll(".notice-check").forEach(check => check.checked = false);
+            document.querySelectorAll(".notice-check").forEach($check => $check.checked = false);
             refreshSelectedCount();
         } else {
             console.error(log.NOTIFICATION_READ_FAILED, data);
@@ -93,11 +96,7 @@ async function markSelectedAsRead() {
 
 function clickNotice(e) {
     const item = e.target.closest(".notice-item");
-    if (!item) {
-        return;
-    }
-
-    if (e.target.classList.contains("notice-check")) {
+    if (!item || e.target.classList.contains("notice-check")) {
         return;
     }
 
