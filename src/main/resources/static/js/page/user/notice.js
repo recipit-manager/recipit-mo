@@ -17,45 +17,45 @@ async function initNotice() {
 }
 
 function initEvents() {
-    const checkAll = document.getElementById("checkAll");
-    const list = document.getElementById("noticeList");
-    const btnRead = document.getElementById("btnRead");
+    const $checkAll = document.getElementById("checkAll");
+    const $noticeList = document.getElementById("noticeList");
+    const $btnRead = document.getElementById("btnRead");
 
-    checkAll.addEventListener("change", () => {
-        const checked = checkAll.checked;
+    $checkAll.addEventListener("change", () => {
+        const checked = $checkAll.checked;
         const items = document.querySelectorAll(".notice-check");
 
         items.forEach(chk => chk.checked = checked);
         refreshSelectedCount();
     });
 
-    list.addEventListener("change", (e) => {
+    $noticeList.addEventListener("change", (e) => {
         if (!e.target.classList.contains("notice-check")) return;
         refreshSelectedCount();
     });
 
-    list.addEventListener("click", clickNotice);
+    $noticeList.addEventListener("click", clickNotice);
 
-    btnRead.addEventListener("click", markSelectedAsRead);
+    $btnRead.addEventListener("click", markSelectedAsRead);
 }
 
 function refreshSelectedCount() {
-    const selected = document.querySelectorAll(".notice-check:checked");
-    const selectedCountBox = document.getElementById("selectedCountBox");
-    const selectedCount = document.getElementById("selectedCount");
-    const btnRead = document.getElementById("btnRead");
+    const $selected = document.querySelectorAll(".notice-check:checked");
+    const $selectedCountBox = document.getElementById("selectedCountBox");
+    const $selectedCount = document.getElementById("selectedCount");
+    const $btnRead = document.getElementById("btnRead");
 
-    const count = selected.length;
-    selectedCount.textContent = count;
+    const count = $selected.length;
+    $selectedCount.textContent = count;
 
     if (count > 0) {
-        selectedCountBox.classList.remove("hidden");
-        btnRead.disabled = false;
-        btnRead.classList.add("enabled");
+        $selectedCountBox.classList.remove("hidden");
+        $btnRead.disabled = false;
+        $btnRead.classList.add("enabled");
     } else {
-        selectedCountBox.classList.add("hidden");
-        btnRead.disabled = true;
-        btnRead.classList.remove("enabled");
+        $selectedCountBox.classList.add("hidden");
+        $btnRead.disabled = true;
+        $btnRead.classList.remove("enabled");
     }
 
     const all = document.querySelectorAll(".notice-check");
@@ -63,12 +63,12 @@ function refreshSelectedCount() {
 }
 
 async function markSelectedAsRead() {
-    const selected = [...document.querySelectorAll(".notice-check:checked")];
-    if (selected.length === 0) {
+    const $selected = [...document.querySelectorAll(".notice-check:checked")];
+    if ($selected.length === 0) {
         return;
     }
 
-    const notificationIdList = selected.map(checked => checked.dataset.id);
+    const notificationIdList = $selected.map(checked => checked.dataset.id);
 
     try {
         const data = await apiUtil.patch(apiUtil.url.USER.NOTICE_READ, notificationIdList);
