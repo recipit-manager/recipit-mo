@@ -11,6 +11,7 @@ export const log = {
     REQUEST_FAILED: "Request failed:",
 
     NOTIFICATION_READ_FAILED: "Notification read failed:",
+    UNKNOWN_NOTIFICATION_TYPE: "Unknown notification type:",
 };
 
 export const responseCode = {

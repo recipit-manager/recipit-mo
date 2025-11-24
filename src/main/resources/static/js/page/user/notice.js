@@ -118,6 +118,9 @@ function clickNotice(e) {
             break;
         case commonCode.NOTICE_TYPE.REPORT:
             break;
+        default:
+            console.warn(log.UNKNOWN_NOTIFICATION_TYPE, item);
+            break;
     }
 }
 
