@@ -67,7 +67,15 @@ function initLikeButton() {
         const recipeId = $card.dataset.id;
         const isLogin = document.body.dataset.isLogin === "true";
 
+        let isProcessing = false;
+
         async function toggleLike(isCurrentlyLiked) {
+            if (isProcessing) {
+                return;
+            }
+
+            isProcessing = true;
+
             if (!isLogin) {
                 window.location.href = "/user/login";
                 return;
@@ -77,21 +85,27 @@ function initLikeButton() {
                 ? apiUtil.delete(apiUtil.url.RECIPE.LIKE(recipeId))
                 : apiUtil.post(apiUtil.url.RECIPE.LIKE(recipeId));
 
-            const data = await apiCall;
+            try {
+                const data = await apiCall;
 
-            if (data.code !== responseCode.SUCCESS) {
-                console.error(log.LIKE_RECIPE_FAILED, data.message);
-                return;
-            }
+                if (data.code !== responseCode.SUCCESS) {
+                    console.error(log.LIKE_RECIPE_FAILED, data.message);
+                    return;
+                }
 
-            if (isCurrentlyLiked) {
-                $iconLiked.classList.add("hidden");
-                $iconUnliked.classList.remove("hidden");
-                $count.textContent = +$count.textContent - 1;
-            } else {
-                $iconUnliked.classList.add("hidden");
-                $iconLiked.classList.remove("hidden");
-                $count.textContent = +$count.textContent + 1;
+                if (isCurrentlyLiked) {
+                    $iconLiked.classList.add("hidden");
+                    $iconUnliked.classList.remove("hidden");
+                    $count.textContent = +$count.textContent - 1;
+                } else {
+                    $iconUnliked.classList.add("hidden");
+                    $iconLiked.classList.remove("hidden");
+                    $count.textContent = +$count.textContent + 1;
+                }
+            } catch (e) {
+                console.error(log.LIKE_RECIPE_FAILED, e);
+            } finally {
+                isProcessing = false;
             }
         }
 
