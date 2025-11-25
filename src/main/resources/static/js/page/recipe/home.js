@@ -37,10 +37,8 @@ function initSearchBox() {
 function initCategoryButton() {
     document.querySelectorAll(".category-item").forEach($item => {
         $item.addEventListener("click", () => {
-            const code = $item.dataset.code;
-
             const query = new URLSearchParams({
-                categoryCode: code,
+                categoryCode: $item.dataset.code,
             }).toString();
 
             window.location.href = `/recipe/list?${query}`;
