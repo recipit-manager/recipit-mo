@@ -11,6 +11,7 @@ async function initHome() {
 
     initSearchBox();
     initCategoryButton();
+    initRecipeCardClick();
     initLikeButton();
     initWriteButton();
 }
@@ -47,11 +48,29 @@ function initCategoryButton() {
     });
 }
 
+function initRecipeCardClick() {
+    document.querySelectorAll(".recipe-card").forEach($card => {
+        $card.addEventListener("click", () => {
+            const recipeId = $card.dataset.id;
+            if (!recipeId) {
+                return;
+            }
+
+            window.location.href = `/recipe/${recipeId}`;
+        });
+    });
+}
+
 function initLikeButton() {
     document.querySelectorAll(".like-icon").forEach($icon => {
 
         $icon.addEventListener("click", async (e) => {
             e.stopPropagation();
+
+            if (document.body.dataset.isLogin !== "true") {
+                window.location.href = "/user/login";
+                return;
+            }
 
             const $card = $icon.closest(".recipe-card");
             const recipeId = $card.dataset.id;
