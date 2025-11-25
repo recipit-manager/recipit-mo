@@ -32,6 +32,7 @@
     margin-bottom: 28px;
     cursor: pointer;
     position: relative;
+    text-align: center;
 }
 
 .banner-left {
@@ -45,7 +46,6 @@
     flex: 1;
     font-size: 16px;
     font-weight: 600;
-    margin-left: 30%;
 }
 
 .refri-banner img {
