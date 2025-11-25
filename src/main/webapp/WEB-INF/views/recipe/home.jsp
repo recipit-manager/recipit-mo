@@ -33,7 +33,8 @@
             </button>
         </div>
 
-        <div class="refri-banner" onclick="location.href='/refri'">
+        <%--<div class="refri-banner" onclick="location.href='/refri'">--%>
+        <div class="refri-banner">
             <div class="banner-left">
                 <img src="/images/refri.png">
             </div>

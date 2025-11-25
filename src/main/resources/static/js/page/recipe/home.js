@@ -26,7 +26,8 @@ function initSearchBox() {
         }
 
         const query = new URLSearchParams({ keyword }).toString();
-        window.location.href = `/recipe/list?${query}`;
+        alert("개발 진행중입니다.");
+        // TODO : window.location.href = `/recipe/list?${query}`;
     }
 
     $searchButton.addEventListener("click", goSearch);
@@ -41,7 +42,8 @@ function initCategoryButton() {
                 categoryCode: $item.dataset.code,
             }).toString();
 
-            window.location.href = `/recipe/list?${query}`;
+            alert("개발 진행중입니다.");
+            // TODO : window.location.href = `/recipe/list?${query}`;
         });
     });
 }
@@ -54,7 +56,8 @@ function initRecipeCardClick() {
                 return;
             }
 
-            window.location.href = `/recipe/${recipeId}`;
+            alert("개발 진행중입니다.");
+            // TODO : window.location.href = `/recipe/${recipeId}`;
         });
     });
 }
@@ -134,7 +137,8 @@ function initWriteButton() {
                     return;
                 }
 
-                window.location.href = "/recipe/write";
+                alert("개발 진행중입니다.")
+                // TODO : window.location.href = "/recipe/write";
             } else {
                 console.error(log.DRAFT_COUNT_FAILED, data.message);
             }
