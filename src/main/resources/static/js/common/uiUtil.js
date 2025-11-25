@@ -27,20 +27,20 @@ export const uiUtil = {
     },
 
     showModal(message, {title = null, onClose = null, confirmText = null, success = false } = {}) {
-        let modal = document.getElementById("globalModal");
+        let $modal = document.getElementById("globalModal");
 
-        if (!modal) {
-            modal = document.createElement("div");
-            modal.id = "globalModal";
-            modal.className = "modal-overlay";
-            modal.innerHTML = `
+        if (!$modal) {
+            $modal = document.createElement("div");
+            $modal.id = "globalModal";
+            $modal.className = "modal-overlay";
+            $modal.innerHTML = `
                 <div class="modal-box">
                     <h3 id="modalTitle"></h3>
                     <p id="modalMsg"></p>
                     <button id="modalClose" class="btn-small"></button>
                 </div>
             `;
-            document.body.appendChild(modal);
+            document.body.appendChild($modal);
         }
 
         const $title = document.getElementById("modalTitle");
@@ -57,10 +57,10 @@ export const uiUtil = {
             ? confirmText
             : translate("common.confirm");
 
-        modal.style.display = "flex";
+        $modal.style.display = "flex";
 
         $close.onclick = () => {
-            modal.style.display = "none";
+            $modal.style.display = "none";
             if (onClose) { onClose() }
         };
 
