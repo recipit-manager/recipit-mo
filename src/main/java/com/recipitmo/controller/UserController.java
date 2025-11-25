@@ -3,7 +3,6 @@ package com.recipitmo.controller;
 import com.recipitmo.client.api.CommonApi;
 import com.recipitmo.client.api.NoticeApi;
 import com.recipitmo.dto.CountryDto;
-import com.recipitmo.dto.NotificationDto;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

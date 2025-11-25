@@ -65,5 +65,46 @@ export const uiUtil = {
         };
 
         applyI18nTexts();
+    },
+
+    showDraftLimitModal() {
+        let modal = document.getElementById("draftLimitModal");
+
+        if (!modal) {
+            modal = document.createElement("div");
+            modal.id = "draftLimitModal";
+            modal.className = "modal-overlay";
+
+            modal.innerHTML = `
+            <div class="modal-box">
+                <p data-i18n="ui.draftLimit.msg"></p>
+
+                <div class="modal-btn-group">
+                    <button id="draftManageBtn" class="btn-small" data-i18n="ui.draftLimit.manage"></button>
+                    <button id="draftContinueBtn" class="btn-small gray" data-i18n="ui.draftLimit.continue"></button>
+                </div>
+            </div>
+        `;
+
+            document.body.appendChild(modal);
+        }
+
+        modal.style.display = "flex";
+
+        const $manage = document.getElementById("draftManageBtn");
+        const $continue = document.getElementById("draftContinueBtn");
+
+        $manage.onclick = () => {
+            modal.style.display = "none";
+            window.location.href = "/myPage/recipe/draft";
+        };
+
+        $continue.onclick = () => {
+            modal.style.display = "none";
+            window.location.href = "/recipe/write";
+        };
+
+        applyI18nTexts();
     }
+
 };

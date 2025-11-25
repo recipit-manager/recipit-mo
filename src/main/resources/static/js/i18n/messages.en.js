@@ -91,7 +91,18 @@ export default {
         notice_mark_read: "Read",
         notice_selected_count: " selected",
         notice_empty: "No notice.",
-        notice_info: "Notifications older than 30 days are automatically deleted."
+        notice_info: "Notifications older than 30 days are automatically deleted.",
+
+        recipe_search_placeholder: "search recipe",
+        refrigerator_item:"refrigerator-item",
+        category_title:"What kind of dish would you like to make?",
+        weekly_recipe_title:"Weekly Recipe",
+
+        draftLimit: {
+            msg: "You have reached the maximum of 10 saved drafts.\nNew recipes cannot be saved as drafts.",
+            manage: "Manage Drafts",
+            continue: "Continue"
+        }
     },
     time: {
         period: {
