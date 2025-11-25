@@ -126,6 +126,16 @@
     font-size: 12px;
 }
 
+.hidden {
+    display: none;
+}
+
+.icon-liked,
+.icon-unliked {
+    width: 18px;
+    cursor: pointer;
+}
+
 .like-icon {
     width: 18px;
 }

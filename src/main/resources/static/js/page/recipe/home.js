@@ -60,47 +60,49 @@ function initRecipeCardClick() {
 }
 
 function initLikeButton() {
-    document.querySelectorAll(".like-icon").forEach($icon => {
+    document.querySelectorAll(".recipe-card").forEach($card => {
+        const $iconLiked = $card.querySelector(".icon-liked");
+        const $iconUnliked = $card.querySelector(".icon-unliked");
+        const $count = $card.querySelector(".like-count");
+        const recipeId = $card.dataset.id;
+        const isLogin = document.body.dataset.isLogin === "true";
 
-        $icon.addEventListener("click", async (e) => {
-            e.stopPropagation();
-
-            if (document.body.dataset.isLogin !== "true") {
+        async function toggleLike(isCurrentlyLiked) {
+            if (!isLogin) {
                 window.location.href = "/user/login";
                 return;
             }
 
-            const $card = $icon.closest(".recipe-card");
-            const recipeId = $card.dataset.id;
+            const apiCall = isCurrentlyLiked
+                ? apiUtil.delete(apiUtil.url.RECIPE.LIKE(recipeId))
+                : apiUtil.post(apiUtil.url.RECIPE.LIKE(recipeId));
 
-            const $count = $card.querySelector(".like-count");
-            const isLiked = $icon.classList.contains("liked");
+            const data = await apiCall;
 
-            try {
-                const apiCall = isLiked
-                    ? apiUtil.delete(apiUtil.url.RECIPE.LIKE(recipeId))
-                    : apiUtil.post(apiUtil.url.RECIPE.LIKE(recipeId));
-
-                const data = await apiCall;
-
-                if (data.code !== responseCode.SUCCESS) {
-                    console.error(log.LIKE_RECIPE_FAILED, data.message);
-                    return;
-                }
-
-                if (isLiked) {
-                    $icon.classList.remove("liked");
-                    $icon.src = "/images/unlike.png";
-                    $count.textContent = Number($count.textContent) - 1;
-                } else {
-                    $icon.classList.add("liked");
-                    $icon.src = "/images/like.png";
-                    $count.textContent = Number($count.textContent) + 1;
-                }
-
-            } catch (err) {
-                console.error(log.LIKE_RECIPE_FAILED, err);
+            if (data.code !== responseCode.SUCCESS) {
+                console.error(log.LIKE_RECIPE_FAILED, data.message);
+                return;
             }
+
+            if (isCurrentlyLiked) {
+                $iconLiked.classList.add("hidden");
+                $iconUnliked.classList.remove("hidden");
+                $count.textContent = +$count.textContent - 1;
+            } else {
+                $iconUnliked.classList.add("hidden");
+                $iconLiked.classList.remove("hidden");
+                $count.textContent = +$count.textContent + 1;
+            }
+        }
+
+        $iconUnliked.addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleLike(false);
+        });
+
+        $iconLiked.addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleLike(true);
         });
     });
 }

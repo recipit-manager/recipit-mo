@@ -68,14 +68,14 @@ export const uiUtil = {
     },
 
     showDraftLimitModal() {
-        let modal = document.getElementById("draftLimitModal");
+        let $modal = document.getElementById("draftLimitModal");
 
-        if (!modal) {
-            modal = document.createElement("div");
-            modal.id = "draftLimitModal";
-            modal.className = "modal-overlay";
+        if (!$modal) {
+            $modal = document.createElement("div");
+            $modal.id = "draftLimitModal";
+            $modal.className = "modal-overlay";
 
-            modal.innerHTML = `
+            $modal.innerHTML = `
             <div class="modal-box">
                 <p data-i18n="ui.draftLimit.msg"></p>
 
@@ -86,21 +86,21 @@ export const uiUtil = {
             </div>
         `;
 
-            document.body.appendChild(modal);
+            document.body.appendChild($modal);
         }
 
-        modal.style.display = "flex";
+        $modal.style.display = "flex";
 
         const $manage = document.getElementById("draftManageBtn");
         const $continue = document.getElementById("draftContinueBtn");
 
         $manage.onclick = () => {
-            modal.style.display = "none";
+            $modal.style.display = "none";
             window.location.href = "/myPage/recipe/draft";
         };
 
         $continue.onclick = () => {
-            modal.style.display = "none";
+            $modal.style.display = "none";
             window.location.href = "/recipe/write";
         };
 

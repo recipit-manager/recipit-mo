@@ -69,9 +69,9 @@
                             <p class="recipe-name">${recipe.name}</p>
 
                             <div class="recipe-like">
-                                <img class="like-icon ${recipe.isLiked ? 'liked' : ''}"
-                                     src="${recipe.isLiked ? '/images/like.png' : '/images/unlike.png'}">
-                                <span class="like-count" id="likeCount">${recipe.likeCount}</span>
+                                <img class="icon-unliked ${recipe.isLiked ? 'hidden' : ''}" src="/images/unlike.png">
+                                <img class="icon-liked ${recipe.isLiked ? '' : 'hidden'}" src="/images/like.png">
+                                <span class="like-count">${recipe.likeCount}</span>
                             </div>
                         </div>
                     </c:forEach>
