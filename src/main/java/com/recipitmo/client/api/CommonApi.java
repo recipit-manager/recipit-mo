@@ -3,6 +3,7 @@ package com.recipitmo.client.api;
 import com.recipitmo.client.RetrofitClient;
 import com.recipitmo.dto.CountryDto;
 import com.recipitmo.dto.ApiResponse;
+import com.recipitmo.dto.RecipeCategoryDto;
 import com.recipitmo.service.CommonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,10 +30,10 @@ public class CommonApi {
             if (response.isSuccessful() && response.body() != null) {
                 return response.body().getData();
             } else {
-                log.error("이메일 도메인 목록 API 호출 실패: HTTP {}", response.code());
+                log.error("Failed to load domain List: HTTP {}", response.code());
             }
         } catch (IOException e) {
-            log.error("이메일 도메인 목록 API 요청 중 오류 발생", e);
+            log.error("Failed to load domain List", e);
         }
 
         return Collections.emptyList();
@@ -45,10 +46,25 @@ public class CommonApi {
             if (response.isSuccessful() && response.body() != null) {
                 return response.body().getData();
             } else {
-                log.error("국가코드 목록 API 호출 실패: HTTP {}", response.code());
+                log.error("Failed to load country List: HTTP {}", response.code());
             }
         } catch (IOException e) {
-            log.error("국가코드 목록 API 요청 중 오류 발생", e);
+            log.error("Failed to load country List", e);
+        }
+        return Collections.emptyList();
+    }
+
+    public List<RecipeCategoryDto> getRecipeCategoryList() {
+        try {
+            Response<ApiResponse<List<RecipeCategoryDto>>> response = commonService.getRecipeCategoryList().execute();
+
+            if (response.isSuccessful() && response.body() != null) {
+                return response.body().getData();
+            } else {
+                log.error("Failed to load recipeCategory List: HTTP {}", response.code());
+            }
+        } catch (IOException e) {
+            log.error("Failed to load recipeCategory List", e);
         }
         return Collections.emptyList();
     }

@@ -27,20 +27,20 @@ export const uiUtil = {
     },
 
     showModal(message, {title = null, onClose = null, confirmText = null, success = false } = {}) {
-        let modal = document.getElementById("globalModal");
+        let $modal = document.getElementById("globalModal");
 
-        if (!modal) {
-            modal = document.createElement("div");
-            modal.id = "globalModal";
-            modal.className = "modal-overlay";
-            modal.innerHTML = `
+        if (!$modal) {
+            $modal = document.createElement("div");
+            $modal.id = "globalModal";
+            $modal.className = "modal-overlay";
+            $modal.innerHTML = `
                 <div class="modal-box">
                     <h3 id="modalTitle"></h3>
                     <p id="modalMsg"></p>
                     <button id="modalClose" class="btn-small"></button>
                 </div>
             `;
-            document.body.appendChild(modal);
+            document.body.appendChild($modal);
         }
 
         const $title = document.getElementById("modalTitle");
@@ -57,13 +57,56 @@ export const uiUtil = {
             ? confirmText
             : translate("common.confirm");
 
-        modal.style.display = "flex";
+        $modal.style.display = "flex";
 
         $close.onclick = () => {
-            modal.style.display = "none";
+            $modal.style.display = "none";
             if (onClose) { onClose() }
         };
 
         applyI18nTexts();
+    },
+
+    showDraftLimitModal() {
+        let $modal = document.getElementById("draftLimitModal");
+
+        if (!$modal) {
+            $modal = document.createElement("div");
+            $modal.id = "draftLimitModal";
+            $modal.className = "modal-overlay";
+
+            $modal.innerHTML = `
+            <div class="modal-box">
+                <p data-i18n="ui.draftLimit.msg"></p>
+
+                <div class="modal-btn-group">
+                    <button id="draftManageBtn" class="btn-small" data-i18n="ui.draftLimit.manage"></button>
+                    <button id="draftContinueBtn" class="btn-small gray" data-i18n="ui.draftLimit.continue"></button>
+                </div>
+            </div>
+        `;
+
+            document.body.appendChild($modal);
+        }
+
+        $modal.style.display = "flex";
+
+        const $manage = document.getElementById("draftManageBtn");
+        const $continue = document.getElementById("draftContinueBtn");
+
+        $manage.onclick = () => {
+            $modal.style.display = "none";
+            alert("개발 진행중입니다.")
+            // window.location.href = "/myPage/recipe/draft";
+        };
+
+        $continue.onclick = () => {
+            $modal.style.display = "none";
+            alert("개발 진행중입니다.")
+            // window.location.href = "/recipe/write";
+        };
+
+        applyI18nTexts();
     }
+
 };

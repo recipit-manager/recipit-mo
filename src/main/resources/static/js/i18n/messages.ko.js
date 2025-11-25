@@ -91,7 +91,18 @@ export default {
         notice_mark_read: "읽음",
         notice_selected_count: " 개 선택됨",
         notice_empty: " 알림이 없습니다.",
-        notice_info: "30일이 지난 알림은 자동으로 삭제됩니다."
+        notice_info: "30일이 지난 알림은 자동으로 삭제됩니다.",
+
+        recipe_search_placeholder: "레시피 검색",
+        refrigerator_item:"냉템요리",
+        category_title:"어떤 요리를 하고 싶나요?",
+        weekly_recipe_title:"주간 인기 레시피",
+
+        draftLimit: {
+            msg: "현재 임시저장된 레시피가 최대 한도인\n10개가 저장되어 있습니다.\n새로 작성하는 레시피는 임시저장이 불가능합니다.",
+            manage: "임시저장 관리",
+            continue: "계속하기"
+        }
     },
     time: {
         period: {

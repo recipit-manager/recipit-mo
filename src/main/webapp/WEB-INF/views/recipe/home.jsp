@@ -13,6 +13,7 @@
 
         <title>Recipit Home</title>
         <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/home.css">
     </head>
 
     <body data-is-login="${isLogin}" data-is-unread-notification="${isUnreadNotification}">
@@ -23,9 +24,66 @@
         <jsp:param name="isUnreadNotification" value="${isUnreadNotification}" />
     </jsp:include>
 
-    <main>
-        <h2>Recipit</h2>
-        <p>MainPage</p>
+    <main class="home-container">
+
+        <div class="search-box">
+            <input type="text" id="searchInput" data-i18n-placeholder="ui.recipe_search_placeholder">
+            <button class="search-btn" id="searchButton">
+                <img src="/images/search.png">
+            </button>
+        </div>
+
+        <%--<div class="refri-banner" onclick="location.href='/refri'">--%>
+        <div class="refri-banner">
+            <div class="banner-left">
+                <img src="/images/refri.png">
+            </div>
+            <div class="banner-right" data-i18n="ui.refrigerator_item">
+                냉템요리
+            </div>
+        </div>
+
+        <section class="category-section">
+            <h3 class="section-title" data-i18n="ui.category_title">어떤 요리를 하고 싶나요?</h3>
+
+            <div class="category-grid">
+                <c:forEach var="cat" items="${recipeCategoryList}">
+                    <div class="category-item" data-code="${cat.categoryCode}">
+                        <img class="category-icon" src="${cat.iconUrl}">
+                        <span class="category-name">${cat.categoryName}</span>
+                    </div>
+                </c:forEach>
+            </div>
+        </section>
+
+        <section class="popular-section">
+            <h3 class="section-title" data-i18n="ui.weekly_recipe_title">주간 인기 레시피</h3>
+
+            <div class="popular-slide-wrapper">
+                <div class="popular-slide-track">
+                    <c:forEach var="recipe" items="${popularRecipeList}">
+                        <div class="recipe-card" data-id="${recipe.id}">
+                            <div class="recipe-img-box">
+                                <img src="${recipe.imageUrl}">
+                            </div>
+
+                            <p class="recipe-name">${recipe.name}</p>
+
+                            <div class="recipe-like">
+                                <img class="icon-unliked ${recipe.isLiked ? 'hidden' : ''}" src="/images/unlike.png">
+                                <img class="icon-liked ${recipe.isLiked ? '' : 'hidden'}" src="/images/like.png">
+                                <span class="like-count">${recipe.likeCount}</span>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </section>
+
+        <button class="floating-write-btn" id="writeRecipeBtn">
+            <img src="/images/write.png">
+        </button>
+
     </main>
 
     <script type="module" src="/js/common/header.js"></script>

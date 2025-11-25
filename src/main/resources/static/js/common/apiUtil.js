@@ -18,7 +18,10 @@ export const apiUtil = {
             FIND_PASSWORD: "/user/password/temporary",
             NOTICE_READ: "/user/notification/list/read",
         },
-        RECIPE : {},
+        RECIPE : {
+            LIKE: (recipeNo) => `/recipe/${recipeNo}/like`,
+            DRAFT_COUNT: "/recipe/draft/count",
+        },
     },
 
     getHeaders() {
