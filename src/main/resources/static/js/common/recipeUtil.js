@@ -15,7 +15,10 @@ export const recipeUtil = {
             let isProcessing = false;
 
             async function toggleLike(isCurrentlyLiked) {
-                if (isProcessing) return;
+                if (isProcessing) {
+                    return;
+                }
+
                 isProcessing = true;
 
                 if (!isLogin) {

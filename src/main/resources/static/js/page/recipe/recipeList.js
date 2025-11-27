@@ -38,58 +38,33 @@ function initSearchBox() {
     const $btn = document.getElementById("searchBtn");
 
     const search = () => {
-        const keyword = $input.value.trim();
-        const current = new URLSearchParams(location.search);
-        const params = new URLSearchParams();
+        const params = buildSearchParams({
+            keyword: $input.value.trim()
+        });
 
-        const sort = current.get("sort") || "recent";
-        params.set("sort", sort);
-
-        if (keyword) {
-            params.set("keyword", keyword);
-        }
-
-        const categoryCode = current.get("categoryCode");
-        if (categoryCode) {
-            params.set("categoryCode", categoryCode);
-        }
-
-        location.href = `/home/recipe/${sort}-order/list?${params.toString()}`;
+        location.href = `/home/recipe/list?${params.toString()}`;
     };
 
     $btn.addEventListener("click", search);
-    $input.addEventListener("keydown", (e) => e.key === "Enter" && search);
+    $input.addEventListener("keydown", (e) => e.key === "Enter" && search());
 
     const $clear = document.getElementById("clearKeywordBtn");
     $clear?.addEventListener("click", () => {
         const params = new URLSearchParams(location.search);
         params.delete("keyword");
 
-        location.href = `/home/recipe/recent-order/list?${params.toString()}`;
+        location.href = `/home/recipe/list?${params.toString()}`;
     });
 }
 
 function initCategoryButtons() {
     document.querySelectorAll(".category-item").forEach($item => {
         $item.addEventListener("click", () => {
-            const code = $item.dataset.code;
+            const params = buildSearchParams({
+                categoryCode: $item.dataset.code
+            });
 
-            const current = new URLSearchParams(location.search);
-            const params = new URLSearchParams();
-
-            const sort = current.get("sort") || "recent";
-            params.set("sort", sort);
-
-            if (code) {
-                params.set("categoryCode", code);
-            }
-
-            const keyword = current.get("keyword");
-            if (keyword) {
-                params.set("keyword", keyword);
-            }
-
-            location.href = `/home/recipe/${sort}-order/list?${params.toString()}`;
+            location.href = `/home/recipe/list?${params.toString()}`;
         });
     });
 }
@@ -97,32 +72,11 @@ function initCategoryButtons() {
 function initSortButtons() {
     document.querySelectorAll(".sort-btn").forEach($button => {
         $button.addEventListener("click", () => {
-            const sort = $button.dataset.sort;
+            const params = buildSearchParams({
+                sort: $button.dataset.sort
+            });
 
-            document.querySelectorAll(".sort-btn").forEach($activeButton => $activeButton.classList.remove("active"));
-            $button.classList.add("active");
-
-            const current = new URLSearchParams(location.search);
-            const params = new URLSearchParams();
-
-            params.set("sort", sort);
-
-            const keyword = current.get("keyword");
-            if (keyword) {
-                params.set("keyword", keyword);
-            }
-
-            const categoryCode = current.get("categoryCode");
-            if (categoryCode) {
-                params.set("categoryCode", categoryCode);
-            }
-
-            const baseUrl =
-                sort === "like"
-                    ? "/home/recipe/like-order/list"
-                    : "/home/recipe/recent-order/list";
-
-            location.href = `${baseUrl}?${params.toString()}`;
+            location.href = `/home/recipe/list?${params.toString()}`;
         });
     });
 }
@@ -211,6 +165,8 @@ async function loadNextPage() {
 function appendRecipes(recipes) {
     const $list = document.getElementById("recipeList");
 
+    const fragment = document.createDocumentFragment();
+
     recipes.forEach(recipe => {
         const $card = document.createElement("div");
         $card.className = "recipe-card";
@@ -240,14 +196,16 @@ function appendRecipes(recipes) {
             </div>
         `;
 
-        $list.appendChild($card);
+        fragment.appendChild($card);
     });
+
+    $list.appendChild(fragment);
 
     recipeUtil.initRecipeClick();
     recipeUtil.initLikeButton();
 
     autoLoadIfScrollShort();
-    applyFilterToCards()
+    applyFilterToCards();
 }
 
 function initFilterModal() {
@@ -346,8 +304,11 @@ function initTimeRangeSlider() {
     const minGap = 5;
 
     function updateLabels() {
-        $minValue.textContent = $minSlider.value + "분";
-        $maxValue.textContent = $maxSlider.value >= 120 ? "120분+" : $maxSlider.value + "분";
+        $minValue.textContent = `${$minSlider.value}분`;
+        $maxValue.textContent =
+            $maxSlider.value >= 120
+                ? "120분+"
+                : `${$maxSlider.value}분`;
     }
 
     $minSlider.addEventListener("input", () => {
@@ -394,6 +355,26 @@ function toggleEmptyResult(show) {
             $list.style.display = "block";
         }
     }
+}
+
+function buildSearchParams(options = {}) {
+    const current = new URLSearchParams(location.search);
+    const params = new URLSearchParams();
+
+    const keyword = options.keyword ?? current.get("keyword");
+    const categoryCode = options.categoryCode ?? current.get("categoryCode");
+    const sort = options.sort ?? current.get("sort") ?? "recent";
+
+    if (keyword) {
+        params.set("keyword", keyword);
+    }
+    if (categoryCode) {
+        params.set("categoryCode", categoryCode);
+    }
+
+    params.set("sort", sort);
+
+    return params;
 }
 
 window.addEventListener("load", () => {

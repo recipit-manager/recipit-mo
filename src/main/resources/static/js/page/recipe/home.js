@@ -25,7 +25,7 @@ function initSearchBox() {
 
         const query = new URLSearchParams({ keyword }).toString();
 
-        window.location.href = `/home/recipe/recent-order/list?${query}`;
+        window.location.href = `/home/recipe/list?${query}`;
     }
 
     $searchButton.addEventListener("click", goSearch);
@@ -40,7 +40,7 @@ function initCategoryButton() {
                 categoryCode: $item.dataset.code,
             }).toString();
 
-            window.location.href = `/home/recipe/recent-order/list?${query}`;
+            window.location.href = `/home/recipe/list?${query}`;
         });
     });
 }

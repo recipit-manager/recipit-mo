@@ -30,8 +30,8 @@ public class HomeController {
         return mv;
     }
 
-    @GetMapping("/recipe/recent-order/list")
-    public ModelAndView initRecentOrderListPage(
+    @GetMapping("/recipe/list")
+    public ModelAndView initRecipeListPage(
             @RequestParam(value = "keyword", required = false) String keyword,
             @RequestParam(value = "categoryCode", required = false) String categoryCode,
             @RequestParam(value = "sort", defaultValue = "recent") String sort,
@@ -40,9 +40,13 @@ public class HomeController {
 
         int page = 1;
         int size = 10;
+        SearchRecipeDto firstResult;
 
-        SearchRecipeDto firstResult =
-                recipeApi.getRecentOrderRecipeList(keyword, categoryCode, page, size, request);
+        if ("like".equals(sort)) {
+            firstResult = recipeApi.getLikeOrderRecipeList(keyword, categoryCode, page, size, request);
+        } else {
+            firstResult = recipeApi.getRecentOrderRecipeList(keyword, categoryCode, page, size, request);
+        }
 
         boolean categoryExists = true;
 
@@ -55,11 +59,14 @@ public class HomeController {
         if (!categoryExists) {
             categoryCode = null;
 
-            firstResult = recipeApi.getRecentOrderRecipeList(keyword, null, page, size, request);
+            if ("like".equals(sort)) {
+                firstResult = recipeApi.getLikeOrderRecipeList(keyword, null, page, size, request);
+            } else {
+                firstResult = recipeApi.getRecentOrderRecipeList(keyword, null, page, size, request);
+            }
         }
 
         ModelAndView mv = new ModelAndView("/recipe/recipeList");
-
         mv.addObject("recipeList", firstResult);
         mv.addObject("keyword", keyword);
         mv.addObject("categoryCode", categoryCode);
