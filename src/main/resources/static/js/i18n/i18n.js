@@ -7,7 +7,7 @@ function getLanguage() {
 }
 
 export async function loadLanguageFile() {
-    const language = getLanguage();
+    const language = getLanguage().toLowerCase();
 
     if (cache[language]) { return cache[language]; }
 
