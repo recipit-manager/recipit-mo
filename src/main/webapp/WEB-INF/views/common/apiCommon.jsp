@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="io.micrometer.common.util.StringUtils" %>
 <%
-    String apiHost = request.getAttribute("recipitApiHost");
+    String apiHost = String.valueOf(request.getAttribute("recipitApiHost"));
 
     if (StringUtils.isEmpty(apiHost)) {
         apiHost = "http://localhost:8080";
