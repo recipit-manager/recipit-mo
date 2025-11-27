@@ -1,5 +1,2 @@
 api:
   base-url: https://api.recipit.com # 임의의 url
-
-server:
-  port: 8081 # 임의의 port번호

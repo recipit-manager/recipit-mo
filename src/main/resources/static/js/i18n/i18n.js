@@ -18,7 +18,7 @@ export async function loadLanguageFile() {
         cache[language] = module.default;
         return cache[language];
     } catch (e) {
-        const koModule = await import('/js/i18n/messages.ko.js');
+        const koModule = await import('/js/i18n/messages.KO.js');
         cache["KO"] = koModule.default;
         return cache["KO"];
     }

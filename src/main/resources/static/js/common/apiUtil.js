@@ -2,7 +2,8 @@ import { log } from "/js/common/constants.js";
 
 export const apiUtil = {
 
-    BASE_URL: "http://localhost:8080",
+    BASE_URL: RECIPIT_API_HOST,
+    // BASE_URL: "http://localhost:8080",
 
     url: {
         USER : {
