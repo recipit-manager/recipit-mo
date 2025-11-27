@@ -1,4 +1,4 @@
-const DEFAULT_LANGUAGE = "KO";
+const DEFAULT_LANGUAGE = "ko";
 
 let cache = {};
 
