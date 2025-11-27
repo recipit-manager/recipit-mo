@@ -282,7 +282,14 @@ function saveFilterState() {
 }
 
 function loadFilterState() {
-    const savedDiff = JSON.parse(sessionStorage.getItem("filter_difficulty") || "[]");
+    let savedDiff = sessionStorage.getItem("filter_difficulty");
+
+    if (!savedDiff) {
+        savedDiff = ["D1", "D2", "D3"];
+    } else {
+        savedDiff = JSON.parse(savedDiff);
+    }
+
     const savedMin = sessionStorage.getItem("filter_time_min") || 0;
     const savedMax = sessionStorage.getItem("filter_time_max") || 120;
 
