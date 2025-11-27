@@ -1,4 +1,4 @@
-const DEFAULT_LANGUAGE = "ko";
+const DEFAULT_LANGUAGE = "KO";
 
 let cache = {};
 
@@ -7,7 +7,7 @@ function getLanguage() {
 }
 
 export async function loadLanguageFile() {
-    const language = getLanguage().toLowerCase();
+    const language = getLanguage();
 
     if (cache[language]) { return cache[language]; }
 
@@ -18,7 +18,7 @@ export async function loadLanguageFile() {
         cache[language] = module.default;
         return cache[language];
     } catch (e) {
-        const koModule = await import('/js/i18n/messages.ko.js');
+        const koModule = await import('/js/i18n/messages.KO.js');
         cache["KO"] = koModule.default;
         return cache["KO"];
     }
