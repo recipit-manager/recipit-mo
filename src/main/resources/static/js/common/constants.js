@@ -10,6 +10,7 @@ export const log = {
     UNKNOWN_NOTIFICATION_TYPE: "Unknown notification type:",
     DRAFT_COUNT_FAILED: "Draft count failed:",
     LIKE_RECIPE_FAILED: "Like recipe failed:",
+    FAILED_LOAD_NEXT_PAGE: "Failed to load next page:",
 };
 
 export const responseCode = {

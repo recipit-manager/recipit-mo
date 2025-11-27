@@ -3,6 +3,7 @@ package com.recipitmo.client.api;
 import com.recipitmo.client.RetrofitClient;
 import com.recipitmo.dto.ApiResponse;
 import com.recipitmo.dto.PopularRecipeDto;
+import com.recipitmo.dto.SearchRecipeDto;
 import com.recipitmo.service.RecipeService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -38,5 +39,65 @@ public class RecipeApi {
         }
 
         return Collections.emptyList();
+    }
+
+    public SearchRecipeDto getRecentOrderRecipeList(
+            String keyword,
+            String categoryCode,
+            int page,
+            int size,
+            HttpServletRequest request
+    ) {
+        try {
+            Response<ApiResponse<SearchRecipeDto>> response =
+                    recipeService.getRecentOrderRecipes(
+                            request.getHeader("Cookie"),
+                            categoryCode,
+                            keyword,
+                            page,
+                            size
+                    ).execute();
+
+            if (response.isSuccessful() && response.body() != null) {
+                return response.body().getData();
+            } else {
+                log.error("Failed to load recent-order list: HTTP {}", response.code());
+            }
+
+        } catch (IOException e) {
+            log.error("Failed to load recent-order list", e);
+        }
+
+        return new SearchRecipeDto(Collections.emptyList(), Collections.emptyList());
+    }
+
+    public SearchRecipeDto getLikeOrderRecipeList(
+            String keyword,
+            String categoryCode,
+            int page,
+            int size,
+            HttpServletRequest request
+    ) {
+        try {
+            Response<ApiResponse<SearchRecipeDto>> response =
+                    recipeService.getLikeOrderRecipes(
+                            request.getHeader("Cookie"),
+                            categoryCode,
+                            keyword,
+                            page,
+                            size
+                    ).execute();
+
+            if (response.isSuccessful() && response.body() != null) {
+                return response.body().getData();
+            } else {
+                log.error("Failed to load Like-order list: HTTP {}", response.code());
+            }
+
+        } catch (IOException e) {
+            log.error("Failed to load order-order list", e);
+        }
+
+        return new SearchRecipeDto(Collections.emptyList(), Collections.emptyList());
     }
 }
