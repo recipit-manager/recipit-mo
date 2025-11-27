@@ -68,6 +68,7 @@
 
 </div>
 
+<%@ include file="/WEB-INF/views/common/apiCommon.jsp" %>
 <script type="module" src="/js/page/user/temporaryPasswordChange.js"></script>
 
 </body>
