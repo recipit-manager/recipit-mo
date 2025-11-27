@@ -32,6 +32,7 @@
  -DSPRING_DATASOURCE_USERNAME={RDB username}
  -DSPRING_DATASOURCE_PASSWORD={RDB password}
 `-DINTERNAL_AUTH_KEY={internal auth key}
+`-DAPI_BASE_URL={api base url}
 `-Dspring.profiles.active={local / dev / prod}
 ``` 
 
