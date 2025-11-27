@@ -25,6 +25,16 @@
 * `File -> Settings -> Editor -> File Encodings -> Default encoding for properties files -> UTF-8`
 2. Lombok Plugin
 * `File -> Settings -> Build, Excution, Deployment -> Compiler -> Annotation Processors -> Enable Annotation Processing check`
+3. Runtime VM Option
+* 민감정보는 구글 드라이브 참조
+```properties
+ -DSPRING_DATASOURCE_URL={RDB host url}
+ -DSPRING_DATASOURCE_USERNAME={RDB username}
+ -DSPRING_DATASOURCE_PASSWORD={RDB password}
+`-DINTERNAL_AUTH_KEY={internal auth key}
+`-DAPI_BASE_URL={api base url}
+`-Dspring.profiles.active={local / dev / prod}
+``` 
 
 
 ### Source

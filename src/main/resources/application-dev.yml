@@ -1,5 +1,2 @@
 api:
-  base-url: https://scdev4--recipit-api--qj5x98zdln7d.code.run
-
-server:
-  port: 8081
+  base-url: ${API_BASE_URL}

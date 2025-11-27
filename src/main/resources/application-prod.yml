@@ -1,5 +1,2 @@
 api:
   base-url: https://scdev4--recipit-api--qj5x98zdln7d.code.run/ # 임의의 url
-
-server:
-  port: 8081 # 임의의 port번호

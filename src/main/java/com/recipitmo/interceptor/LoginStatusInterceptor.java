@@ -12,6 +12,11 @@ import retrofit2.Response;
 
 @Slf4j
 public class LoginStatusInterceptor implements HandlerInterceptor {
+    private String apiUrlHost;
+
+    public LoginStatusInterceptor(String apiUrlHost) {
+        this.apiUrlHost = apiUrlHost;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
@@ -36,6 +41,7 @@ public class LoginStatusInterceptor implements HandlerInterceptor {
             request.setAttribute("isLogin", isLogin);
             request.setAttribute("isAccountLocked", isAccountLocked);
             request.setAttribute("userNickname", isLogin ? body.getData() : null);
+            request.setAttribute("recipitApiHost", apiUrlHost);
 
         } catch (Exception e) {
             log.error("Login status check failed", e);

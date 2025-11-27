@@ -86,6 +86,7 @@
 
     </main>
 
+    <%@ include file="/WEB-INF/views/common/apiCommon.jsp" %>
     <script type="module" src="/js/common/header.js"></script>
     <script type="module" src="/js/page/recipe/home.js"></script>
     </body>
