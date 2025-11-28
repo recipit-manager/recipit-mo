@@ -2,6 +2,7 @@ package com.recipitmo.service;
 
 import com.recipitmo.dto.ApiResponse;
 import com.recipitmo.dto.PopularRecipeDto;
+import com.recipitmo.dto.SearchRecipeDto;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -13,6 +14,24 @@ public interface RecipeService {
     @GET("/recipe/popular/list")
     Call<ApiResponse<List<PopularRecipeDto>>> getPopularRecipes(
             @Header("Cookie") String cookie,
+            @Query("size") int size
+    );
+
+    @GET("/recipe/list/recent-order")
+    Call<ApiResponse<SearchRecipeDto>> getRecentOrderRecipes(
+            @Header("Cookie") String cookie,
+            @Query("categoryCode") String categoryCode,
+            @Query("keyword") String keyword,
+            @Query("page") int page,
+            @Query("size") int size
+    );
+
+    @GET("/recipe/list/like-order")
+    Call<ApiResponse<SearchRecipeDto>> getLikeOrderRecipes(
+            @Header("Cookie") String cookie,
+            @Query("categoryCode") String categoryCode,
+            @Query("keyword") String keyword,
+            @Query("page") int page,
             @Query("size") int size
     );
 }

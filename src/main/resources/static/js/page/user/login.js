@@ -68,7 +68,7 @@ function initLoginButton() {
                 } else {
                     sessionStorage.removeItem("keepLogin");
                 }
-                location.href = "/home";
+                // location.href = "/home";
             } else {
                 uiUtil.showMsg($errorInfo, response.message);
             }

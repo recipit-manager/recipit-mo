@@ -67,7 +67,7 @@ export default {
         password_confirm_label: "비밀번호 확인",
         password_confirm_placeholder: "비밀번호 재입력",
         password_rule_1: "8자 이상 16자 이하",
-        password_rule_2: "영문 대소문자, 숫자, 특수문자(!@#$%^&*) 각 1개 이상 포함",
+        password_rule_2: "영문 대문자, 소문자, 숫자, 특수문자(!@#$%^&*) 각 1개 이상 포함",
         password_rule_3: "동일한 문자 3개 이상 반복 불가 (예: aaa, 111)",
         phone_label: "휴대전화",
         signup_button: "회원가입",
@@ -97,6 +97,26 @@ export default {
         refrigerator_item:"냉템요리",
         category_title:"어떤 요리를 하고 싶나요?",
         weekly_recipe_title:"주간 인기 레시피",
+        recipe_category_all:"전체",
+
+        search_result_suffix: "검색 결과",
+        empty_search_title_suffix: "에 대한 검색 결과가 없습니다.",
+        empty_search_desc: "- 검색어가 정확한지 확인해주세요.\n- 다른 검색어를 입력해보세요.",
+
+        time_unit: "분",
+
+        filter_title: "검색 필터",
+        filter_difficulty: "난이도",
+        difficulty_easy: "쉬움",
+        difficulty_medium: "보통",
+        difficulty_hard: "어려움",
+        filter_time: "요리 시간",
+        min_minute:"0분",
+        max_minute:"120분+",
+        recent_order:"최신순",
+        like_order:"좋아요순",
+
+        apply: "적용",
 
         draftLimit: {
             msg: "현재 임시저장된 레시피가 최대 한도인\n10개가 저장되어 있습니다.\n새로 작성하는 레시피는 임시저장이 불가능합니다.",

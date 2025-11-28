@@ -22,6 +22,8 @@ export const apiUtil = {
         RECIPE : {
             LIKE: (recipeNo) => `/recipe/${recipeNo}/like`,
             DRAFT_COUNT: "/recipe/draft/count",
+            RECENT_ORDER_LIST: "/recipe/list/recent-order",
+            LIKE_ORDER_LIST: "/recipe/list/like-order",
         },
     },
 

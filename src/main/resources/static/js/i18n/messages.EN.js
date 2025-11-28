@@ -97,6 +97,24 @@ export default {
         refrigerator_item:"refrigerator-item",
         category_title:"What kind of dish would you like to make?",
         weekly_recipe_title:"Weekly Recipe",
+        recipe_category_all: "All",
+
+        search_result_suffix: "results found",
+        empty_search_title_suffix: "returned no results.",
+        empty_search_desc: "- Please check if the search term is correct.\n- Try entering a different keyword.",
+
+        time_unit: "min",
+        filter_title: "Search Filters",
+        filter_difficulty: "Difficulty",
+        difficulty_easy: "Easy",
+        difficulty_medium: "Medium",
+        difficulty_hard: "Hard",
+        filter_time: "Cooking Time",
+        min_minute:"0minute",
+        max_minute:"120minute+",
+        recent_order:"Recent",
+        like_order:"Like",
+        apply: "Apply",
 
         draftLimit: {
             msg: "You have reached the maximum of 10 saved drafts.\nNew recipes cannot be saved as drafts.",

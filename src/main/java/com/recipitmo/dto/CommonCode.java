@@ -6,6 +6,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class CommonCode {
-    private String code;
-    private String codeName;
+    private final String code;
+    private final String codeName;
 }
