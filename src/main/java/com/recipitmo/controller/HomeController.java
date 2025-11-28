@@ -74,42 +74,4 @@ public class HomeController {
 
         return mv;
     }
-
-    @GetMapping("/recipe/like-order/list")
-    public ModelAndView initLikeOrderListPage(
-            @RequestParam(value = "keyword", required = false) String keyword,
-            @RequestParam(value = "categoryCode", required = false) String categoryCode,
-            @RequestParam(value = "sort", defaultValue = "recent") String sort,
-            HttpServletRequest request
-    ) {
-
-        int page = 1;
-        int size = 10;
-
-        SearchRecipeDto firstResult =
-                recipeApi.getLikeOrderRecipeList(keyword, categoryCode, page, size, request);
-
-        boolean categoryExists = true;
-
-        if (categoryCode != null) {
-            String finalCategoryCode = categoryCode;
-            categoryExists = firstResult.getCategorylist().stream()
-                    .anyMatch(c -> c.getCode().equals(finalCategoryCode));
-        }
-
-        if (!categoryExists) {
-            categoryCode = null;
-
-            firstResult = recipeApi.getLikeOrderRecipeList(keyword, null, page, size, request);
-        }
-
-        ModelAndView mv = new ModelAndView("/recipe/recipeList");
-
-        mv.addObject("recipeList", firstResult);
-        mv.addObject("keyword", keyword);
-        mv.addObject("categoryCode", categoryCode);
-        mv.addObject("sort", sort);
-
-        return mv;
-    }
 }
