@@ -180,11 +180,11 @@ function renderSelected() {
 }
 
 function initCategoryTabs() {
-    const $tabs = document.querySelectorAll(".category-tab");
+    const $categoryTabs = document.querySelectorAll(".category-tab");
 
-    $tabs.forEach($tab => {
+    $categoryTabs.forEach($tab => {
         $tab.addEventListener("click", () => {
-            $tabs.forEach(t => t.classList.remove("active"));
+            $categoryTabs.forEach(t => t.classList.remove("active"));
             $tab.classList.add("active");
             showCategoryGroup($tab.dataset.category);
         });
