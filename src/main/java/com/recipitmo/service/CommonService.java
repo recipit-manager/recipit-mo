@@ -2,6 +2,7 @@ package com.recipitmo.service;
 
 import com.recipitmo.dto.ApiResponse;
 import com.recipitmo.dto.CountryDto;
+import com.recipitmo.dto.IngredientCategoryDto;
 import com.recipitmo.dto.RecipeCategoryDto;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -25,4 +26,7 @@ public interface CommonService {
 
     @GET("common/recipe/category/list")
     Call<ApiResponse<List<RecipeCategoryDto>>> getRecipeCategoryList();
+
+    @GET("common/refri-item/ingredient/list")
+    Call<ApiResponse<IngredientCategoryDto>> getIngredientCategoryList();
 }

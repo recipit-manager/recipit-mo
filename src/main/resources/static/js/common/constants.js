@@ -11,6 +11,7 @@ export const log = {
     DRAFT_COUNT_FAILED: "Draft count failed:",
     LIKE_RECIPE_FAILED: "Like recipe failed:",
     FAILED_LOAD_NEXT_PAGE: "Failed to load next page:",
+    FAILED_LOAD_AUTO_COMPLETE: "Failed to load auto complete data:",
 };
 
 export const responseCode = {

@@ -24,6 +24,8 @@
         <jsp:param name="isUnreadNotification" value="${isUnreadNotification}" />
     </jsp:include>
 
+    <%@ include file="/WEB-INF/views/common/apiCommon.jsp" %>
+
     <main class="home-container">
 
         <div class="search-box">
@@ -33,8 +35,7 @@
             </button>
         </div>
 
-        <%--<div class="refri-banner" onclick="location.href='/refri'">--%>
-        <div class="refri-banner">
+        <div class="refri-banner" onclick="location.href='/refri/ingredientList'">
             <div class="banner-left">
                 <img src="/images/refri.png">
             </div>
@@ -86,7 +87,6 @@
 
     </main>
 
-    <%@ include file="/WEB-INF/views/common/apiCommon.jsp" %>
     <script type="module" src="/js/common/header.js"></script>
     <script type="module" src="/js/page/recipe/home.js"></script>
     </body>

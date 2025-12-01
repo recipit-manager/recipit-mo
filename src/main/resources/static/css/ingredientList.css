@@ -1,0 +1,213 @@
+.refri-ingredient-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 191px);
+    overflow: hidden;
+}
+
+.manual-input-section,
+.selected-ingredients-section,
+.ingredient-category-section {
+    flex-shrink: 0;
+}
+
+.ingredient-icon-area {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.input-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.input-title img.input-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.manual-input-wrap {
+    display: flex;
+    gap: 8px;
+}
+
+.manual-input-wrap input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.manual-input-wrap button {
+    padding: 0 20px;
+    background: #000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.autocomplete-list {
+    margin-top: 6px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.autocomplete-item {
+    padding: 14px 16px;
+    font-size: 16px;
+    line-height: 1.4;
+    cursor: pointer;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-item:hover {
+    background: #f7f7f7;
+}
+
+.hidden { display: none; }
+
+.selected-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 28px;
+    margin-bottom: 12px;
+}
+
+.selected-title img.selected-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.selected-ingredients-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.selected-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: #f3f3f3;
+    border-radius: 20px;
+    font-size: 15px;
+}
+
+.selected-tag button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.ingredient-category-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    margin-top: 32px;
+    padding-bottom: 8px;
+}
+
+.category-tab {
+    padding: 8px 18px;
+    border-radius: 40px;
+    background: #eee;
+    border: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.category-tab.active {
+    background: #000;
+    color: white;
+}
+
+.ingredient-icon-area {
+    margin-top: 22px;
+    height: 420px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.ingredient-group {
+    display: none;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.ingredient-group.active {
+    display: grid;
+}
+
+.ingredient-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    padding: 12px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.ingredient-icon-item span {
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ingredient-icon-item img {
+    width: 60px;
+    height: 60px;
+}
+
+.ingredient-icon-item.selected {
+    background: #e5e5e5;
+}
+
+.bottom-fixed-button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 16px;
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    border-top: 1px solid #ddd;
+}
+
+#findRecipeBtn {
+    width: 90%;
+    padding: 13px;
+    font-size: 18px;
+    font-weight: 600;
+    background: #000;
+    color: white;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+}

@@ -1,6 +1,5 @@
 .sub-header-container {
     position: sticky;
-    top: 63px;
     z-index: 999;
     display: flex;
     align-items: center;

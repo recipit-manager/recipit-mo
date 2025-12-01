@@ -104,7 +104,6 @@ export default {
         empty_search_desc: "- 검색어가 정확한지 확인해주세요.\n- 다른 검색어를 입력해보세요.",
 
         time_unit: "분",
-
         filter_title: "검색 필터",
         filter_difficulty: "난이도",
         difficulty_easy: "쉬움",
@@ -115,14 +114,21 @@ export default {
         max_minute:"120분+",
         recent_order:"최신순",
         like_order:"좋아요순",
-
         apply: "적용",
 
         draftLimit: {
             msg: "현재 임시저장된 레시피가 최대 한도인\n10개가 저장되어 있습니다.\n새로 작성하는 레시피는 임시저장이 불가능합니다.",
             manage: "임시저장 관리",
             continue: "계속하기"
-        }
+        },
+
+        putIngredient: "재료입력",
+        selfInput: "직접입력",
+        inputIngredient: "직접 입력하기",
+        add: "추가",
+        selectedIngredient: "선택된 재료",
+        fullSelectIngredient: "재료는 최대 10개까지 선택 가능합니다.",
+        alreadySelectedIngredient: "이미 선택된 재료입니다."
     },
     time: {
         period: {

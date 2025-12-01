@@ -18,6 +18,7 @@
 </head>
 
 <body class="popup-body">
+<%@ include file="/WEB-INF/views/common/apiCommon.jsp" %>
 
 <div class="popup-wrapper">
 
@@ -68,7 +69,6 @@
 
 </div>
 
-<%@ include file="/WEB-INF/views/common/apiCommon.jsp" %>
 <script type="module" src="/js/page/user/temporaryPasswordChange.js"></script>
 
 </body>

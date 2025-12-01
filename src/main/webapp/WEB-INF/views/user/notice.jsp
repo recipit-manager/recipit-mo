@@ -25,6 +25,8 @@
 </jsp:include>
 
 <jsp:include page="/WEB-INF/views/common/pageHeader.jsp" />
+<%@ include file="/WEB-INF/views/common/apiCommon.jsp" %>
+
 
 <div class="notice-info-box">
     <span data-i18n="ui.notice_info">30일이 지난 알림은 자동으로 삭제됩니다.</span>
@@ -71,7 +73,6 @@
 
 </div>
 
-<%@ include file="/WEB-INF/views/common/apiCommon.jsp" %>
 <script type="module" src="/js/common/header.js"></script>
 <script type="module" src="/js/page/user/notice.js"></script>
 </body>
