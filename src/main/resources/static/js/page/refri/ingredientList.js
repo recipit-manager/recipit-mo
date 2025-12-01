@@ -64,12 +64,12 @@ function initIngredientInput() {
         }
 
         if (selectedSet.has(text)) {
-            translate("ui.alreadySelectedIngredient");
+            alert(translate("ui.alreadySelectedIngredient"));
             return;
         }
 
         if (selectedSet.size >= 10) {
-            translate("ui.fullSelectIngredient");
+            alert(translate("ui.fullSelectIngredient"));
             return;
         }
 
@@ -218,7 +218,7 @@ function initIngredientIconClick() {
             removeIngredient(name);
         } else {
             if (selectedSet.size >= 10) {
-                translate("ui.fullSelectIngredient");
+                alert(translate("ui.fullSelectIngredient"));
                 return;
             }
             addIngredient(name);
