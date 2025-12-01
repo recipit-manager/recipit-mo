@@ -26,7 +26,7 @@ export const apiUtil = {
             LIKE_ORDER_LIST: "/recipe/list/like-order",
         },
         REFRI: {
-            AUTO_COMPLETE: "/refri/ingredient/auto-complete",
+            AUTO_COMPLETE: "/refri-item/ingredient/auto-complete",
         }
     },
 

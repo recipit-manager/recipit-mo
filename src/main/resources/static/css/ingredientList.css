@@ -1,8 +1,20 @@
 .refri-ingredient-container {
-    padding: 16px;
-    padding-bottom: 120px;
-    color: #222;
-    font-family: 'Pretendard', sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 191px);
+    overflow: hidden;
+}
+
+.manual-input-section,
+.selected-ingredients-section,
+.ingredient-category-section {
+    flex-shrink: 0;
+}
+
+.ingredient-icon-area {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .input-title {
