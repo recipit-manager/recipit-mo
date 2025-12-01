@@ -22,8 +22,6 @@ public class LoginStatusInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler) throws Exception {
         try {
-            log.info(request.getHeader("Cookie"));
-
             Response<ApiResponse<String>> apiResponse = RetrofitClient
                     .getUserApiService()
                     .getLoginStatus(request.getHeader("Cookie"))

@@ -120,7 +120,15 @@ export default {
             msg: "You have reached the maximum of 10 saved drafts.\nNew recipes cannot be saved as drafts.",
             manage: "Manage Drafts",
             continue: "Continue"
-        }
+        },
+
+        putIngredient: "PutIngredient",
+        selfInput: "SelfInput",
+        inputIngredient: "InputIngredient",
+        add: "add",
+        selectedIngredient: "selectedIngredient",
+        fullSelectIngredient: "You can select up to 10 ingredients.",
+        alreadySelectedIngredient: "Already selected"
     },
     time: {
         period: {

@@ -25,6 +25,9 @@ export const apiUtil = {
             RECENT_ORDER_LIST: "/recipe/list/recent-order",
             LIKE_ORDER_LIST: "/recipe/list/like-order",
         },
+        REFRI: {
+            AUTO_COMPLETE: "/refri/ingredient/auto-complete",
+        }
     },
 
     getHeaders() {

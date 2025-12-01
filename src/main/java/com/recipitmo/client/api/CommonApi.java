@@ -3,6 +3,7 @@ package com.recipitmo.client.api;
 import com.recipitmo.client.RetrofitClient;
 import com.recipitmo.dto.CountryDto;
 import com.recipitmo.dto.ApiResponse;
+import com.recipitmo.dto.IngredientCategoryDto;
 import com.recipitmo.dto.RecipeCategoryDto;
 import com.recipitmo.service.CommonService;
 import lombok.RequiredArgsConstructor;
@@ -51,6 +52,7 @@ public class CommonApi {
         } catch (IOException e) {
             log.error("Failed to load country List", e);
         }
+
         return Collections.emptyList();
     }
 
@@ -66,6 +68,26 @@ public class CommonApi {
         } catch (IOException e) {
             log.error("Failed to load recipeCategory List", e);
         }
+
         return Collections.emptyList();
+    }
+
+    public IngredientCategoryDto getIngredientCategoryList() {
+        try {
+            Response<ApiResponse<IngredientCategoryDto>> response = commonService.getIngredientCategoryList().execute();
+
+            if (response.isSuccessful() && response.body() != null) {
+                return response.body().getData();
+            } else {
+                log.error("Failed to load ingredientCategory List: HTTP {}", response.code());
+            }
+        } catch (IOException e) {
+            log.error("Failed to load ingredientCategory List", e);
+        }
+
+        return new IngredientCategoryDto(
+                Collections.emptyList(),
+                Collections.emptyList()
+        );
     }
 }
