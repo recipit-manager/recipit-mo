@@ -23,6 +23,9 @@
     <jsp:param name="isUnreadNotification" value="${isUnreadNotification}" />
 </jsp:include>
 
+<%@ include file="/WEB-INF/views/common/apiCommon.jsp" %>
+
+
 <main class="recipeList-container">
 
     <div class="fixed-top-section">
@@ -207,7 +210,6 @@
 
 </main>
 
-<%@ include file="/WEB-INF/views/common/apiCommon.jsp" %>
 <script type="module" src="/js/common/header.js"></script>
 <script type="module" src="/js/page/recipe/recipeList.js"></script>
 

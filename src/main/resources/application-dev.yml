@@ -1,2 +1,2 @@
 api:
-  base-url: ${API_BASE_URL}
+  base-url: https://scdev4--recipit-api--qj5x98zdln7d.code.run

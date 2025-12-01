@@ -25,6 +25,8 @@
 </jsp:include>
 
 <jsp:include page="/WEB-INF/views/common/pageHeader.jsp" />
+<%@ include file="/WEB-INF/views/common/apiCommon.jsp" %>
+
 
 <main class="container">
 
@@ -83,7 +85,6 @@
 
 </main>
 
-<%@ include file="/WEB-INF/views/common/apiCommon.jsp" %>
 <script type="module" src="/js/common/header.js"></script>
 <script type="module" src="/js/page/user/findPassword.js"></script>
 </body>
