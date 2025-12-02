@@ -27,6 +27,7 @@ export const apiUtil = {
         },
         REFRI: {
             AUTO_COMPLETE: "/refri-item/ingredient/auto-complete",
+            LIST: "/refri-item/list",
         }
     },
 

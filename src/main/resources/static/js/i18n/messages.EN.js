@@ -128,7 +128,14 @@ export default {
         add: "add",
         selectedIngredient: "selectedIngredient",
         fullSelectIngredient: "You can select up to 10 ingredients.",
-        alreadySelectedIngredient: "Already selected"
+        alreadySelectedIngredient: "This ingredient is already selected.",
+        needSelectIngredient: "Please select at least one ingredient.",
+        myIngredient: "My Ingredients",
+        addIngredient: "+ Add Ingredient",
+        noRefriItem: "No recipes available for this ingredient.",
+        noRefriItemDesc: "- Please check the ingredient you entered.\n- Try entering a different ingredient.",
+        needIngredient: "Need more ingredients",
+        servingUnit: "serving size"
     },
     time: {
         period: {
