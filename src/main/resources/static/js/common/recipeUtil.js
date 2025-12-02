@@ -118,5 +118,22 @@ export const recipeUtil = {
                 behavior: "smooth"
             });
         });
-    }
+    },
+
+    buildParams(update = {}, remove = []) {
+        const current = new URLSearchParams(location.search);
+        const params = new URLSearchParams(current.toString());
+
+        Object.entries(update).forEach(([key, value]) => {
+            if (value === null || value === undefined || value === "") {
+                params.delete(key);
+            } else {
+                params.set(key, value);
+            }
+        });
+
+        remove.forEach(key => params.delete(key));
+
+        return params;
+    },
 };

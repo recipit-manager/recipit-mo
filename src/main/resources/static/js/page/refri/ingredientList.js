@@ -1,7 +1,6 @@
-import { applyI18nTexts, loadLanguageFile } from "/js/i18n/i18n.js";
-import { apiUtil } from "/js/common/apiUtil.js";
-import { responseCode, log } from "/js/common/constants.js";
-import { translate } from "/js/i18n/i18n.js";
+import {applyI18nTexts, loadLanguageFile, translate} from "/js/i18n/i18n.js";
+import {apiUtil} from "/js/common/apiUtil.js";
+import {log, responseCode} from "/js/common/constants.js";
 
 document.addEventListener("DOMContentLoaded", initIngredientList);
 document.addEventListener("click", onDocumentClick);
@@ -19,6 +18,7 @@ async function initIngredientList() {
     initIngredientIconClick();
     showFirstCategory();
     initSearchRecipeButton();
+    restoreSelected();
 }
 
 function onDocumentClick(e) {
@@ -230,8 +230,35 @@ function initSearchRecipeButton() {
     const $findBtn = document.getElementById("findRecipeBtn");
 
     $findBtn.addEventListener("click", () => {
-        // TODO: 다음 단계 선택된 재료 기반 레시피 검색 개발 예정
 
-        console.log("선택된 재료 목록:", Array.from(selectedSet));
+        if (selectedSet.size === 0) {
+            alert(translate("ui.needSelectIngredient"));
+            return;
+        }
+
+        const ingredients = Array.from(selectedSet)
+            .map(encodeURIComponent)
+            .join(",");
+
+        location.href = `/refri/list?ingredients=${ingredients}`;
     });
+}
+
+function restoreSelected() {
+    const params = new URLSearchParams(location.search);
+    const ingredients = params.get("ingredients");
+
+    if (!ingredients) {
+        return;
+    }
+
+    ingredients.split(",").forEach(name => {
+        if (name.trim()) {
+            selectedSet.add(decodeURIComponent(name.trim()));
+            document.querySelectorAll(`[data-name="${name}"]`)
+                .forEach(el => el.classList.add("selected"));
+        }
+    });
+
+    renderSelected();
 }

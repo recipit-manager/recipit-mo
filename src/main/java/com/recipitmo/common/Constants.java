@@ -5,4 +5,9 @@ public final class Constants {
         String SUCCESS = "0000";
         String ACCOUNT_LOCK = "0001";
     }
+
+    public interface defaultPageSet {
+        int PAGE = 1;
+        int SIZE = 10;
+    }
 }

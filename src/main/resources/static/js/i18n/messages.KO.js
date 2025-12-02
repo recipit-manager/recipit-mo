@@ -128,7 +128,14 @@ export default {
         add: "추가",
         selectedIngredient: "선택된 재료",
         fullSelectIngredient: "재료는 최대 10개까지 선택 가능합니다.",
-        alreadySelectedIngredient: "이미 선택된 재료입니다."
+        alreadySelectedIngredient: "이미 선택된 재료입니다.",
+        needSelectIngredient: "재료를 1개 이상 선택해주세요.",
+        myIngredient: "내가 가지고 있는 재료",
+        addIngredient: "+ 재료 추가",
+        noRefriItem: "선택한 재료로 가능한 요리가 없습니다.",
+        noRefriItemDesc: "- 입력한 재료를 확인해주세요.\n- 다른 재료를 입력해보세요.",
+        needIngredient: "더 필요한 재료",
+        servingUnit: "인분"
     },
     time: {
         period: {
