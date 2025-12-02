@@ -18,6 +18,7 @@ async function initIngredientList() {
     initIngredientIconClick();
     showFirstCategory();
     initSearchRecipeButton();
+    restoreSelected();
 }
 
 function onDocumentClick(e) {
@@ -241,4 +242,23 @@ function initSearchRecipeButton() {
 
         location.href = `/refri/list?ingredients=${ingredients}`;
     });
+}
+
+function restoreSelected() {
+    const params = new URLSearchParams(location.search);
+    const ingredients = params.get("ingredients");
+
+    if (!ingredients) {
+        return;
+    }
+
+    ingredients.split(",").forEach(name => {
+        if (name.trim()) {
+            selectedSet.add(decodeURIComponent(name.trim()));
+            document.querySelectorAll(`[data-name="${name}"]`)
+                .forEach(el => el.classList.add("selected"));
+        }
+    });
+
+    renderSelected();
 }
