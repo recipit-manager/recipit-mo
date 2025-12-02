@@ -38,7 +38,7 @@ function initSearchBox() {
     const $btn = document.getElementById("searchBtn");
 
     const search = () => {
-        const params = buildSearchParams({
+        const params = recipeUtil.buildParams({
             keyword: $input.value.trim()
         });
 
@@ -60,7 +60,7 @@ function initSearchBox() {
 function initCategoryButtons() {
     document.querySelectorAll(".category-item").forEach($item => {
         $item.addEventListener("click", () => {
-            const params = buildSearchParams({
+            const params = recipeUtil.buildParams({
                 categoryCode: $item.dataset.code
             });
 
@@ -72,7 +72,7 @@ function initCategoryButtons() {
 function initSortButtons() {
     document.querySelectorAll(".sort-btn").forEach($button => {
         $button.addEventListener("click", () => {
-            const params = buildSearchParams({
+            const params = recipeUtil.buildParams({
                 sort: $button.dataset.sort
             });
 
@@ -355,26 +355,6 @@ function toggleEmptyResult(show) {
             $list.style.display = "block";
         }
     }
-}
-
-function buildSearchParams(options = {}) {
-    const current = new URLSearchParams(location.search);
-    const params = new URLSearchParams();
-
-    const keyword = options.keyword ?? current.get("keyword");
-    const categoryCode = options.categoryCode ?? current.get("categoryCode");
-    const sort = options.sort ?? current.get("sort") ?? "recent";
-
-    if (keyword) {
-        params.set("keyword", keyword);
-    }
-    if (categoryCode) {
-        params.set("categoryCode", categoryCode);
-    }
-
-    params.set("sort", sort);
-
-    return params;
 }
 
 window.addEventListener("load", () => {

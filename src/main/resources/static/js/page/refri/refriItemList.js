@@ -22,16 +22,20 @@ let isLoading = false;
 let isLastPage = false;
 
 function initRemoveTagButtons() {
-    document.querySelectorAll(".remove-tag-btn").forEach($button => {
-        $button.addEventListener("click", () => {
-            const removeName = $button.dataset.name;
+    document.querySelectorAll(".remove-tag-btn").forEach($btn => {
+        $btn.addEventListener("click", () => {
 
-            const params = new URLSearchParams(location.search);
-            const list = params.get("ingredients").split(",");
+            const removeName = $btn.dataset.name;
 
-            const newList = list.filter(item => item !== removeName);
+            const search = new URLSearchParams(location.search);
+            const Ingredients = (search.get("ingredients") || "")
+                .split(",")
+                .filter(i => i && i !== removeName)
+                .join(",");
 
-            params.set("ingredients", newList.join(","));
+            const params = recipeUtil.buildParams({
+                ingredients: Ingredients
+            });
 
             location.href = `/refri/list?${params.toString()}`;
         });
