@@ -102,8 +102,7 @@ export const uiUtil = {
 
         $continue.onclick = () => {
             $modal.style.display = "none";
-            alert("개발 진행중입니다.")
-            // window.location.href = "/recipe/write";
+            window.location.href = "/home/recipe/upload";
         };
 
         applyI18nTexts();

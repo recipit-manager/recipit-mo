@@ -89,8 +89,7 @@ export const recipeUtil = {
                         return;
                     }
 
-                    alert("개발 진행중입니다.")
-                    // TODO : window.location.href = "/recipe/write";
+                    window.location.href = "/home/recipe/upload";
                 } else {
                     console.error(log.DRAFT_COUNT_FAILED, data.message);
                 }
