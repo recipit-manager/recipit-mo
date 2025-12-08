@@ -76,7 +76,7 @@ public class HomeController {
     }
 
     @GetMapping("/recipe/upload")
-    public ModelAndView initUploadRecipePageInit(HttpServletRequest request) {
+    public ModelAndView initUploadRecipePage(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView("/recipe/upload");
 
         mv.addObject("recipeCategoryList", commonApi.getRecipeCategoryList());
