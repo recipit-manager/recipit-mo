@@ -1035,6 +1035,15 @@
     cursor: pointer;
 }
 
+.btn-small-gray {
+    background: #888888;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 .modal-box .btn-small:hover {
     background: #276b2c;
 }

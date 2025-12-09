@@ -164,9 +164,9 @@
                 <div class="field-input-wrapper field-input-wrapper-bordered">
                     <input type="text"
                            id="recipeServingInput"
-                           maxlength="3"
+                           maxlength="2"
                            class="text-input number-only"
-                           placeholder="인원">
+                           data-i18n-placeholder="ui.upload_serving_unit">
                     <span class="meta-unit-text" data-i18n="ui.servingUnit"></span>
                 </div>
             </div>

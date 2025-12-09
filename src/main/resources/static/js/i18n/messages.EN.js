@@ -2,6 +2,7 @@ export default {
     common: {
         server_error: "An error occurred while communicating with the server.",
         confirm: "OK",
+        cancel: "cancel"
     },
     nickname: {
         input_required: "Please enter your nickname.",
@@ -184,6 +185,7 @@ export default {
         upload_submit_fail: "Failed to submit recipe.",
         upload_request_fail: "The request has failed.",
         upload_request_error: "An error occurred while processing the request.",
+        upload_serving_unit: "serving size",
     },
     time: {
         period: {

@@ -730,12 +730,14 @@ function updateCompleteCount() {
 }
 
 document.getElementById("completeCancelBtn").addEventListener("click", () => {
-    uiUtil.showModal(
+    uiUtil.showConfirmModal(
         translate("ui.upload_recipe_cancel"),
         {
             title: null,
+            cancelText: translate("common.cancel"),
             confirmText: translate("common.confirm"),
-            onClose: () => {
+            onCancel: () => {},
+            onConfirm: () => {
                 window.location.href = "/home";
             }
         }
@@ -891,14 +893,16 @@ function buildRecipeFormData() {
 
 function buildRecipeInfoJSON() {
 
+    const cookingTimeValue = document.getElementById("recipeCookingTimeInput").value;
+    const servingSizeValue = document.getElementById("recipeServingInput").value;
+
     const recipeInfo = {
         title: document.getElementById("recipeTitleInput").value.trim(),
         description: document.getElementById("recipeDescriptionInput").value.trim(),
         categoryCode: document.getElementById("recipeCategorySelect").value || null,
-        cookingTime: Number(document.getElementById("recipeCookingTimeInput").value) || -1,
-        servingSize: Number(document.getElementById("recipeServingInput").value) || -1,
+        cookingTime: cookingTimeValue === "" ? -1 : Number(cookingTimeValue),
+        servingSize: servingSizeValue === "" ? -1 : Number(servingSizeValue),
         difficultyCode: document.querySelector("input[name='recipeDifficulty']:checked")?.value || null,
-
         ingredientList: [],
         stepList: []
     };

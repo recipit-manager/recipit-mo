@@ -2,6 +2,7 @@ export default {
     common: {
         server_error: "서버 통신 중 오류가 발생했습니다.",
         confirm: "확인",
+        cancel: "취소"
     },
     nickname: {
         input_required: "닉네임을 입력해주세요",
@@ -184,6 +185,7 @@ export default {
         upload_submit_fail: "레시피 등록에 실패했습니다.",
         upload_request_fail: "요청에 실패했습니다.",
         upload_request_error: "요청 중 오류가 발생했습니다.",
+        upload_serving_unit: "인원",
     },
     time: {
         period: {
