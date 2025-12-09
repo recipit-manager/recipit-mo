@@ -6,6 +6,7 @@
     font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
     color: #222;
     overflow: hidden;
+    padding: 50px 1px;
 }
 
 .fixed-top-area {

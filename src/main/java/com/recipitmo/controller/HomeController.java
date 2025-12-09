@@ -74,4 +74,15 @@ public class HomeController {
 
         return mv;
     }
+
+    @GetMapping("/recipe/upload")
+    public ModelAndView initUploadRecipePage(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView("/recipe/upload");
+
+        mv.addObject("recipeCategoryList", commonApi.getRecipeCategoryList());
+        mv.addObject("difficultyList", commonApi.getDifficultyList());
+        mv.addObject("ingredientTypeList", commonApi.getIngredientTypeList());
+
+        return mv;
+    }
 }

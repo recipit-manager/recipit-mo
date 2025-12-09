@@ -3,6 +3,7 @@
     flex-direction: column;
     height: calc(100vh - 100px);
     overflow: hidden;
+    padding: 50px 1px;
 }
 
 .fixed-top-section {

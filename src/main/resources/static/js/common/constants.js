@@ -12,6 +12,7 @@ export const log = {
     LIKE_RECIPE_FAILED: "Like recipe failed:",
     FAILED_LOAD_NEXT_PAGE: "Failed to load next page:",
     FAILED_LOAD_AUTO_COMPLETE: "Failed to load auto complete data:",
+    FAILED_UPLOAD_RECIPE: "Failed to upload recipe:",
 };
 
 export const responseCode = {

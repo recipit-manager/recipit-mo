@@ -102,8 +102,66 @@ export const uiUtil = {
 
         $continue.onclick = () => {
             $modal.style.display = "none";
-            alert("개발 진행중입니다.")
-            // window.location.href = "/recipe/write";
+            window.location.href = "/home/recipe/upload";
+        };
+
+        applyI18nTexts();
+    },
+
+    showConfirmModal(message, {
+        title = null,
+        confirmText = translate("common.confirm"),
+        cancelText = translate("common.cancel"),
+        onConfirm = null,
+        onCancel = null
+    } = {}) {
+        let $modal = document.getElementById("globalConfirmModal");
+
+        if (!$modal) {
+            $modal = document.createElement("div");
+            $modal.id = "globalConfirmModal";
+            $modal.className = "modal-overlay";
+
+            $modal.innerHTML = `
+            <div class="modal-box">
+                <h3 id="confirmModalTitle"></h3>
+                <p id="confirmModalMsg"></p>
+
+                <div class="modal-btn-group">
+                    <button id="confirmModalCancel" class="btn-small-gray"></button>
+                    <button id="confirmModalOk" class="btn-small"></button>
+                </div>
+            </div>
+        `;
+            document.body.appendChild($modal);
+        }
+
+        const $title = document.getElementById("confirmModalTitle");
+        if (title) {
+            $title.style.display = "block";
+            $title.textContent = title;
+        } else {
+            $title.style.display = "none";
+        }
+
+        document.getElementById("confirmModalMsg").textContent = message;
+
+        const $cancel = document.getElementById("confirmModalCancel");
+        const $ok = document.getElementById("confirmModalOk");
+
+        $cancel.textContent = cancelText;
+        $ok.textContent = confirmText;
+
+        $modal.style.display = "flex";
+
+        $cancel.onclick = () => {
+            $modal.style.display = "none";
+            if (onCancel) onCancel();
+        };
+
+        $ok.onclick = () => {
+            $modal.style.display = "none";
+            if (onConfirm) onConfirm();
         };
 
         applyI18nTexts();

@@ -3,6 +3,7 @@
     flex-direction: column;
     height: calc(100vh - 191px);
     overflow: hidden;
+    padding: 100px 16px;
 }
 
 .manual-input-section,

@@ -24,6 +24,8 @@ export const apiUtil = {
             DRAFT_COUNT: "/recipe/draft/count",
             RECENT_ORDER_LIST: "/recipe/list/recent-order",
             LIKE_ORDER_LIST: "/recipe/list/like-order",
+            DRAFT_SAVE: "/recipe/draft",
+            UPLOAD: "/recipe/upload"
         },
         REFRI: {
             AUTO_COMPLETE: "/refri-item/ingredient/auto-complete",

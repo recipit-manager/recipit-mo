@@ -1,0 +1,1049 @@
+.upload-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 100px 16px 40px;
+    box-sizing: border-box;
+}
+
+.recipe-top-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.recipe-basic-section {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    padding: 16px;
+}
+
+.recipe-basic-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.recipe-image-block.compact {
+    flex: 0 0 auto;
+}
+
+.recipe-image-upload-area.compact {
+    width: 100px;
+    height: 100px;
+    padding: 0;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f3f3;
+}
+
+.recipe-image-upload-area:hover {
+    background-color: #f3f3f3;
+}
+
+.recipe-image-file-input {
+    display: none;
+}
+
+.recipe-image-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.recipe-image-placeholder .recipe-image-plus-circle {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+
+}
+
+.recipe-image-plus-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #9e9e9e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 600;
+}
+
+.recipe-image-helper-text {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.recipe-image-preview {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.recipe-text-title-block {
+    flex: 1;
+    min-width: 0;
+}
+
+.recipe-image-upload-area.has-image .recipe-image-placeholder {
+    display: none;
+}
+
+.recipe-image-upload-area.has-image .recipe-image-preview {
+    display: block;
+}
+
+.field-required-mark {
+    position: absolute;
+    top: 1px;
+    right: 8px;
+    color: #ff4d4f;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.field-required-mark-image {
+    top: 6px;
+    right: 6px;
+}
+
+.field-label-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: #444444;
+}
+
+.field-label {
+    font-weight: 500;
+}
+
+.field-label-required {
+    color: #ff4d4f;
+    font-size: 13px;
+    line-height: 1;
+}
+
+.recipe-image-guide-text {
+    font-size: 11px;
+    color: #9e9e9e;
+}
+
+.recipe-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field-input-wrapper {
+    position: relative;
+}
+
+.field-input-wrapper-bordered {
+    border-radius: 12px;
+    border: 1px dashed #c5c5c5;
+    padding: 10px 12px;
+    background-color: #ffffff;
+}
+
+.field-input-wrapper-textarea {
+    min-height: 140px;
+}
+
+.text-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #333333;
+    background: transparent;
+}
+
+.text-input::placeholder {
+    font-size: 12px;
+    color: #c5c5c5;
+}
+
+.textarea-input {
+    width: 100%;
+    height: 100%;
+    min-height: 90px;
+    resize: vertical;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #333333;
+    background: transparent;
+    line-height: 1.5;
+}
+
+.textarea-input::placeholder {
+    color: #c5c5c5;
+}
+
+.field-counter {
+    position: absolute;
+    bottom: 6px;
+    right: 10px;
+    font-size: 11px;
+    color: #9e9e9e;
+}
+
+@media (min-width: 768px) {
+    .recipe-basic-layout {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    .recipe-image-block {
+        flex: 0 0 260px;
+    }
+
+    .recipe-text-block {
+        flex: 1;
+    }
+}
+
+.recipe-image-info-btn {
+    position: absolute;
+    top: -20px;
+    right: -18px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 50;
+}
+
+.recipe-image-info-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.recipe-image-tooltip {
+    position: absolute;
+    top: -36px;
+    left: 130%;
+    min-width: 180px;
+    padding: 12px 16px;
+    background: #ffffff;
+    border: 2px dashed #9e9e9e;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #333;
+    line-height: 1.4;
+    display: none;
+    z-index: 1000;
+}
+
+.tooltip-close-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+
+    width: 18px;
+    height: 18px;
+
+    font-size: 12px;
+    background: transparent;
+    border: 1px solid #333;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+.tooltip-arrow {
+    position: absolute;
+    top: 18px;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 10px solid #9e9e9e;
+}
+
+.recipe-image-tooltip.show {
+    display: block;
+}
+
+.recipe-meta-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 10px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    padding: 16px;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 93%;
+}
+
+.select-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    appearance: none;
+}
+
+.select-wrapper::after {
+    content: "▼";
+    font-size: 10px;
+    color: #555;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.recipe-meta-row {
+    display: flex;
+    gap: 16px;
+}
+
+.meta-unit-text {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #777;
+}
+
+.number-only {
+    ime-mode: disabled;
+}
+
+.difficulty-radio-group {
+    display: flex;
+    gap: 20px;
+    padding-top: 4px;
+}
+
+.difficulty-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.difficulty-item input[type="radio"] {
+    width: 18px;
+    height: 18px;
+}
+
+.ingredient-section {
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ingredient-title-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+}
+
+.ingredient-info-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.ingredient-info-btn img {
+    width: 16px;
+}
+
+.ingredient-tooltip {
+    position: absolute;
+    top: -16px;
+    left: 105px;
+    min-width: 200px;
+    padding: 12px;
+    background: #fff;
+    border: 2px dashed #9e9e9e;
+    border-radius: 8px;
+    font-size: 12px;
+    display: none;
+    z-index: 100;
+}
+.ingredient-tooltip.show {
+    display: block;
+}
+
+.ingredient-tooltip .tooltip-arrow {
+    position: absolute;
+    left: -10px;
+    top: 18px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 10px solid #9e9e9e;
+}
+
+.ingredient-item {
+    border: 1px dashed #ccc;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+}
+
+.ingredient-remove-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 26px;
+    height: 26px;
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid #d0d0d0;
+    cursor: pointer;
+}
+
+.ingredient-tip-field {
+    margin-top: -4px;
+}
+
+.ingredient-add-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.ingredient-add-btn,
+.ingredient-remove-btn {
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid #d0d0d0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.ingredient-add-btn img,
+.ingredient-remove-btn img {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+.ingredient-remove-btn {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 28px;
+    height: 28px;
+}
+
+.ingredient-remove-btn img {
+    width: 16px;
+    height: 16px;
+}
+
+.ingredient-add-btn:hover,
+.ingredient-remove-btn:hover {
+    background-color: #f3f3f3;
+}
+
+.ingredient-count {
+    font-size: 14px;
+    color: #666;
+}
+
+.ingredient-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.ingredient-name-field {
+    flex: 2;
+}
+
+.ingredient-amount-field {
+    flex: 1;
+}
+
+.ingredient-unit-field {
+    flex: 1;
+}
+
+.step-section {
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.step-title-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+}
+
+.step-info-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.step-info-btn img {
+    width: 16px;
+}
+
+.step-tooltip {
+    position: absolute;
+    top: -10px;
+    left: 110px;
+    min-width: 220px;
+    padding: 12px;
+    background: #fff;
+    border: 2px dashed #9e9e9e;
+    border-radius: 8px;
+    font-size: 12px;
+    display: none;
+    z-index: 100;
+}
+
+.step-tooltip.show {
+    display: block;
+}
+
+.step-tooltip .tooltip-arrow {
+    position: absolute;
+    left: -10px;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 10px solid #9e9e9e;
+}
+
+.step-add-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.step-add-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+.step-add-btn img {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+.step-count {
+    font-size: 14px;
+    color: #666;
+}
+
+.step-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    z-index: 2000;
+}
+
+.step-modal {
+    position: fixed;
+    width: 90%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 2001;
+}
+
+.step-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.step-modal-title {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.step-info-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.step-info-btn img {
+    width: 16px;
+}
+
+.step-tooltip {
+    position: absolute;
+    top: -6px;
+    left: 120px;
+    min-width: 200px;
+    padding: 12px;
+    background: #fff;
+    border: 2px dashed #9e9e9e;
+    border-radius: 8px;
+    font-size: 12px;
+    display: none;
+}
+
+.step-tooltip.show {
+    display: block;
+}
+
+.step-text-error {
+    color: #e23a3a;
+    font-size: 12px;
+    margin-top: -6px;
+    display: none;
+}
+
+.step-image-upload-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.step-image-upload-btn {
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #aaa;
+    cursor: pointer;
+}
+
+.step-image-count {
+    font-size: 13px;
+    color: #666;
+}
+
+.step-image-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.step-image-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.step-image-remove-btn {
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid #d0d0d0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-image-remove-btn img {
+    width: 12px;
+}
+
+.step-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+}
+
+.step-cancel-btn,
+.step-submit-btn {
+    width: 48%;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.step-cancel-btn {
+    background: #eee;
+    border: 1px solid #ccc;
+}
+
+.step-submit-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+}
+
+.step-card {
+    border: 1px solid #d0d0d0;
+    border-radius: 10px;
+    background: #ffffff;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.step-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: #f3f3f3;
+}
+
+.step-drag-handle {
+    width: 18px;
+    text-align: center;
+    font-size: 14px;
+    cursor: grab;
+    user-select: none;
+}
+
+.step-card-title {
+    font-size: 13px;
+    font-weight: 500;
+    flex: 1;
+}
+
+.step-toggle-btn,
+.step-delete-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 2px 4px;
+}
+
+.step-toggle-btn {
+    font-size: 12px;
+}
+
+.step-delete-btn img {
+    width: 14px;
+    height: 14px;
+}
+
+.step-card-body {
+    padding: 10px 12px;
+    border-top: 1px solid #e5e5e5;
+    background: #fafafa;
+}
+
+.step-card-images {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.step-preview-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    object-fit: cover;
+    background: #eaeaea;
+}
+
+.step-card-text {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    color: #333;
+    white-space: pre-line;
+}
+
+.step-edit-btn {
+    margin-left: auto;
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 999px;
+    border: 1px solid #999;
+    background: #fff;
+    cursor: pointer;
+}
+
+.step-card.dragging {
+    opacity: 0.7;
+    background: #f4f4f4;
+}
+
+.step-card.placeholder {
+    border: 2px dashed #ccc;
+    background: #fafafa;
+}
+
+.complete-section {
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.complete-title-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+}
+
+.complete-info-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.complete-info-btn img {
+    width: 16px;
+}
+
+.complete-tooltip {
+    position: absolute;
+    top: -10px;
+    left: 110px;
+    min-width: 220px;
+    padding: 12px;
+    background: #fff;
+    border: 2px dashed #9e9e9e;
+    border-radius: 8px;
+    font-size: 12px;
+    display: none;
+    z-index: 100;
+}
+
+.complete-tooltip.show {
+    display: block;
+}
+
+.complete-tooltip .tooltip-arrow {
+    position: absolute;
+    left: -10px;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 10px solid #9e9e9e;
+}
+
+.complete-image-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.complete-image-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.complete-image-remove-btn {
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.complete-image-remove-btn img {
+    width: 14px;
+}
+
+.complete-add-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.complete-add-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.complete-add-btn img {
+    width: 20px;
+}
+
+.complete-count {
+    font-size: 14px;
+    color: #666;
+}
+
+.complete-bottom-btn-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.complete-bottom-btn {
+    width: 32%;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #eee;
+    border: 1px solid #ccc;
+}
+
+.complete-submit-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-box {
+    background: #fff;
+    padding: 20px 28px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    min-width: 260px;
+}
+
+.modal-box p {
+    margin-bottom: 16px;
+    font-size: 15px;
+    color: #333;
+}
+
+.modal-box .btn-small {
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-small-gray {
+    background: #888888;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-box .btn-small:hover {
+    background: #276b2c;
+}
