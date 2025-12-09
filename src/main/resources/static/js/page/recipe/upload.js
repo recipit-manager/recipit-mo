@@ -157,10 +157,10 @@ function initRecipeTextCounters() {
     const $descriptionCounter = document.getElementById("recipeDescriptionCounter");
 
     if ($titleInput && $titleCounter) {
-        updateTextCounter($titleInput, $titleCounter, 40);
+        updateTextCounter($titleInput, $titleCounter, 20);
 
         $titleInput.addEventListener("input", () => {
-            updateTextCounter($titleInput, $titleCounter, 40);
+            updateTextCounter($titleInput, $titleCounter, 20);
         });
     }
 
@@ -174,9 +174,14 @@ function initRecipeTextCounters() {
 }
 
 function updateTextCounter($inputElement, $counterElement, maxLength) {
-    const currentLength = $inputElement.value.length;
-    const safeLength = currentLength > maxLength ? maxLength : currentLength;
-    $counterElement.textContent = safeLength + "/" + maxLength;
+    let text = $inputElement.value;
+
+    if (text.length > maxLength) {
+        text = text.substring(0, maxLength);
+        $inputElement.value = text;
+    }
+
+    $counterElement.textContent = text.length + "/" + maxLength;
 }
 
 function initNumberOnly() {
@@ -224,6 +229,7 @@ function initIngredientSection() {
         const node = template.content.cloneNode(true);
         const $item = node.querySelector(".ingredient-item");
         const $removeBtn = node.querySelector(".ingredient-remove-btn");
+        const $tipInput = $item.querySelector(".ingredient-tip-input");
 
         $removeBtn.addEventListener("click", () => {
             if (ingredientCount === 1) {
@@ -233,6 +239,14 @@ function initIngredientSection() {
             $item.remove();
             ingredientCount--;
             updateCount();
+        });
+
+        $tipInput.addEventListener("input", () => {
+            let text = $tipInput.value;
+            if (text.length > 30) {
+                text = text.substring(0, 30);
+                $tipInput.value = text;
+            }
         });
 
         node.querySelectorAll(".number-only").forEach($el => {
@@ -297,10 +311,16 @@ function initStepModal() {
     const $textCounter = document.getElementById("stepTextCounter");
 
     $stepInput.addEventListener("input", () => {
-        const len = $stepInput.value.length;
-        $textCounter.textContent = `${len}/500`;
+        let text = $stepInput.value;
 
-        if (len > 0) {
+        if (text.length > 500) {
+            text = text.substring(0, 500);
+            $stepInput.value = text;
+        }
+
+        $textCounter.textContent = `${text.length}/500`;
+
+        if (text.length > 0) {
             hideStepError();
         }
     });

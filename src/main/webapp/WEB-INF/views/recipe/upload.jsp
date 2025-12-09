@@ -83,11 +83,11 @@
                             <div class="field-input-wrapper field-input-wrapper-bordered">
                                 <input type="text"
                                        id="recipeTitleInput"
-                                       maxlength="40"
+                                       maxlength="20"
                                        class="text-input"
                                        data-i18n-placeholder="ui.upload_title_placeholder">
                                 <span class="field-required-mark">*</span>
-                                <span class="field-counter" id="recipeTitleCounter">0/40</span>
+                                <span class="field-counter" id="recipeTitleCounter">0/20</span>
                             </div>
                         </div>
 
@@ -284,7 +284,7 @@
                     <label class="field-label" data-i18n="ui.upload_tip"></label>
                 </div>
                 <div class="field-input-wrapper field-input-wrapper-bordered">
-                    <input type="text" maxlength="50"
+                    <input type="text" maxlength="30"
                            class="text-input ingredient-tip-input"
                            data-i18n-placeholder="ui.upload_tip_placeholder">
                 </div>
