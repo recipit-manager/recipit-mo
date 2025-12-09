@@ -918,7 +918,7 @@ function buildRecipeInfoJSON() {
         });
     });
 
-    stepDataList.forEach((step, index) => {
+    stepDataList.forEach((step) => {
         recipeInfo.stepList.push({
             contents: step.text,
             imageIndexes: step.images.map((_, idx) => idx)
