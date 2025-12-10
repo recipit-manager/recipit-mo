@@ -12,11 +12,6 @@ async function initRecipeDetail() {
     applyI18nTexts();
 
     recipeInfo = loadRecipeData();
-    if (!recipeInfo) {
-        console.error("Recipe data not found.");
-        return;
-    }
-
     recipeUtil.initLikeButton();
     recipeUtil.initBookmarkButton();
 
