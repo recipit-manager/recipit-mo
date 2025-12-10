@@ -71,7 +71,7 @@ export const recipeUtil = {
     initRecipeClick() {
         document.querySelectorAll(".recipe-card").forEach($card => {
             $card.addEventListener("click", () => {
-                location.href = `/recipe/${$card.dataset.id}`;
+                location.href = `/home/recipe/${$card.dataset.id}`;
             });
         });
     },
@@ -135,4 +135,60 @@ export const recipeUtil = {
 
         return params;
     },
+
+    initBookmarkButton() {
+        document.querySelectorAll(".bookmark-icon").forEach($icon => {
+            let isProcessing = false;
+
+            const recipeId = $icon.dataset.id;
+            const isLogin = document.body.dataset.isLogin === "true";
+
+            async function toggleBookmark(isBookmarked) {
+                if (isProcessing) {
+                    return;
+                }
+                isProcessing = true;
+
+                if (!isLogin) {
+                    window.location.href = "/user/login";
+                    return;
+                }
+
+                const apiCall = isBookmarked
+                    ? apiUtil.delete(apiUtil.url.RECIPE.BOOKMARK(recipeId))
+                    : apiUtil.post(apiUtil.url.RECIPE.BOOKMARK(recipeId), {});
+
+                try {
+                    const data = await apiCall;
+
+                    if (data.code !== responseCode.SUCCESS) {
+                        console.error(log.BOOKMARK_RECIPE_FAILED, data.message);
+                        return;
+                    }
+
+                    if (isBookmarked) {
+                        $icon.src = "/images/unBookmark.png";
+                        $icon.dataset.bookmarked = "N";
+                    } else {
+                        $icon.src = "/images/bookmark.png";
+                        $icon.dataset.bookmarked = "Y";
+                    }
+
+                } catch (e) {
+                    console.error(log.BOOKMARK_RECIPE_FAILED, e);
+
+                } finally {
+                    isProcessing = false;
+                }
+            }
+
+            $icon.addEventListener("click", e => {
+                e.stopPropagation();
+
+                const isBookmarked = ($icon.dataset.bookmarked || "N").toUpperCase() === "Y";
+
+                toggleBookmark(isBookmarked);
+            });
+        });
+    }
 };

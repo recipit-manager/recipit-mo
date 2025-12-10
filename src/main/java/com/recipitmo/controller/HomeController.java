@@ -1,16 +1,22 @@
 package com.recipitmo.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.recipitmo.client.api.CommonApi;
 import com.recipitmo.client.api.RecipeApi;
+import com.recipitmo.dto.RecipeDetailDto;
 import com.recipitmo.dto.SearchRecipeDto;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -82,6 +88,30 @@ public class HomeController {
         mv.addObject("recipeCategoryList", commonApi.getRecipeCategoryList());
         mv.addObject("difficultyList", commonApi.getDifficultyList());
         mv.addObject("ingredientTypeList", commonApi.getIngredientTypeList());
+
+        return mv;
+    }
+
+    @GetMapping("/recipe/{recipeNo}")
+    public ModelAndView viewRecipeDetailPage(@PathVariable String recipeNo, HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView("/recipe/recipeDetail");
+
+        Optional<RecipeDetailDto> recipeInfoOpt = recipeApi.getRecipeDetail(recipeNo, request);
+
+        if (recipeInfoOpt.isPresent()) {
+            RecipeDetailDto recipeInfo = recipeInfoOpt.get();
+            mv.addObject("recipeInfo", recipeInfo);
+
+            try {
+                ObjectMapper objectMapper = new ObjectMapper();
+
+                String recipeInfoJson = objectMapper.writeValueAsString(recipeInfo);
+
+                mv.addObject("recipeInfoJson", recipeInfoJson);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException("json error", e);
+            }
+        }
 
         return mv;
     }

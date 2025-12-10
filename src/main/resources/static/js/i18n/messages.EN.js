@@ -136,7 +136,7 @@ export default {
         noRefriItem: "No recipes available for this ingredient.",
         noRefriItemDesc: "- Please check the ingredient you entered.\n- Try entering a different ingredient.",
         needIngredient: "Need more ingredients",
-        servingUnit: "serving size",
+        servingUnit: "size",
 
         upload: "Create Recipe",
         upload_image_tooltip: "Please upload an image under 5MB with a ratio between 1:1 and 4:5.\nMinimum resolution: 800x800.",
@@ -186,6 +186,15 @@ export default {
         upload_request_fail: "The request has failed.",
         upload_request_error: "An error occurred while processing the request.",
         upload_serving_unit: "serving size",
+
+        recipeDetail: "recipeDetail",
+        recipeDetail_ingredients: "Ingredients",
+        recipeDetail_steps: "Steps",
+        recipeDetail_completion: "Completion",
+        recipeDetail_step_name: "Step {{num}}",
+        recipeDetail_report: "Report",
+        recipeDetail_report_already: "This recipe has already been reported.",
+        recipeDetail_report_dev: "The report feature is under development.",
     },
     time: {
         period: {

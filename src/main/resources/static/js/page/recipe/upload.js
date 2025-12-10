@@ -868,6 +868,8 @@ async function submitRecipe(formData, {
                 confirmText: translate("common.confirm"),
                 onClose: onSuccess
             });
+        } else if (json.code === responseCode.BAD_REQUEST) {
+            alert(json.message);
         } else {
             uiUtil.showModal(failMessage, {
                 confirmText: translate("common.confirm")

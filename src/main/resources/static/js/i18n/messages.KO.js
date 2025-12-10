@@ -181,11 +181,20 @@ export default {
         upload_input_need:"모든 필수 항목을 작성해주세요",
         upload_draft_success: "작성한 내용이 저장되었습니다.",
         upload_draft_fail: "서버의 오류로 인해 임시저장에 실패했습니다.\n잠시 후 다시 시도해주세요.",
-        upload_submit_success: "작성한 레시피가 등록되었습니다.\n잠시 후 다시 시도해주세요.",
-        upload_submit_fail: "서버의 오류로 인해 레시피 등록에 실패했습니다.",
+        upload_submit_success: "작성한 레시피가 등록되었습니다.",
+        upload_submit_fail: "서버의 오류로 인해 레시피 등록에 실패했습니다.\n잠시 후 다시 시도해주세요.",
         upload_request_fail: "요청에 실패했습니다.",
         upload_request_error: "요청 중 오류가 발생했습니다.",
         upload_serving_unit: "인원",
+
+        recipeDetail: "레시피 상세보기",
+        recipeDetail_ingredients: "재료",
+        recipeDetail_steps: "요리 순서",
+        recipeDetail_completion: "완성!!",
+        recipeDetail_step_name: "Step {{num}}",
+        recipeDetail_report: "신고",
+        recipeDetail_report_already: "이미 신고가 접수된 레시피입니다.",
+        recipeDetail_report_dev: "신고 기능은 개발 진행중입니다.",
     },
     time: {
         period: {
