@@ -4,8 +4,10 @@ import { uiUtil } from "/js/common/uiUtil.js";
 
 export const recipeUtil = {
     initLikeButton() {
-        const $container = document.querySelector(".recipe-scroll-area") ||
-            document.querySelector(".recipe-detail-container")
+        const $container =
+            document.querySelector(".recipe-scroll-area") ||
+            document.querySelector(".recipe-detail-container") ||
+            document.querySelector(".popular-section");
 
         $container.addEventListener("click", async (e) => {
 

@@ -118,7 +118,7 @@
     margin: 8px 10px 4px;
 }
 
-.recipe-like {
+.like-button-area {
     display: flex;
     align-items: center;
     gap: 5px;
