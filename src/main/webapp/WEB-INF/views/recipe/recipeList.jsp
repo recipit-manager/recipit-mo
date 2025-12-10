@@ -132,7 +132,7 @@
                                 </div>
                             </div>
 
-                            <div class="recipe-like">
+                            <div class="recipe-like like-button-area">
                                 <img class="icon-unliked ${recipe.isLiked ? 'hidden' : ''}" src="/images/unlike.png">
                                 <img class="icon-liked ${recipe.isLiked ? '' : 'hidden'}" src="/images/like.png">
                                 <span class="like-count">${recipe.likeCount}</span>

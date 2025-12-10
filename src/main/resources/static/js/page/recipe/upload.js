@@ -887,27 +887,28 @@ async function submitRecipe(formData, {
 }
 
 function buildRecipeFormData() {
-    const recipeInfo = buildRecipeInfoJSON();
+
     const formData = new FormData();
+    const recipeInfo = buildRecipeInfoJSON();
 
     formData.append(
         "recipeInfo",
         new Blob([JSON.stringify(recipeInfo)], { type: "application/json" })
     );
 
-    const $mainFileInput = document.getElementById("recipeMainImageInput");
-    if ($mainFileInput.files.length > 0) {
-        formData.append("mainImage", $mainFileInput.files[0]);
+    const $mainImageInput = document.getElementById("recipeMainImageInput");
+    if ($mainImageInput.files.length > 0) {
+        formData.append("mainImage", $mainImageInput.files[0]);
     }
 
-    stepDataList.forEach((step) => {
-        step.images.forEach((imgObj) => {
-            formData.append("stepImages", imgObj.file);
+    stepDataList.forEach(step => {
+        step.images.forEach(imageObj => {
+            formData.append("stepImages", imageObj.file);
         });
     });
 
-    completeImages.forEach((imgObj) => {
-        formData.append("completionImages", imgObj.file);
+    completeImages.forEach(img => {
+        formData.append("completionImages", img.file);
     });
 
     return formData;
@@ -915,22 +916,18 @@ function buildRecipeFormData() {
 
 function buildRecipeInfoJSON() {
 
-    const cookingTimeValue = document.getElementById("recipeCookingTimeInput").value;
-    const servingSizeValue = document.getElementById("recipeServingInput").value;
-
     const recipeInfo = {
         title: document.getElementById("recipeTitleInput").value.trim(),
         description: document.getElementById("recipeDescriptionInput").value.trim(),
         categoryCode: document.getElementById("recipeCategorySelect").value || null,
-        cookingTime: cookingTimeValue === "" ? -1 : Number(cookingTimeValue),
-        servingSize: servingSizeValue === "" ? -1 : Number(servingSizeValue),
+        cookingTime: Number(document.getElementById("recipeCookingTimeInput").value || -1),
+        servingSize: Number(document.getElementById("recipeServingInput").value || -1),
         difficultyCode: document.querySelector("input[name='recipeDifficulty']:checked")?.value || null,
         ingredientList: [],
         stepList: []
     };
 
     document.querySelectorAll("#ingredientList .ingredient-item").forEach(($item) => {
-
         recipeInfo.ingredientList.push({
             name: $item.querySelector(".ingredient-name-input").value.trim(),
             categoryCode: $item.querySelector(".ingredient-type-select").value,
@@ -940,10 +937,14 @@ function buildRecipeInfoJSON() {
         });
     });
 
-    stepDataList.forEach((step) => {
+    let imageIndex = 0;
+
+    stepDataList.forEach(step => {
+        const imageIndexes = step.images.map(() => imageIndex++);
+
         recipeInfo.stepList.push({
             contents: step.text,
-            imageIndexes: step.images.map((_, idx) => idx)
+            imageIndexes
         });
     });
 

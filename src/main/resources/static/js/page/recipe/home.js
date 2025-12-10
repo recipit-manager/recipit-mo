@@ -48,7 +48,7 @@ function initCategoryButton() {
 function initRecipeCardClick() {
     document.querySelectorAll(".recipe-card").forEach($card => {
         $card.addEventListener("click", () => {
-            location.href = `/recipe/${$card.dataset.id}`;
+            location.href = `/home/recipe/${$card.dataset.id}`;
         });
     });
 }

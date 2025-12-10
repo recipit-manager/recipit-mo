@@ -4,75 +4,87 @@ import { uiUtil } from "/js/common/uiUtil.js";
 
 export const recipeUtil = {
     initLikeButton() {
-        document.querySelectorAll(".recipe-card").forEach($card => {
-            const $iconLiked = $card.querySelector(".icon-liked");
-            const $iconUnliked = $card.querySelector(".icon-unliked");
-            const $count = $card.querySelector(".like-count");
+        const $container = document.querySelector(".recipe-scroll-area") ||
+            document.querySelector(".recipe-detail-container")
 
+        $container.addEventListener("click", async (e) => {
+
+            const likeBtn = e.target.closest(".like-button-area");
+            if (!likeBtn) {
+                return;
+            }
+
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+
+            const $card = likeBtn.closest(".recipe-card");
             const recipeId = $card.dataset.id;
+
+            const $iconLiked = likeBtn.querySelector(".icon-liked");
+            const $iconUnliked = likeBtn.querySelector(".icon-unliked");
+            const $count = likeBtn.querySelector(".like-count");
+
             const isLogin = document.body.dataset.isLogin === "true";
+            const isLiked = !$iconLiked.classList.contains("hidden");
 
-            let isProcessing = false;
+            if (!isLogin) {
+                window.location.href = "/user/login";
+                return;
+            }
 
-            async function toggleLike(isCurrentlyLiked) {
-                if (isProcessing) {
-                    return;
-                }
+            if ($card.dataset.processing === "Y") {
+                return;
+            }
 
-                isProcessing = true;
+            $card.dataset.processing = "Y";
 
-                if (!isLogin) {
-                    window.location.href = "/user/login";
-                    return;
-                }
-
-                const apiCall = isCurrentlyLiked
+            try {
+                const apiCall = isLiked
                     ? apiUtil.delete(apiUtil.url.RECIPE.LIKE(recipeId))
                     : apiUtil.post(apiUtil.url.RECIPE.LIKE(recipeId));
 
-                try {
-                    const data = await apiCall;
+                const data = await apiCall;
 
-                    if (data.code !== responseCode.SUCCESS) {
-                        console.error(log.LIKE_RECIPE_FAILED, data.message);
-                        return;
-                    }
-
-                    if (isCurrentlyLiked) {
-                        $iconLiked.classList.add("hidden");
-                        $iconUnliked.classList.remove("hidden");
-                        $count.textContent = +$count.textContent - 1;
-                    } else {
-                        $iconUnliked.classList.add("hidden");
-                        $iconLiked.classList.remove("hidden");
-                        $count.textContent = +$count.textContent + 1;
-                    }
-
-                } catch (e) {
-                    console.error(log.LIKE_RECIPE_FAILED, e);
-
-                } finally {
-                    isProcessing = false;
+                if (data.code !== responseCode.SUCCESS) {
+                    console.error(log.LIKE_RECIPE_FAILED, data.message);
+                    return;
                 }
+
+                if (isLiked) {
+                    $iconLiked.classList.add("hidden");
+                    $iconUnliked.classList.remove("hidden");
+                    $count.textContent = +$count.textContent - 1;
+                } else {
+                    $iconUnliked.classList.add("hidden");
+                    $iconLiked.classList.remove("hidden");
+                    $count.textContent = +$count.textContent + 1;
+                }
+
+            } catch (e) {
+                console.error(log.LIKE_RECIPE_FAILED, e);
+            } finally {
+                $card.dataset.processing = "N";
             }
 
-            $iconUnliked?.addEventListener("click", e => {
-                e.stopPropagation();
-                toggleLike(false);
-            });
-
-            $iconLiked?.addEventListener("click", e => {
-                e.stopPropagation();
-                toggleLike(true);
-            });
         });
     },
 
     initRecipeClick() {
-        document.querySelectorAll(".recipe-card").forEach($card => {
-            $card.addEventListener("click", () => {
-                location.href = `/home/recipe/${$card.dataset.id}`;
-            });
+        const $container = document.querySelector(".recipe-scroll-area");
+
+        $container.addEventListener("click", (e) => {
+
+            if (e.target.closest(".like-button-area") ||
+                e.target.closest(".bookmark-icon")) {
+                return;
+            }
+
+            const card = e.target.closest(".recipe-card");
+            if (!card) {
+                return;
+            }
+
+            location.href = `/home/recipe/${card.dataset.id}`;
         });
     },
 
