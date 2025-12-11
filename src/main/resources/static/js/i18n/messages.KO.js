@@ -195,6 +195,21 @@ export default {
         recipeDetail_report: "신고",
         recipeDetail_report_already: "이미 신고가 접수된 레시피입니다.",
         recipeDetail_report_dev: "신고 기능은 개발 진행중입니다.",
+
+        report: {
+            title: "신고",
+            select_reason: "신고 항목을 선택해주세요.",
+            etc_placeholder: "신고 사유를 입력해주세요.",
+            etc_required: "신고 사유를 작성해주세요.",
+            submit: "신고",
+            cancel: "취소",
+
+            done_title: "신고가 완료되었습니다.",
+            done_desc_1: "불편을 드려 죄송합니다. 해당 레시피는 내부 기준에 따라 검토 후 조치될 예정입니다.",
+            done_desc_2: "신고 된 레시피는 평균 24시간 이내에 확인되며, 조치 결과는 알림으로 안내됩니다.",
+            done_desc_3: "올바른 서비스를 위해 함께해주셔서 감사합니다.",
+            done_close: "닫기",
+        }
     },
     time: {
         period: {

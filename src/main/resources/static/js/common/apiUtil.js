@@ -27,6 +27,7 @@ export const apiUtil = {
             DRAFT_SAVE: "/recipe/draft",
             UPLOAD: "/recipe/upload",
             BOOKMARK: (recipeNo) => `/recipe/${recipeNo}/bookmark`,
+            REPORT: (recipeNo) => `/recipe/report/${recipeNo}`,
         },
         REFRI: {
             AUTO_COMPLETE: "/refri-item/ingredient/auto-complete",

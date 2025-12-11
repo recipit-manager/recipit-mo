@@ -1,6 +1,8 @@
 import { applyI18nTexts, loadLanguageFile, translate } from "/js/i18n/i18n.js";
 import { recipeUtil } from "/js/common/recipeUtil.js";
 import { uiUtil } from "/js/common/uiUtil.js";
+import { apiUtil } from "/js/common/apiUtil.js";
+import { log, responseCode } from "/js/common/constants.js";
 
 let currentStepIndex = 0;
 let recipeInfo = null;
@@ -22,6 +24,7 @@ async function initRecipeDetail() {
     renderCompletionImages(recipeInfo.completionImageUrlList);
 
     initReportButton();
+    initReportModalEvents();
 }
 
 function loadRecipeData() {
@@ -296,8 +299,114 @@ function initReportButton() {
             return;
         }
 
-        uiUtil.showModal(translate("ui.recipeDetail_report_dev"), {
-            confirmText: translate("common.confirm")
-        });
+        openReportModal();
     });
+}
+
+function initReportModalEvents() {
+    const $etcInput = document.getElementById("reportEtcInput");
+    const $counter = document.getElementById("reportEtcCounter");
+    const $errorMsg = document.getElementById("reportEtcError");
+    const $etcCheckbox = document.querySelector('.report-category-checkbox[value="RP06"]');
+
+    if ($etcCheckbox) {
+        $etcCheckbox.addEventListener("change", () => {
+            if ($etcCheckbox.checked) {
+                $etcInput.disabled = false;
+                $etcInput.style.background = "#fff";
+            } else {
+                $etcInput.disabled = true;
+                $etcInput.value = "";
+                $counter.textContent = "0/100";
+                $errorMsg.style.display = "none";
+            }
+        });
+    }
+
+    $etcInput.addEventListener("input", () => {
+        let text = $etcInput.value;
+
+        if (text.length > 100) {
+            $etcInput.value = text.substring(0, 100);
+            text = $etcInput.value;
+        }
+
+        $counter.textContent = `${text.length}/100`;
+
+        if (text.length > 0) {
+            $errorMsg.style.display = "none";
+        }
+    });
+
+    document.getElementById("reportCancelBtn").addEventListener("click", closeReportModal);
+    document.getElementById("reportSubmitBtn").addEventListener("click", submitReport);
+    document.getElementById("reportDoneCloseBtn").addEventListener("click", closeReportDoneModal);
+}
+
+async function submitReport() {
+    const selectedCodes = [];
+
+    document.querySelectorAll(".report-category-checkbox").forEach($checkBox => {
+        if ($checkBox.checked) {
+            selectedCodes.push($checkBox.value);
+        }
+    });
+
+    if (selectedCodes.length === 0) {
+        alert(translate("ui.report.select_reason"));
+        return;
+    }
+
+    const $etcCheckbox = document.querySelector('.report-category-checkbox[value="RP06"]');
+    const etcText = document.getElementById("reportEtcInput").value.trim();
+    const $errorMsg = document.getElementById("reportEtcError");
+
+    if ($etcCheckbox?.checked && etcText.length === 0) {
+        $errorMsg.style.display = "block";
+        return;
+    }
+
+    $errorMsg.style.display = "none";
+
+    const payload = {
+        reportTypeCodeList: selectedCodes,
+        content: $etcCheckbox?.checked ? etcText : null
+    };
+
+    try {
+        const response = await apiUtil.post(apiUtil.url.RECIPE.REPORT(recipeInfo.recipeNo), payload);
+
+        if (response.code === responseCode.SUCCESS) {
+            closeReportModal();
+            openReportDoneModal();
+        } else if (response.code ===responseCode.BAD_REQUEST) {
+            alert(response.message);
+        } else {
+            console.error(log.REPORT_RECIPE_FAILED, response.message);
+        }
+
+    } catch (e) {
+        console.error(log.REPORT_RECIPE_FAILED, e);
+    }
+}
+
+function openReportModal() {
+    document.getElementById("reportModalOverlay").style.display = "block";
+    document.getElementById("reportModal").style.display = "flex";
+}
+
+function closeReportModal() {
+    document.getElementById("reportModalOverlay").style.display = "none";
+    document.getElementById("reportModal").style.display = "none";
+}
+
+function openReportDoneModal() {
+    document.getElementById("reportDoneOverlay").style.display = "block";
+    document.getElementById("reportDoneModal").style.display = "flex";
+}
+
+function closeReportDoneModal() {
+    document.getElementById("reportDoneOverlay").style.display = "none";
+    document.getElementById("reportDoneModal").style.display = "none";
+    location.reload();
 }

@@ -195,6 +195,21 @@ export default {
         recipeDetail_report: "Report",
         recipeDetail_report_already: "This recipe has already been reported.",
         recipeDetail_report_dev: "The report feature is under development.",
+
+        report: {
+            title: "Report",
+            select_reason: "Please select at least one reason.",
+            etc_placeholder: "Enter details (optional)",
+            etc_required: "Please enter the report reason.",
+            submit: "Report",
+            cancel: "Cancel",
+
+            done_title: "Report submitted.",
+            done_desc_1: "We apologize for the inconvenience. This recipe will be reviewed internally and appropriate actions will be taken.",
+            done_desc_2: "Reported recipes are typically reviewed within 24 hours, and the results will be notified.",
+            done_desc_3: "Thank you for helping us maintain a better service.",
+            done_close: "Close",
+        }
     },
     time: {
         period: {

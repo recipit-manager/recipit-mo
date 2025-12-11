@@ -6,6 +6,7 @@ import com.recipitmo.dto.DifficultyDto;
 import com.recipitmo.dto.IngredientCategoryDto;
 import com.recipitmo.dto.IngredientTypeDto;
 import com.recipitmo.dto.RecipeCategoryDto;
+import com.recipitmo.dto.ReportCategoryDto;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -37,4 +38,7 @@ public interface CommonService {
 
     @GET("common/ingredient-type/list")
     Call<ApiResponse<List<IngredientTypeDto>>> getIngredientTypeList();
+
+    @GET("common/report-category/list")
+    Call<ApiResponse<List<ReportCategoryDto>>> getReportCategoryList();
 }
