@@ -103,15 +103,13 @@ public class HomeController {
             mv.addObject("recipeInfo", recipeInfo);
 
             try {
-                ObjectMapper objectMapper = new ObjectMapper();
-
-                String recipeInfoJson = objectMapper.writeValueAsString(recipeInfo);
-
-                mv.addObject("recipeInfoJson", recipeInfoJson);
+                mv.addObject("recipeInfoJson", new ObjectMapper().writeValueAsString(recipeInfo));
             } catch (JsonProcessingException e) {
                 throw new RuntimeException("json error", e);
             }
         }
+
+        mv.addObject("reportCategoryList", commonApi.getReportCategoryList());
 
         return mv;
     }

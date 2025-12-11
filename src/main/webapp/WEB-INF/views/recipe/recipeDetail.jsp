@@ -105,6 +105,65 @@
             </button>
         </div>
     </c:if>
+
+    <div class="report-modal-overlay" id="reportModalOverlay"></div>
+
+    <div class="report-modal" id="reportModal">
+
+        <div class="report-modal-title-row">
+            <span class="report-modal-title" data-i18n="ui.report.title"></span>
+        </div>
+
+        <div class="report-modal-content">
+
+            <div class="report-category-list">
+                <c:forEach var="cat" items="${reportCategoryList}">
+                    <label class="report-category-item">
+                        <input type="checkbox" class="report-category-checkbox"
+                               value="${cat.categoryCode}">
+                        <span>${cat.categoryName}</span>
+                    </label>
+                </c:forEach>
+            </div>
+
+            <div class="report-etc-input-block">
+                <label class="report-etc-error" id="reportEtcError" data-i18n="ui.report.etc_required"></label>
+                <div class="report-etc-textarea-wrapper">
+                <textarea id="reportEtcInput"
+                          class="report-etc-textarea"
+                          maxlength="100"
+                          disabled></textarea>
+                    <span class="report-etc-counter" id="reportEtcCounter">0/100</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-modal-footer">
+            <button class="report-cancel-btn" id="reportCancelBtn" data-i18n="ui.report.cancel"></button>
+            <button class="report-submit-btn" id="reportSubmitBtn" data-i18n="ui.report.submit"></button>
+
+        </div>
+
+    </div>
+
+    <div id="reportDoneOverlay" class="report-done-overlay"></div>
+
+    <div id="reportDoneModal" class="report-done-modal">
+
+        <div class="report-done-icon">
+            <img src="/images/report_complete.png">
+        </div>
+
+        <p class="report-done-title" data-i18n="ui.report.done_title"></p>
+
+        <p class="report-done-desc">
+            <span data-i18n="ui.report.done_desc_1"></span><br><br>
+            <span data-i18n="ui.report.done_desc_2"></span><br><br>
+            <span data-i18n="ui.report.done_desc_3"></span>
+        </p>
+
+        <button id="reportDoneCloseBtn" class="report-done-close-btn" data-i18n="ui.report.done_close"></button>
+    </div>
 </main>
 
 <script id="recipeData" type="application/json">

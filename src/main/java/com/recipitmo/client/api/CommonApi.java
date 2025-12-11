@@ -7,6 +7,7 @@ import com.recipitmo.dto.DifficultyDto;
 import com.recipitmo.dto.IngredientCategoryDto;
 import com.recipitmo.dto.IngredientTypeDto;
 import com.recipitmo.dto.RecipeCategoryDto;
+import com.recipitmo.dto.ReportCategoryDto;
 import com.recipitmo.service.CommonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -97,7 +98,7 @@ public class CommonApi {
         try {
             Response<ApiResponse<List<DifficultyDto>>> response = commonService.getDifficultyList().execute();
 
-            if(response.isSuccessful() && response.body() != null){
+            if (response.isSuccessful() && response.body() != null){
                 return response.body().getData();
             } else {
                 log.error("Failed to load difficulty List: HTTP {}", response.code());
@@ -113,7 +114,7 @@ public class CommonApi {
         try {
             Response<ApiResponse<List<IngredientTypeDto>>> response = commonService.getIngredientTypeList().execute();
 
-            if(response.isSuccessful() && response.body() != null){
+            if (response.isSuccessful() && response.body() != null){
                 return response.body().getData();
             } else {
                 log.error("Failed to load ingredientType List: HTTP {}", response.code());
@@ -123,5 +124,22 @@ public class CommonApi {
         }
 
         return Collections.emptyList();
+    }
+
+    public List<ReportCategoryDto> getReportCategoryList() {
+        try {
+            Response<ApiResponse<List<ReportCategoryDto>>> response = commonService.getReportCategoryList().execute();
+
+            if (response.isSuccessful() && response.body() != null){
+                return response.body().getData();
+            } else {
+                log.error("Failed to load reportCategory List: HTTP {}", response.code());
+            }
+        } catch (IOException e) {
+            log.error("Failed to load reportCategory List", e);
+        }
+
+        return Collections.emptyList();
+
     }
 }
