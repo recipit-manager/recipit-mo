@@ -105,7 +105,7 @@ public class HomeController {
             try {
                 mv.addObject("recipeInfoJson", new ObjectMapper().writeValueAsString(recipeInfo));
             } catch (JsonProcessingException e) {
-                throw new RuntimeException("json error", e);
+                log.error("JsonProcessingException", e);
             }
         }
 
