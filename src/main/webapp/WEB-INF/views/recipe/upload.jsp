@@ -3,7 +3,7 @@
 <% request.setAttribute("pageTitleKey", "ui.upload"); %>
 
 <c:if test="${isLogin eq false}">
-    <c:redirect url="/home"/>
+    <c:redirect url="/user/login"/>
 </c:if>
 
 <c:if test="${isAccountLocked eq true}">

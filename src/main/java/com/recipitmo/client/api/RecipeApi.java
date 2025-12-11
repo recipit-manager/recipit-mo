@@ -2,6 +2,7 @@ package com.recipitmo.client.api;
 
 import com.recipitmo.client.RetrofitClient;
 import com.recipitmo.dto.ApiResponse;
+import com.recipitmo.dto.IngredientCategoryDto;
 import com.recipitmo.dto.PopularRecipeDto;
 import com.recipitmo.dto.RecipeDetailDto;
 import com.recipitmo.dto.SearchRecipeDto;
@@ -122,4 +123,69 @@ public class RecipeApi {
 
         return Optional.empty();
     }
+
+    public Optional<Integer> getUserUploadRecipeCount(HttpServletRequest request) {
+        try {
+            Response<ApiResponse<Integer>> response =
+                    recipeService.getUserUploadRecipeCount(request.getHeader("Cookie")).execute();
+
+            if (response.isSuccessful() && response.body() != null) {
+                return Optional.ofNullable(response.body().getData());
+            }
+            log.error("Failed to Upload Recipe Count: HTTP {}", response.code());
+        } catch (IOException e) {
+            log.error("Failed to Upload Recipe Count", e);
+        }
+
+        return Optional.empty();
+    }
+
+    public Optional<Integer> getUserDraftRecipeCount(HttpServletRequest request) {
+        try {
+            Response<ApiResponse<Integer>> response =
+                    recipeService.getUserDraftRecipeCount(request.getHeader("Cookie")).execute();
+
+            if (response.isSuccessful() && response.body() != null) {
+                return Optional.ofNullable(response.body().getData());
+            }
+            log.error("Failed to Draft Recipe Count: HTTP {}", response.code());
+        } catch (IOException e) {
+            log.error("Failed to Draft Recipe Count", e);
+        }
+
+        return Optional.empty();
+    }
+
+    public Optional<Integer> getUserLikeRecipeCount(HttpServletRequest request) {
+        try {
+            Response<ApiResponse<Integer>> response =
+                    recipeService.getUserLikeRecipeCount(request.getHeader("Cookie")).execute();
+
+            if (response.isSuccessful() && response.body() != null) {
+                return Optional.ofNullable(response.body().getData());
+            }
+            log.error("Failed to Like Recipe Count: HTTP {}", response.code());
+        } catch (IOException e) {
+            log.error("Failed to Like Recipe Count", e);
+        }
+
+        return Optional.empty();
+    }
+
+    public Optional<Integer> getUserBookmarkRecipeCount(HttpServletRequest request) {
+        try {
+            Response<ApiResponse<Integer>> response =
+                    recipeService.getUserBookmarkRecipeCount(request.getHeader("Cookie")).execute();
+
+            if (response.isSuccessful() && response.body() != null) {
+                return Optional.ofNullable(response.body().getData());
+            }
+            log.error("Failed to Bookmark Recipe Count: HTTP {}", response.code());
+        } catch (IOException e) {
+            log.error("Failed to Bookmark Recipe Count", e);
+        }
+
+        return Optional.empty();
+    }
+
 }

@@ -209,6 +209,33 @@ export default {
             done_desc_2: "신고 된 레시피는 평균 24시간 이내에 확인되며, 조치 결과는 알림으로 안내됩니다.",
             done_desc_3: "올바른 서비스를 위해 함께해주셔서 감사합니다.",
             done_close: "닫기",
+        },
+
+        myPage: {
+            title: "마이페이지",
+
+            upload_count: "작성한 레시피",
+            bookmark_count: "즐겨찾기",
+            like_count: "받은 좋아요",
+
+            menu: {
+                upload: {
+                    title: "작성한 레시피",
+                    desc: "작성한 레시피 확인하고 수정하기"
+                },
+                draft: {
+                    title: "임시저장 레시피",
+                    desc: "작성 중인 레시피 관리하기"
+                },
+                recent: {
+                    title: "최근 열람",
+                    desc: "최근에 본 레시피 다시 살펴보기"
+                },
+                bookmark: {
+                    title: "즐겨찾기",
+                    desc: "좋아하는 레시피 모아보기"
+                }
+            }
         }
     },
     time: {
