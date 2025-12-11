@@ -3,6 +3,7 @@ package com.recipitmo.client.api;
 import com.recipitmo.client.RetrofitClient;
 import com.recipitmo.dto.ApiResponse;
 import com.recipitmo.dto.PopularRecipeDto;
+import com.recipitmo.dto.RecipeDetailDto;
 import com.recipitmo.dto.SearchRecipeDto;
 import com.recipitmo.service.RecipeService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import retrofit2.Response;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -99,5 +101,25 @@ public class RecipeApi {
         }
 
         return new SearchRecipeDto(Collections.emptyList(), Collections.emptyList());
+    }
+
+    public Optional<RecipeDetailDto> getRecipeDetail(String recipeNo, HttpServletRequest request) {
+        try {
+            Response<ApiResponse<RecipeDetailDto>> response =
+                    recipeService.getRecipeDetail(
+                            request.getHeader("Cookie"),
+                            recipeNo
+                    ).execute();
+
+            if(response.isSuccessful() && response.body() != null){
+                return Optional.ofNullable(response.body().getData());
+            } else {
+                log.error("Failed to load recipe detail: HTTP {}", response.code());
+            }
+        } catch (IOException e) {
+            log.error("Failed to load recipe detail", e);
+        }
+
+        return Optional.empty();
     }
 }

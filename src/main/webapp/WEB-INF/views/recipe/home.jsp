@@ -70,7 +70,7 @@
 
                             <p class="recipe-name">${recipe.name}</p>
 
-                            <div class="recipe-like">
+                            <div class="like-button-area">
                                 <img class="icon-unliked ${recipe.isLiked ? 'hidden' : ''}" src="/images/unlike.png">
                                 <img class="icon-liked ${recipe.isLiked ? '' : 'hidden'}" src="/images/like.png">
                                 <span class="like-count">${recipe.likeCount}</span>

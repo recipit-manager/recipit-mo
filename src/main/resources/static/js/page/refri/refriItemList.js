@@ -172,8 +172,5 @@ function appendRecipes(recipes) {
     });
 
     $recipeList.appendChild(fragment);
-
-    recipeUtil.initLikeButton();
-    recipeUtil.initRecipeClick();
     applyI18nTexts();
 }

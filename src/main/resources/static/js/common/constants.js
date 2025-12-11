@@ -13,10 +13,12 @@ export const log = {
     FAILED_LOAD_NEXT_PAGE: "Failed to load next page:",
     FAILED_LOAD_AUTO_COMPLETE: "Failed to load auto complete data:",
     FAILED_UPLOAD_RECIPE: "Failed to upload recipe:",
+    BOOKMARK_RECIPE_FAILED: "Bookmark recipe failed:",
 };
 
 export const responseCode = {
-    SUCCESS: "0000"
+    SUCCESS: "0000",
+    BAD_REQUEST: "1001",
 }
 
 export const commonCode = {

@@ -2,10 +2,12 @@ package com.recipitmo.service;
 
 import com.recipitmo.dto.ApiResponse;
 import com.recipitmo.dto.PopularRecipeDto;
+import com.recipitmo.dto.RecipeDetailDto;
 import com.recipitmo.dto.SearchRecipeDto;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 import java.util.List;
@@ -33,5 +35,11 @@ public interface RecipeService {
             @Query("keyword") String keyword,
             @Query("page") int page,
             @Query("size") int size
+    );
+
+    @GET("/recipe/{recipeNo}")
+    Call<ApiResponse<RecipeDetailDto>> getRecipeDetail(
+            @Header("Cookie") String cookie,
+            @Path("recipeNo") String recipeNo
     );
 }
