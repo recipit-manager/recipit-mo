@@ -24,6 +24,7 @@ async function initRecipeDetail() {
     renderCompletionImages(recipeInfo.completionImageUrlList);
 
     initReportButton();
+    initReportModalEvents();
 }
 
 function loadRecipeData() {
@@ -302,7 +303,7 @@ function initReportButton() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function initReportModalEvents() {
     const $etcInput = document.getElementById("reportEtcInput");
     const $counter = document.getElementById("reportEtcCounter");
     const $errorMsg = document.getElementById("reportEtcError");
@@ -340,7 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("reportCancelBtn").addEventListener("click", closeReportModal);
     document.getElementById("reportSubmitBtn").addEventListener("click", submitReport);
     document.getElementById("reportDoneCloseBtn").addEventListener("click", closeReportDoneModal);
-});
+}
 
 async function submitReport() {
     const selectedCodes = [];
