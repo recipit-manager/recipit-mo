@@ -209,7 +209,35 @@ export default {
             done_desc_2: "Reported recipes are typically reviewed within 24 hours, and the results will be notified.",
             done_desc_3: "Thank you for helping us maintain a better service.",
             done_close: "Close",
+        },
+
+        myPage: {
+            title: "My Page",
+
+            upload_count: "Uploaded Recipes",
+            bookmark_count: "Bookmarks",
+            like_count: "Likes Received",
+
+            menu: {
+                upload: {
+                    title: "Uploaded Recipes",
+                    desc: "View and edit your uploaded recipes"
+                },
+                draft: {
+                    title: "Draft Recipes",
+                    desc: "Manage your draft recipes"
+                },
+                recent: {
+                    title: "Recently Viewed",
+                    desc: "Review the recipes you viewed recently"
+                },
+                bookmark: {
+                    title: "Bookmarks",
+                    desc: "Find your favorited recipes"
+                }
+            }
         }
+
     },
     time: {
         period: {

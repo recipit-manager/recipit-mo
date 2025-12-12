@@ -42,4 +42,24 @@ public interface RecipeService {
             @Header("Cookie") String cookie,
             @Path("recipeNo") String recipeNo
     );
+
+    @GET("/recipe/count")
+    Call<ApiResponse<Integer>> getUserUploadRecipeCount(
+            @Header("Cookie") String cookie
+    );
+
+    @GET("/recipe/draft/count")
+    Call<ApiResponse<Integer>> getUserDraftRecipeCount(
+            @Header("Cookie") String cookie
+    );
+
+    @GET("recipe/like/count")
+    Call<ApiResponse<Integer>> getUserLikeRecipeCount(
+            @Header("Cookie") String cookie
+    );
+
+    @GET("recipe/bookmark/count")
+    Call<ApiResponse<Integer>> getUserBookmarkRecipeCount(
+            @Header("Cookie") String cookie
+    );
 }

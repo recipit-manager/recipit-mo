@@ -1,0 +1,118 @@
+.myPage-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 100px 16px 40px;
+    box-sizing: border-box;
+}
+
+.myPage-profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-icon img {
+    width: 120px;
+    height: 120px;
+}
+
+.nickname-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.nickname-area .nickname {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.setting-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.setting-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.myPage-count-summary {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-around;
+    padding: 18px 0;
+    border-radius: 12px;
+    background: #f7f7f7;
+}
+
+.count-item {
+    text-align: center;
+}
+
+.count-item .count-number {
+    font-size: 22px;
+    font-weight: bold;
+    display: block;
+}
+
+.count-item .count-label {
+    font-size: 14px;
+    color: #555;
+}
+
+.myPage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.grid-item {
+    position: relative;
+    padding: 22px 16px;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid #ddd;
+    text-align: center;
+    cursor: pointer;
+}
+
+.grid-item .badge {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+
+    min-width: 22px;
+    padding: 2px 6px;
+    background: #ff6161;
+    color: white;
+    font-size: 12px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.icon-wrap {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.icon-wrap img {
+    width: 48px;
+    height: 48px;
+}
+
+.grid-title {
+    margin-top: 6px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.grid-desc {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #666;
+}
