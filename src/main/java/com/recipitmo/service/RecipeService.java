@@ -4,6 +4,8 @@ import com.recipitmo.dto.ApiResponse;
 import com.recipitmo.dto.PopularRecipeDto;
 import com.recipitmo.dto.RecipeDetailDto;
 import com.recipitmo.dto.SearchRecipeDto;
+import com.recipitmo.dto.UserDraftRecipeDto;
+import com.recipitmo.dto.UserRecipeDto;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -60,6 +62,18 @@ public interface RecipeService {
 
     @GET("recipe/bookmark/count")
     Call<ApiResponse<Integer>> getUserBookmarkRecipeCount(
+            @Header("Cookie") String cookie
+    );
+
+    @GET("/recipe/list")
+    Call<ApiResponse<List<UserRecipeDto>>> getUserRecipeList(
+            @Header("Cookie") String cookie,
+            @Query("page") int page,
+            @Query("size") int size
+    );
+
+    @GET("/recipe/draft/list")
+    Call<ApiResponse<List<UserDraftRecipeDto>>> getUserDraftRecipeList(
             @Header("Cookie") String cookie
     );
 }

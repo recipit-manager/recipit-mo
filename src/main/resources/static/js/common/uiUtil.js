@@ -96,8 +96,7 @@ export const uiUtil = {
 
         $manage.onclick = () => {
             $modal.style.display = "none";
-            alert("개발 진행중입니다.")
-            // window.location.href = "/myPage/recipe/draft";
+            location.href = "/mypage/draft/recipe";
         };
 
         $continue.onclick = () => {

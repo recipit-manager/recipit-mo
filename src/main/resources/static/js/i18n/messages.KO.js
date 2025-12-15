@@ -2,7 +2,8 @@ export default {
     common: {
         server_error: "서버 통신 중 오류가 발생했습니다.",
         confirm: "확인",
-        cancel: "취소"
+        cancel: "취소",
+        delete: "삭제",
     },
     nickname: {
         input_required: "닉네임을 입력해주세요",
@@ -235,7 +236,24 @@ export default {
                     title: "즐겨찾기",
                     desc: "좋아하는 레시피 모아보기"
                 }
-            }
+            },
+
+            upload_summary: "지금까지 {{count}}개의 레시피를 작성했어요!",
+            like_summary: "총 {{count}}개의 좋아요를 받았어요!",
+            draft_summary: "지금까지 {{count}}개의 레시피가 작성중이에요!",
+            draft_limit: "레시피는 최대 10개까지 임시저장 가능해요."
+        },
+
+        recipe: {
+            draft_title_default: "작성중인 레시피",
+            draft_desc_default: "레시피 소개",
+            delete: {
+                title: "레시피 삭제",
+                confirm:
+                    "이 레시피를 삭제하시겠습니까?\n삭제된 레시피는 복구할 수 없습니다."
+            },
+
+            time_unit: "{{count}}분"
         }
     },
     time: {

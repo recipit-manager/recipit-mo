@@ -1,0 +1,347 @@
+.recipe-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 56px);
+    overflow: hidden;
+}
+
+.upload-summary-box {
+    background: #f6f6f6;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 12px;
+}
+
+.fixed-summary {
+    position: fixed;
+    top: 90px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin: 0 1px;
+}
+
+.summary-line {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.summary-sub {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+}
+
+.empty-upload-recipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+.empty-upload-recipe .empty-icon img {
+    width: 180px;
+    height: auto;
+    margin-bottom: 24px;
+    opacity: 0.9;
+}
+
+.empty-upload-recipe .empty-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 6px;
+}
+
+.empty-upload-recipe .empty-desc {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.empty-write-btn {
+    padding: 10px 22px;
+    border-radius: 22px;
+    background: #fff;
+    border: 1.5px solid #000;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.empty-write-btn:hover {
+    background: #f5f5f5;
+}
+
+.empty-write-btn:active {
+    transform: scale(0.96);
+}
+
+.recipe-scroll-area {
+    margin-top: 200px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.recipe-list {
+    margin-top: 4px;
+}
+
+.recipe-card {
+    position: relative;
+    display: flex;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.recipe-img-box {
+    flex-shrink: 0;
+}
+
+.recipe-img-box img {
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: #eee;
+}
+
+.recipe-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.recipe-name {
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.recipe-desc {
+    font-size: 13px;
+    color: #777;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.recipe-meta {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #555;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.meta-icon {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+    opacity: 0.85;
+}
+
+.recipe-like {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.recipe-like img {
+    width: 14px;
+    height: 14px;
+}
+
+.like-count {
+    font-size: 12px;
+    color: #444;
+}
+
+.recipe-delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.recipe-delete-btn img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+}
+
+.recipe-delete-btn:hover img {
+    opacity: 1;
+}
+
+.recipe-delete-btn:active {
+    transform: scale(0.9);
+}
+
+.empty-result {
+    text-align: center;
+    margin-top: 80px;
+    color: #666;
+}
+
+.floating-top-btn {
+    position: fixed;
+    bottom: 90px;
+    right: 22px;
+    width: 56px;
+    height: 56px;
+    background: #ffffff;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    z-index: 999;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.floating-top-btn.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.floating-top-btn img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.floating-top-btn:active {
+    transform: scale(0.94);
+}
+
+.floating-write-btn {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    width: 56px;
+    height: 56px;
+    background: #ffffff;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    z-index: 999;
+}
+
+.floating-write-btn img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.floating-write-btn:active {
+    transform: scale(0.94);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-box {
+    background: #fff;
+    padding: 20px 28px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    min-width: 260px;
+}
+
+.modal-box h3 {
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.modal-box p {
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.modal-btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.modal-btn-group button {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+}
+
+.modal-btn-group .btn-small {
+    background: #2e7d32;
+    color: #fff;
+}
+
+.modal-btn-group .btn-small:hover {
+    background: #276b2c;
+}
+
+.modal-btn-group .btn-small:active {
+    transform: scale(0.97);
+}
+
+.modal-btn-group .btn-small-gray {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.modal-btn-group .btn-small-gray:hover {
+    background: #d5d5d5;
+}
+
+.modal-btn-group .btn-small-gray:active {
+    transform: scale(0.97);
+}
+
+.empty-thumbnail {
+    background: #f0f0f0;
+    object-fit: contain;
+    padding: 1px;
+    opacity: 0.7;
+}
