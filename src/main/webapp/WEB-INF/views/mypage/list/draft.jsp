@@ -67,19 +67,22 @@
                 <div class="recipe-list">
                     <c:forEach var="recipe" items="${draftRecipes}">
                         <div class="recipe-card"
-                             data-id="${recipe.recipeNo}">
+                             data-id="<c:out value='${recipe.recipeNo}'/>">
 
-                            <div class="recipe-delete-btn" data-id="${recipe.recipeNo}">
-                                <img src="/images/delete.png">
+                            <div class="recipe-delete-btn"
+                                 data-id="<c:out value='${recipe.recipeNo}'/>">
+                                <img src="/images/delete.png" alt="delete">
                             </div>
 
                             <div class="recipe-img-box">
                                 <c:choose>
                                     <c:when test="${not empty recipe.imageUrl}">
-                                        <img src="${recipe.imageUrl}">
+                                        <img src="<c:out value='${recipe.imageUrl}'/>" alt="recipe">
                                     </c:when>
                                     <c:otherwise>
-                                        <img src="/images/emptyDraftThumbnail.png" class="empty-thumbnail">
+                                        <img src="/images/emptyDraftThumbnail.png"
+                                             class="empty-thumbnail"
+                                             alt="empty-thumbnail">
                                     </c:otherwise>
                                 </c:choose>
                             </div>
@@ -88,7 +91,7 @@
                                 <p class="recipe-name">
                                     <c:choose>
                                         <c:when test="${not empty recipe.name}">
-                                            ${recipe.name}
+                                            <c:out value="${recipe.name}" />
                                         </c:when>
                                         <c:otherwise>
                                             <span data-i18n="ui.recipe.draft_title_default"></span>
@@ -99,7 +102,7 @@
                                 <p class="recipe-desc">
                                     <c:choose>
                                         <c:when test="${not empty recipe.description}">
-                                            ${recipe.description}
+                                            <c:out value="${recipe.description}" />
                                         </c:when>
                                         <c:otherwise>
                                             <span data-i18n="ui.recipe.draft_desc_default"></span>
@@ -108,15 +111,17 @@
                                 </p>
 
                                 <div class="recipe-meta">
-                                    <span
-                                            data-i18n="ui.recipe.time_unit"
-                                            data-i18n-params='{"count": ${recipe.cookingTime}}'>
-                                    </span>
+                                <span
+                                        data-i18n="ui.recipe.time_unit"
+                                        data-i18n-params='{"count": <c:out value="${recipe.cookingTime}"/>}'>
+                                </span>
 
                                     <span class="meta-item">
-                                        <img src="/images/difficulty.png" class="meta-icon">
-                                        ${recipe.difficulty}
-                                    </span>
+                                    <img src="/images/difficulty.png"
+                                         class="meta-icon"
+                                         alt="difficulty">
+                                    <c:out value="${recipe.difficulty}" />
+                                </span>
                                 </div>
                             </div>
 

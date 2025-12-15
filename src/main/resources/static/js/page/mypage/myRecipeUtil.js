@@ -2,6 +2,7 @@ import { translate } from "/js/i18n/i18n.js";
 import { apiUtil } from "/js/common/apiUtil.js";
 import { responseCode, log } from "/js/common/constants.js";
 import { uiUtil } from "/js/common/uiUtil.js";
+import { recipeUtil } from "/js/common/recipeUtil.js";
 
 export const myRecipeUtil = {
 
@@ -79,12 +80,8 @@ export const myRecipeUtil = {
 
     initEmptyWriteButton() {
         const $btn = document.getElementById("emptyWriteRecipeBtn");
-        if (!$btn) {
-            return;
-        }
+        if (!$btn) return;
 
-        $btn.addEventListener("click", () => {
-            document.getElementById("writeRecipeBtn")?.click();
-        });
+        $btn.addEventListener("click", recipeUtil.handleWriteRecipe);
     }
 };

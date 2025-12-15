@@ -47,7 +47,6 @@
     </div>
 
     <section class="recipe-scroll-area">
-
         <c:choose>
             <c:when test="${empty uploadRecipes}">
                 <div class="empty-result empty-upload-recipe">
@@ -69,35 +68,49 @@
                 <div class="recipe-list" id="recipeList">
                     <c:forEach var="recipe" items="${uploadRecipes}">
                         <div class="recipe-card"
-                             data-id="${recipe.recipeNo}"
-                             data-time="${recipe.cookingTime}"
-                             data-diff="${recipe.difficulty}">
+                             data-id="<c:out value='${recipe.recipeNo}'/>"
+                             data-time="<c:out value='${recipe.cookingTime}'/>"
+                             data-diff="<c:out value='${recipe.difficulty}'/>">
 
-                            <div class="recipe-delete-btn" data-id="${recipe.recipeNo}">
-                                <img src="/images/delete.png">
+                            <div class="recipe-delete-btn"
+                                 data-id="<c:out value='${recipe.recipeNo}'/>">
+                                <img src="/images/delete.png" alt="delete">
                             </div>
 
                             <div class="recipe-img-box">
-                                <img src="${recipe.imageUrl}">
+                                <img src="<c:out value='${recipe.imageUrl}'/>" alt="recipe">
                             </div>
 
                             <div class="recipe-info">
-                                <p class="recipe-name">${recipe.name}</p>
-                                <p class="recipe-desc">${recipe.description}</p>
+                                <p class="recipe-name">
+                                    <c:out value="${recipe.name}" />
+                                </p>
+
+                                <p class="recipe-desc">
+                                    <c:out value="${recipe.description}" />
+                                </p>
 
                                 <div class="recipe-meta">
-                                    <span data-i18n="ui.recipe.time_unit" data-i18n-params='{"count": ${recipe.cookingTime}}'></span>
+                                <span
+                                        data-i18n="ui.recipe.time_unit"
+                                        data-i18n-params='{"count": <c:out value="${recipe.cookingTime}"/>}'>
+                                </span>
+
                                     <span class="meta-item">
-                                        <img src="/images/difficulty.png" class="meta-icon">
-                                        ${recipe.difficulty}
-                                    </span>
+                                    <img src="/images/difficulty.png" class="meta-icon" alt="difficulty">
+                                    <c:out value="${recipe.difficulty}" />
+                                </span>
 
                                     <div class="recipe-like like-button-area">
                                         <img class="icon-unliked ${recipe.isLiked ? 'hidden' : ''}"
-                                             src="/images/unlike.png">
+                                             src="/images/unlike.png"
+                                             alt="unlike">
                                         <img class="icon-liked ${recipe.isLiked ? '' : 'hidden'}"
-                                             src="/images/like.png">
-                                        <span class="like-count">${recipe.likeCount}</span>
+                                             src="/images/like.png"
+                                             alt="like">
+                                        <span class="like-count">
+                                        <c:out value="${recipe.likeCount}" />
+                                    </span>
                                     </div>
                                 </div>
                             </div>

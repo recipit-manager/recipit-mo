@@ -87,41 +87,84 @@ function appendRecipes(recipes) {
         $card.className = "recipe-card";
         $card.dataset.id = recipe.recipeNo;
 
-        $card.innerHTML = `
-            <div class="recipe-img-box">
-                <img src="${recipe.imageUrl}">
-            </div>
+        const $imgBox = document.createElement("div");
+        $imgBox.className = "recipe-img-box";
 
-            <div class="recipe-info">
-                <p class="recipe-name">${recipe.name}</p>
-                <p class="recipe-desc">${recipe.description}</p>
+        const $img = document.createElement("img");
+        $img.src = recipe.imageUrl;
+        $img.alt = "recipe image";
 
-                <div class="recipe-meta">
-                    <span class="meta-item">
-                        <img src="/images/time.png" class="meta-icon">
-                        ${recipe.cookingTime}분
-                    </span>
+        $imgBox.appendChild($img);
 
-                    <span class="meta-item">
-                        <img src="/images/difficulty.png" class="meta-icon">
-                        ${recipe.difficulty}
-                    </span>
+        const $info = document.createElement("div");
+        $info.className = "recipe-info";
 
-                    <div class="recipe-like like-button-area">
-                        <img class="icon-unliked ${recipe.isLiked ? "hidden" : ""}" src="/images/unlike.png">
-                        <img class="icon-liked ${recipe.isLiked ? "" : "hidden"}" src="/images/like.png">
-                        <span class="like-count">${recipe.likeCount}</span>
-                    </div>
-                </div>
-            </div>
+        const $name = document.createElement("p");
+        $name.className = "recipe-name";
+        $name.textContent = recipe.name;
 
-            <div class="recipe-delete-btn" data-id="${recipe.recipeNo}">
-                <img src="/images/delete.png">
-            </div>
-        `;
+        const $desc = document.createElement("p");
+        $desc.className = "recipe-desc";
+        $desc.textContent = recipe.description;
 
+        const $meta = document.createElement("div");
+        $meta.className = "recipe-meta";
+
+        const $time = document.createElement("span");
+        $time.className = "meta-item";
+
+        const $timeIcon = document.createElement("img");
+        $timeIcon.src = "/images/time.png";
+        $timeIcon.className = "meta-icon";
+
+        const $timeText = document.createTextNode(`${recipe.cookingTime}분`);
+
+        $time.append($timeIcon, $timeText);
+
+        const $difficulty = document.createElement("span");
+        $difficulty.className = "meta-item";
+
+        const $diffIcon = document.createElement("img");
+        $diffIcon.src = "/images/difficulty.png";
+        $diffIcon.className = "meta-icon";
+
+        const $diffText = document.createTextNode(recipe.difficulty);
+
+        $difficulty.append($diffIcon, $diffText);
+
+        const $like = document.createElement("div");
+        $like.className = "recipe-like like-button-area";
+
+        const $unliked = document.createElement("img");
+        $unliked.src = "/images/unlike.png";
+        $unliked.className = `icon-unliked ${recipe.isLiked ? "hidden" : ""}`;
+
+        const $liked = document.createElement("img");
+        $liked.src = "/images/like.png";
+        $liked.className = `icon-liked ${recipe.isLiked ? "" : "hidden"}`;
+
+        const $count = document.createElement("span");
+        $count.className = "like-count";
+        $count.textContent = recipe.likeCount;
+
+        $like.append($unliked, $liked, $count);
+
+        $meta.append($time, $difficulty, $like);
+        $info.append($name, $desc, $meta);
+
+        const $deleteBtn = document.createElement("div");
+        $deleteBtn.className = "recipe-delete-btn";
+        $deleteBtn.dataset.id = recipe.recipeNo;
+
+        const $deleteImg = document.createElement("img");
+        $deleteImg.src = "/images/delete.png";
+
+        $deleteBtn.appendChild($deleteImg);
+
+        $card.append($imgBox, $info, $deleteBtn);
         fragment.appendChild($card);
     });
 
     $recipeList.appendChild(fragment);
 }
+

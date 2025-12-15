@@ -90,27 +90,13 @@ export const recipeUtil = {
         });
     },
 
+    handleWriteRecipe,
+
     initWriteButton() {
         const $writeButton = document.getElementById("writeRecipeBtn");
+        if (!$writeButton) return;
 
-        $writeButton.addEventListener("click", async () => {
-            try {
-                const data = await apiUtil.get(apiUtil.url.RECIPE.DRAFT_COUNT);
-
-                if (data.code === responseCode.SUCCESS) {
-                    if (data.data >= 10) {
-                        uiUtil.showDraftLimitModal();
-                        return;
-                    }
-
-                    window.location.href = "/home/recipe/upload";
-                } else {
-                    console.error(log.DRAFT_COUNT_FAILED, data.message);
-                }
-            } catch (e) {
-                console.error(log.DRAFT_COUNT_FAILED, e);
-            }
-        });
+        $writeButton.addEventListener("click", handleWriteRecipe);
     },
 
     initScrollTopButton() {
@@ -206,3 +192,22 @@ export const recipeUtil = {
         });
     }
 };
+
+async function handleWriteRecipe() {
+    try {
+        const data = await apiUtil.get(apiUtil.url.RECIPE.DRAFT_COUNT);
+
+        if (data.code === responseCode.SUCCESS) {
+            if (data.data >= 10) {
+                uiUtil.showDraftLimitModal();
+                return;
+            }
+
+            window.location.href = "/home/recipe/upload";
+        } else {
+            console.error(log.DRAFT_COUNT_FAILED, data.message);
+        }
+    } catch (e) {
+        console.error(log.DRAFT_COUNT_FAILED, e);
+    }
+}

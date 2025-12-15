@@ -803,8 +803,7 @@ async function saveRecipeDraft() {
         successMessage: translate("ui.upload_draft_success"),
         failMessage: translate("ui.upload_draft_fail"),
         onSuccess: () => {
-            // TODO 마이페이지로 이동 예정
-            // window.location.href = "/myPage/draft";
+            window.location.href = "/mypage/list/draft";
         }
     });
 }
@@ -818,8 +817,7 @@ async function saveRecipeUpload() {
         successMessage: translate("ui.upload_submit_success"),
         failMessage: translate("ui.upload_submit_fail"),
         onSuccess: () => {
-            // TODO 마이페이지로 이동 예정
-            // window.location.href = "/myPage/upload";
+            window.location.href = "/mypage/list/upload";
         }
     });
 }
