@@ -29,12 +29,12 @@ public class RecipeApi {
     }
 
     public List<PopularRecipeDto> getPopularRecipeList(HttpServletRequest request) {
-        try{
+        try {
             Response<ApiResponse<List<PopularRecipeDto>>> response =
-                    recipeService.getPopularRecipes(request.getHeader("Cookie"),10)
+                    recipeService.getPopularRecipes(request.getHeader("Cookie"), 10)
                             .execute();
 
-            if(response.isSuccessful() && response.body() != null){
+            if (response.isSuccessful() && response.body() != null) {
                 return response.body().getData();
             } else {
                 log.error("Failed to load popularRecipe List: HTTP {}", response.code());
@@ -114,7 +114,7 @@ public class RecipeApi {
                             recipeNo
                     ).execute();
 
-            if(response.isSuccessful() && response.body() != null){
+            if (response.isSuccessful() && response.body() != null) {
                 return Optional.ofNullable(response.body().getData());
             } else {
                 log.error("Failed to load recipe detail: HTTP {}", response.code());
@@ -203,7 +203,7 @@ public class RecipeApi {
                             size
                     ).execute();
 
-            if(response.isSuccessful() && response.body() != null){
+            if (response.isSuccessful() && response.body() != null) {
                 return response.body().getData();
             } else {
                 log.error("Failed to load user recipe list: HTTP {}", response.code());
@@ -219,7 +219,7 @@ public class RecipeApi {
         try {
             Response<ApiResponse<List<UserDraftRecipeDto>>> response = recipeService.getUserDraftRecipeList(request.getHeader("Cookie")).execute();
 
-            if(response.isSuccessful() && response.body() != null){
+            if (response.isSuccessful() && response.body() != null) {
                 return response.body().getData();
             } else {
                 log.error("Failed to load user draft recipe list: HTTP {}", response.code());

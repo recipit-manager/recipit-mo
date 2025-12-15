@@ -28,23 +28,20 @@ public class MyPageController {
         return mv;
     }
 
-    @GetMapping("/upload/recipe")
+    @GetMapping("/list/upload")
     public ModelAndView initUploadRecipePage(HttpServletRequest request) {
-        ModelAndView mv = new ModelAndView("/mypage/uploadRecipe");
-
-        int page = 1;
-        int size = 10;
+        ModelAndView mv = new ModelAndView("/mypage/list/upload");
 
         mv.addObject("likeCount", recipeApi.getUserLikeRecipeCount(request).orElse(0));
         mv.addObject("uploadCount", recipeApi.getUserUploadRecipeCount(request).orElse(0));
-        mv.addObject("uploadRecipes", recipeApi.getUserUploadRecipes(request, page, size));
+        mv.addObject("uploadRecipes", recipeApi.getUserUploadRecipes(request, 1, 10));
 
         return mv;
     }
 
-    @GetMapping("/draft/recipe")
+    @GetMapping("/list/draft")
     public ModelAndView initDraftRecipePage(HttpServletRequest request) {
-        ModelAndView mv = new ModelAndView("/mypage/draftRecipe");
+        ModelAndView mv = new ModelAndView("/mypage/list/draft");
 
         mv.addObject("draftCount", recipeApi.getUserDraftRecipeCount(request).orElse(0));
         mv.addObject("draftRecipes", recipeApi.getUserDraftRecipes(request));

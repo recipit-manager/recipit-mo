@@ -15,11 +15,11 @@ function initButtonEvents() {
     });
 
     document.getElementById("btn-uploadRecipe").addEventListener("click", () => {
-        location.href = "/mypage/upload/recipe";
+        location.href = "/mypage/list/upload";
     });
 
     document.getElementById("btn-draftRecipe").addEventListener("click", () => {
-        location.href = "/mypage/draft/recipe";
+        location.href = "/mypage/list/draft";
     });
 
     document.getElementById("btn-recentView").addEventListener("click", () => {
