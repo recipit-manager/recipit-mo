@@ -44,14 +44,12 @@ public class HomeController {
             HttpServletRequest request
     ) {
 
-        int page = 1;
-        int size = 10;
         SearchRecipeDto firstResult;
 
         if ("like".equals(sort)) {
-            firstResult = recipeApi.getLikeOrderRecipeList(keyword, categoryCode, page, size, request);
+            firstResult = recipeApi.getLikeOrderRecipeList(keyword, categoryCode, 1, 10, request);
         } else {
-            firstResult = recipeApi.getRecentOrderRecipeList(keyword, categoryCode, page, size, request);
+            firstResult = recipeApi.getRecentOrderRecipeList(keyword, categoryCode, 1, 10, request);
         }
 
         boolean categoryExists = true;
@@ -66,9 +64,9 @@ public class HomeController {
             categoryCode = null;
 
             if ("like".equals(sort)) {
-                firstResult = recipeApi.getLikeOrderRecipeList(keyword, null, page, size, request);
+                firstResult = recipeApi.getLikeOrderRecipeList(keyword, null, 1, 10, request);
             } else {
-                firstResult = recipeApi.getRecentOrderRecipeList(keyword, null, page, size, request);
+                firstResult = recipeApi.getRecentOrderRecipeList(keyword, null, 1, 10, request);
             }
         }
 

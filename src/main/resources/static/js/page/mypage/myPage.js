@@ -15,11 +15,11 @@ function initButtonEvents() {
     });
 
     document.getElementById("btn-uploadRecipe").addEventListener("click", () => {
-        alert("개발 진행중입니다. (작성한 레시피 목록 이동)");
+        location.href = "/mypage/list/upload";
     });
 
     document.getElementById("btn-draftRecipe").addEventListener("click", () => {
-        alert("개발 진행중입니다. (임시저장 레시피 이동)");
+        location.href = "/mypage/list/draft";
     });
 
     document.getElementById("btn-recentView").addEventListener("click", () => {

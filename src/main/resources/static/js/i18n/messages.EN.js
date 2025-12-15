@@ -2,7 +2,8 @@ export default {
     common: {
         server_error: "An error occurred while communicating with the server.",
         confirm: "OK",
-        cancel: "cancel"
+        cancel: "cancel",
+        delete: "delete",
     },
     nickname: {
         input_required: "Please enter your nickname.",
@@ -235,9 +236,24 @@ export default {
                     title: "Bookmarks",
                     desc: "Find your favorited recipes"
                 }
-            }
-        }
+            },
 
+            upload_summary: "You have created {{count}} recipes so far!",
+            like_summary: "You have received a total of {{count}} likes!",
+            draft_summary: "You have {{count}} recipes in progress.",
+            draft_limit: "You can save up to 10 draft recipes."
+        },
+
+        recipe: {
+            draft_title_default: "Recipe in progress",
+            draft_desc_default: "Recipe description",
+            delete: {
+                title: "delete recipe",
+                confirm: "Are you sure you want to delete this recipe?",
+            },
+
+            time_unit: "{{count}} min"
+        }
     },
     time: {
         period: {

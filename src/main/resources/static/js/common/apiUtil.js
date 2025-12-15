@@ -28,6 +28,8 @@ export const apiUtil = {
             UPLOAD: "/recipe/upload",
             BOOKMARK: (recipeNo) => `/recipe/${recipeNo}/bookmark`,
             REPORT: (recipeNo) => `/recipe/report/${recipeNo}`,
+            UPLOAD_RECIPES: "/recipe/list",
+            DELETE: (recipeNo) => `/recipe/${recipeNo}`
         },
         REFRI: {
             AUTO_COMPLETE: "/refri-item/ingredient/auto-complete",

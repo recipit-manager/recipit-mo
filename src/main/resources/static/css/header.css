@@ -7,7 +7,7 @@
     background-color: #fff;
     position: fixed;
     width: 96%;
-    z-index: 1000;
+    z-index: 998;
 }
 
 .logo-area img {

@@ -43,7 +43,11 @@ export function translate(key, params) {
 export function applyI18nTexts() {
     document.querySelectorAll("[data-i18n]").forEach(($el) => {
         const key = $el.getAttribute("data-i18n");
-        const text = translate(key);
+        const params = $el.dataset.i18nParams
+            ? JSON.parse($el.dataset.i18nParams)
+            : undefined;
+
+        const text = translate(key, params);
         if (text != null) {
             $el.textContent = text;
         }
