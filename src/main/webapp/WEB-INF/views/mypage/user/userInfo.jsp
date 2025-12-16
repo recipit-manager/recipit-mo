@@ -61,8 +61,8 @@
         <div class="info-block">
             <span class="info-label" data-i18n="ui.myPage.userInfo.name"></span>
             <span class="info-value">
-                <c:out value="${userInfo.lastName}" />
-                <c:out value="${userInfo.firstName}" />
+                <c:out value="${userInfo.lastName}"/>
+                <c:out value="${userInfo.firstName}"/>
             </span>
         </div>
 
