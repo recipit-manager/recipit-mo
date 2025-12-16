@@ -1,6 +1,7 @@
 package com.recipitmo.service;
 
 import com.recipitmo.dto.ApiResponse;
+import com.recipitmo.dto.BookmarkRecipeDto;
 import com.recipitmo.dto.PopularRecipeDto;
 import com.recipitmo.dto.RecipeDetailDto;
 import com.recipitmo.dto.SearchRecipeDto;
@@ -75,5 +76,17 @@ public interface RecipeService {
     @GET("/recipe/draft/list")
     Call<ApiResponse<List<UserDraftRecipeDto>>> getUserDraftRecipeList(
             @Header("Cookie") String cookie
+    );
+
+    @GET("/recipe/recent/list")
+    Call<ApiResponse<List<UserRecipeDto>>> getUserRecentRecipeList(
+            @Header("Cookie") String cookie
+    );
+
+    @GET("/recipe/bookmark/list")
+    Call<ApiResponse<List<BookmarkRecipeDto>>> getUserBookmarkRecipeList(
+            @Header("Cookie") String cookie,
+            @Query("page") int page,
+            @Query("size") int size
     );
 }

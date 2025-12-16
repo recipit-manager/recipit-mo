@@ -238,10 +238,17 @@ export default {
                 }
             },
 
+            recent_summary: {
+                title: "Take another look at recipes you've viewed",
+                desc: "Showing your 30 most recently viewed recipes"
+            },
+
             upload_summary: "You have created {{count}} recipes so far!",
             like_summary: "You have received a total of {{count}} likes!",
             draft_summary: "You have {{count}} recipes in progress.",
-            draft_limit: "You can save up to 10 draft recipes."
+            draft_limit: "You can save up to 10 draft recipes.",
+            bookmark_summary: "You have favorited {{count}} recipes!",
+            bookmark_limit: "You can bookmark recipes to see them again."
         },
 
         recipe: {

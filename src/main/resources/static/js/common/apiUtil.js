@@ -29,7 +29,8 @@ export const apiUtil = {
             BOOKMARK: (recipeNo) => `/recipe/${recipeNo}/bookmark`,
             REPORT: (recipeNo) => `/recipe/report/${recipeNo}`,
             UPLOAD_RECIPES: "/recipe/list",
-            DELETE: (recipeNo) => `/recipe/${recipeNo}`
+            DELETE: (recipeNo) => `/recipe/${recipeNo}`,
+            BOOKMARK_RECIPES: "/recipe/bookmark/list",
         },
         REFRI: {
             AUTO_COMPLETE: "/refri-item/ingredient/auto-complete",

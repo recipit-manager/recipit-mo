@@ -2,6 +2,7 @@ package com.recipitmo.client.api;
 
 import com.recipitmo.client.RetrofitClient;
 import com.recipitmo.dto.ApiResponse;
+import com.recipitmo.dto.BookmarkRecipeDto;
 import com.recipitmo.dto.IngredientCategoryDto;
 import com.recipitmo.dto.PopularRecipeDto;
 import com.recipitmo.dto.RecipeDetailDto;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import retrofit2.Response;
 
+import java.awt.print.Book;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -226,6 +228,47 @@ public class RecipeApi {
             }
         } catch (IOException e) {
             log.error("Failed to load user draft recipe list", e);
+        }
+
+        return Collections.emptyList();
+    }
+
+    public List<UserRecipeDto> getUserRecentRecipes(HttpServletRequest request) {
+        try {
+            Response<ApiResponse<List<UserRecipeDto>>> response = recipeService.getUserRecentRecipeList(request.getHeader("Cookie")).execute();
+
+            if (response.isSuccessful() && response.body() != null) {
+                return response.body().getData();
+            } else {
+                log.error("Failed to load user recent recipe list: HTTP {}", response.code());
+            }
+        } catch (IOException e) {
+            log.error("Failed to load user recent recipe list", e);
+        }
+
+        return Collections.emptyList();
+    }
+
+    public List<BookmarkRecipeDto> getUserBookmarkRecipes(
+            HttpServletRequest request,
+            int page,
+            int size
+    ) {
+        try {
+            Response<ApiResponse<List<BookmarkRecipeDto>>> response =
+                    recipeService.getUserBookmarkRecipeList(
+                            request.getHeader("Cookie"),
+                            page,
+                            size
+                    ).execute();
+
+            if (response.isSuccessful() && response.body() != null) {
+                return response.body().getData();
+            } else {
+                log.error("Failed to load user Bookmark recipe list: HTTP {}", response.code());
+            }
+        } catch (IOException e) {
+            log.error("Failed to load user Bookmark recipe list", e);
         }
 
         return Collections.emptyList();
