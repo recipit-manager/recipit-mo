@@ -2,6 +2,7 @@ package com.recipitmo.service;
 
 import com.recipitmo.dto.ApiResponse;
 import com.recipitmo.dto.NotificationDto;
+import com.recipitmo.dto.UserInfoDto;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -17,4 +18,7 @@ public interface UserService {
 
     @GET("/user/notification/list")
     Call<ApiResponse<List<NotificationDto>>> getNotificationList(@Header("Cookie") String cookie);
+
+    @GET("/user")
+    Call<ApiResponse<UserInfoDto>> getUserInfo(@Header("Cookie") String cookie);
 }

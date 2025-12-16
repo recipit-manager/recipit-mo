@@ -1,6 +1,9 @@
 package com.recipitmo.controller;
 
+import com.recipitmo.client.api.CommonApi;
 import com.recipitmo.client.api.RecipeApi;
+import com.recipitmo.client.api.UserApi;
+import com.recipitmo.dto.UserInfoDto;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,12 +12,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/mypage")
 public class MyPageController {
     private final RecipeApi recipeApi = new RecipeApi();
+    private final UserApi userApi = new UserApi();
 
     @GetMapping()
     public ModelAndView initMyPage(HttpServletRequest request) {
@@ -64,6 +70,20 @@ public class MyPageController {
 
         mv.addObject("bookmarkCount", recipeApi.getUserBookmarkRecipeCount(request).orElse(0));
         mv.addObject("recentRecipes", recipeApi.getUserBookmarkRecipes(request, 1, 10));
+
+        return mv;
+    }
+
+    @GetMapping("/user/userInfo")
+    public ModelAndView initUserInfoPage(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView("/mypage/user/userInfo");
+
+        Optional<UserInfoDto> userInfoOpt = userApi.getUserInfo(request);
+
+        if (userInfoOpt.isPresent()) {
+            mv.addObject("userInfo", userInfoOpt.get());
+            return mv;
+        }
 
         return mv;
     }

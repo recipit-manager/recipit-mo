@@ -11,7 +11,7 @@ async function initMyPage() {
 
 function initButtonEvents() {
     document.getElementById("userSettingButton").addEventListener("click", () => {
-        alert("개발 진행중입니다. (사용자 설정 화면)");
+        location.href = "/mypage/user/userInfo";
     });
 
     document.getElementById("btn-uploadRecipe").addEventListener("click", () => {

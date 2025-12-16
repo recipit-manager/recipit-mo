@@ -248,7 +248,19 @@ export default {
             draft_summary: "You have {{count}} recipes in progress.",
             draft_limit: "You can save up to 10 draft recipes.",
             bookmark_summary: "You have favorited {{count}} recipes!",
-            bookmark_limit: "You can bookmark recipes to see them again."
+            bookmark_limit: "You can bookmark recipes to see them again.",
+
+            userInfo: {
+                title: "My Profile",
+                section_title: "Account Information",
+                email: "Email",
+                nickname: "Nickname",
+                name: "Name",
+                phoneNumber: "Phone Number",
+                change_password: "Change Password",
+                set_preference: "Cooking Preferences",
+                logout: "Log Out"
+            }
         },
 
         recipe: {
