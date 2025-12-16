@@ -137,60 +137,66 @@ export const recipeUtil = {
     },
 
     initBookmarkButton() {
-        document.querySelectorAll(".bookmark-icon").forEach($icon => {
-            let isProcessing = false;
+        const $container =
+            document.querySelector(".recipe-scroll-area") ||
+            document.querySelector(".recipe-detail-container");
+
+        if (!$container) {
+            return;
+        }
+
+        $container.addEventListener("click", async (e) => {
+            const $icon = e.target.closest(".bookmark-icon");
+            if (!$icon) {
+                return;
+            }
+
+            e.stopPropagation();
 
             const recipeId = $icon.dataset.id;
             const isLogin = document.body.dataset.isLogin === "true";
+            const isBookmarked =
+                ($icon.dataset.bookmarked || "N").toUpperCase() === "Y";
 
-            async function toggleBookmark(isBookmarked) {
-                if (isProcessing) {
-                    return;
-                }
-                isProcessing = true;
+            if (!isLogin) {
+                window.location.href = "/user/login";
+                return;
+            }
 
-                if (!isLogin) {
-                    window.location.href = "/user/login";
-                    return;
-                }
+            if ($icon.dataset.processing === "Y") {
+                return;
+            }
 
+            $icon.dataset.processing = "Y";
+
+            try {
                 const apiCall = isBookmarked
                     ? apiUtil.delete(apiUtil.url.RECIPE.BOOKMARK(recipeId))
                     : apiUtil.post(apiUtil.url.RECIPE.BOOKMARK(recipeId), {});
 
-                try {
-                    const data = await apiCall;
+                const data = await apiCall;
 
-                    if (data.code !== responseCode.SUCCESS) {
-                        console.error(log.BOOKMARK_RECIPE_FAILED, data.message);
-                        return;
-                    }
-
-                    if (isBookmarked) {
-                        $icon.src = "/images/unBookmark.png";
-                        $icon.dataset.bookmarked = "N";
-                    } else {
-                        $icon.src = "/images/bookmark.png";
-                        $icon.dataset.bookmarked = "Y";
-                    }
-
-                } catch (e) {
-                    console.error(log.BOOKMARK_RECIPE_FAILED, e);
-
-                } finally {
-                    isProcessing = false;
+                if (data.code !== responseCode.SUCCESS) {
+                    console.error(log.BOOKMARK_RECIPE_FAILED, data.message);
+                    return;
                 }
+
+                if (isBookmarked) {
+                    $icon.src = "/images/unBookmark.png";
+                    $icon.dataset.bookmarked = "N";
+                } else {
+                    $icon.src = "/images/bookmark.png";
+                    $icon.dataset.bookmarked = "Y";
+                }
+
+            } catch (e) {
+                console.error(log.BOOKMARK_RECIPE_FAILED, e);
+            } finally {
+                $icon.dataset.processing = "N";
             }
-
-            $icon.addEventListener("click", e => {
-                e.stopPropagation();
-
-                const isBookmarked = ($icon.dataset.bookmarked || "N").toUpperCase() === "Y";
-
-                toggleBookmark(isBookmarked);
-            });
         });
     }
+
 };
 
 async function handleWriteRecipe() {

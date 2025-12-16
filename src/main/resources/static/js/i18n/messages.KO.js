@@ -238,10 +238,17 @@ export default {
                 }
             },
 
+            recent_summary: {
+                title: "최근에 본 레시피를 다시봐요!",
+                desc: "가장 최근에 본 레시피 30개를 보여줘요!"
+            },
+
             upload_summary: "지금까지 {{count}}개의 레시피를 작성했어요!",
             like_summary: "총 {{count}}개의 좋아요를 받았어요!",
             draft_summary: "지금까지 {{count}}개의 레시피가 작성중이에요!",
-            draft_limit: "레시피는 최대 10개까지 임시저장 가능해요."
+            draft_limit: "레시피는 최대 10개까지 임시저장 가능해요.",
+            bookmark_summary: "{{count}}개의 레시피를 즐겨찾기 했어요!",
+            bookmark_limit: "즐겨찾기를 해서 원하는 레시피를 다시 볼 수 있어요."
         },
 
         recipe: {

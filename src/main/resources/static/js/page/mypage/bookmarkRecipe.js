@@ -1,35 +1,35 @@
 import { applyI18nTexts, loadLanguageFile } from "/js/i18n/i18n.js";
 import { recipeUtil } from "/js/common/recipeUtil.js";
-import { apiUtil } from "/js/common/apiUtil.js";
 import { myRecipeUtil } from "/js/page/mypage/myRecipeUtil.js";
+import { apiUtil } from "/js/common/apiUtil.js";
 
-document.addEventListener("DOMContentLoaded", initUploadRecipe);
+document.addEventListener("DOMContentLoaded", initBookmarkRecipe);
 
-async function initUploadRecipe() {
+async function initBookmarkRecipe() {
     await loadLanguageFile();
     applyI18nTexts();
 
     myRecipeUtil.initCardClick({
-        ignoreSelectors: [".like-button-area", ".recipe-delete-btn"],
+        ignoreSelectors: [".like-button-area", ".bookmark-icon"],
         onCardClick: ($card) => {
             location.href = `/home/recipe/${$card.dataset.id}`;
         }
     });
 
     myRecipeUtil.initInfiniteScroll({
-        apiUrl: apiUtil.url.RECIPE.UPLOAD_RECIPES,
+        apiUrl: apiUtil.url.RECIPE.BOOKMARK_RECIPES,
         buildCard: recipe =>
             myRecipeUtil.buildRecipeCard(recipe, {
-                showDelete: true
+                showBookmark: true
             }),
         afterAppend: () => {
+            recipeUtil.initBookmarkButton();
             recipeUtil.initLikeButton();
         }
     });
 
-    myRecipeUtil.initDeleteButton();
-    myRecipeUtil.initEmptyWriteButton();
-    recipeUtil.initLikeButton();
+    recipeUtil.initBookmarkButton();
     recipeUtil.initScrollTopButton();
     recipeUtil.initWriteButton();
+    recipeUtil.initLikeButton();
 }

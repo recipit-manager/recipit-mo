@@ -48,4 +48,23 @@ public class MyPageController {
 
         return mv;
     }
+
+    @GetMapping("/list/recent")
+    public ModelAndView initRecentRecipePage(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView("/mypage/list/recent");
+
+        mv.addObject("recentRecipes", recipeApi.getUserRecentRecipes(request));
+
+        return mv;
+    }
+
+    @GetMapping("/list/bookmark")
+    public ModelAndView initRecentBookmarkPage(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView("/mypage/list/bookmark");
+
+        mv.addObject("bookmarkCount", recipeApi.getUserBookmarkRecipeCount(request).orElse(0));
+        mv.addObject("recentRecipes", recipeApi.getUserBookmarkRecipes(request, 1, 10));
+
+        return mv;
+    }
 }

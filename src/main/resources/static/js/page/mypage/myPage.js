@@ -23,10 +23,10 @@ function initButtonEvents() {
     });
 
     document.getElementById("btn-recentView").addEventListener("click", () => {
-        alert("개발 진행중입니다. (최근 열람 목록 이동)");
+        location.href = "/mypage/list/recent";
     });
 
     document.getElementById("btn-bookmarkRecipe").addEventListener("click", () => {
-        alert("개발 진행중입니다. (즐겨찾기 레시피 이동)");
+        location.href = "/mypage/list/bookmark";
     });
 }
