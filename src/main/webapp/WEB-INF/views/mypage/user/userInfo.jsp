@@ -70,7 +70,7 @@
         </div>
 
         <div class="info-block">
-            <span class="info-label" data-i18n="ui.myPage.userInfo.phoneNubmer"></span>
+            <span class="info-label" data-i18n="ui.myPage.userInfo.phoneNumber"></span>
             <span class="info-value">
                 (<c:out value="${userInfo.countryCode}" />)
                 <c:out value="${userInfo.phoneNumber}" />
