@@ -15,11 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
         showNoticeDot();
     }
 
-    const $logoutButton = document.getElementById("logoutButton");
-    if ($logoutButton) {
-        $logoutButton.addEventListener("click", logout);
-    }
-
     initLanguageSelect();
 
     const $languageSelect = document.getElementById("languageSelect");
@@ -36,31 +31,18 @@ window.addEventListener("pageshow", (event) => {
     initLanguageSelect();
 });
 
+window.addEventListener("close-socket", () => {
+    if (socket) {
+        socket.close();
+        socket = null;
+    }
+});
+
 function initLanguageSelect() {
     const $languageSelect = document.getElementById("languageSelect");
 
     if ($languageSelect) {
         $languageSelect.value = localStorage.getItem("language") || "KO";
-    }
-}
-
-//TODO : 테스트용 로그아웃 - 추후 삭제
-async function logout() {
-    try {
-        const response = await apiUtil.request(apiUtil.url.USER.LOGOUT, {
-            method: "DELETE"
-        });
-
-        if (response.code === responseCode.SUCCESS) {
-            sessionStorage.removeItem("keepLogin");
-
-            socket.close();
-            socket = null;
-
-            window.location.href = "/user/login";
-        }
-    } catch (err) {
-        console.error(log.LOGOUT_FAILED, err);
     }
 }
 

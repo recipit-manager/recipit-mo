@@ -1,0 +1,147 @@
+.userInfo-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 100px 16px 140px;
+    box-sizing: border-box;
+}
+
+.user-info-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.user-info-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+.info-block {
+    padding: 14px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.info-block:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    display: block;
+    font-size: 12px;
+    color: #777777;
+    margin-bottom: 6px;
+}
+
+.info-value {
+    display: block;
+    font-size: 15px;
+    color: #111111;
+    font-weight: 500;
+}
+
+.editable-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.icon-button img {
+    width: 18px;
+    height: 18px;
+}
+
+.password-area {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 20px;
+}
+
+.password-change-button {
+    width: 150px;
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    background-color: #ffffff;
+    font-size: 13px;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 24px 1fr 24px;
+    align-items: center;
+}
+
+.password-change-button .action-button-left img {
+    width: 16px;
+    height: 16px;
+}
+
+.action-section {
+    margin-top: 24px;
+}
+
+.action-button {
+    width: 100%;
+    min-height: 52px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+    font-size: 15px;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 32px 1fr 32px;
+    align-items: center;
+}
+
+.action-button-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.action-button-center {
+    text-align: center;
+    width: 100%;
+}
+
+.action-button-right {
+    display: block;
+}
+
+.action-button-left img {
+    width: 35px;
+    height: 35px;
+}
+
+.action-button span {
+    text-align: center;
+    width: 100%;
+}
+
+.logout-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 16px calc(env(safe-area-inset-bottom) + 12px);
+    background-color: #ffffff;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.logout-button {
+    border-color: #d32f2f;
+    font-weight: 600;
+}
+
+.logout-button:hover {
+    background-color: #fff5f5;
+}

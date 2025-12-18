@@ -248,7 +248,19 @@ export default {
             draft_summary: "지금까지 {{count}}개의 레시피가 작성중이에요!",
             draft_limit: "레시피는 최대 10개까지 임시저장 가능해요.",
             bookmark_summary: "{{count}}개의 레시피를 즐겨찾기 했어요!",
-            bookmark_limit: "즐겨찾기를 해서 원하는 레시피를 다시 볼 수 있어요."
+            bookmark_limit: "즐겨찾기를 해서 원하는 레시피를 다시 볼 수 있어요.",
+
+            userInfo: {
+                title : "내 정보",
+                section_title: "회원 정보 관리",
+                email: "이메일",
+                nickname: "닉네임",
+                name: "이름",
+                phoneNumber: "전화번호",
+                change_password: "비밀번호 변경",
+                set_preference: "선호 요리 설정",
+                logout : "로그아웃"
+            }
         },
 
         recipe: {
