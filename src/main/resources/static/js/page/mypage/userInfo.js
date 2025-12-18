@@ -26,7 +26,7 @@ async function setUserInfoEvents() {
     });
 
     $preferenceButton.addEventListener("click", function () {
-        alert("개발 진행중입니다");
+        location.href = "/mypage/user/preference";
     });
 
     $logoutButton.addEventListener("click", async function () {

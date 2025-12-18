@@ -16,6 +16,7 @@ export const log = {
     BOOKMARK_RECIPE_FAILED: "Bookmark recipe failed:",
     REPORT_RECIPE_FAILED: "Report recipe failed:",
     RECIPE_DELETE_FAILED: "Recipe delete failed:",
+    PREFERENCES_UPDATE_FAILED: "Preferences update failed:",
 };
 
 export const responseCode = {

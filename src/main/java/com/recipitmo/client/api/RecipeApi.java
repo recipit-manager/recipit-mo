@@ -5,6 +5,7 @@ import com.recipitmo.dto.ApiResponse;
 import com.recipitmo.dto.BookmarkRecipeDto;
 import com.recipitmo.dto.IngredientCategoryDto;
 import com.recipitmo.dto.PopularRecipeDto;
+import com.recipitmo.dto.PreferCategoryDto;
 import com.recipitmo.dto.RecipeDetailDto;
 import com.recipitmo.dto.SearchRecipeDto;
 import com.recipitmo.dto.UserDraftRecipeDto;
@@ -269,6 +270,23 @@ public class RecipeApi {
             }
         } catch (IOException e) {
             log.error("Failed to load user Bookmark recipe list", e);
+        }
+
+        return Collections.emptyList();
+    }
+
+    public List<PreferCategoryDto> getPreferCategoryList(HttpServletRequest request) {
+        try {
+            Response<ApiResponse<List<PreferCategoryDto>>> response =
+                    recipeService.getPreferenceCategoryList(request.getHeader("Cookie")).execute();
+
+            if (response.isSuccessful() && response.body() != null) {
+                return response.body().getData();
+            } else {
+                log.error("Failed to load user PreferCategory list: HTTP {}", response.code());
+            }
+        } catch (IOException e) {
+            log.error("Failed to load user PreferCategory list", e);
         }
 
         return Collections.emptyList();
