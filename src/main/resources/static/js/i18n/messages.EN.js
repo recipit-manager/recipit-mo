@@ -267,7 +267,10 @@ export default {
                 guide_title: "How it works",
                 guide_desc: "Choose like or dislike for each cooking category.\nYour preferences will be used for future recommendations.",
                 update_fail: "Failed to update cooking preferences.",
-                server_error: "A server communication error has occurred."
+                server_error: "A server communication error has occurred.",
+                set_like: "Set as preferred cooking category.",
+                set_normal: "Set as neutral cooking category.",
+                set_dislike: "Set as disliked cooking category."
             }
         },
 

@@ -37,6 +37,7 @@ function bindPreferenceEvents() {
 
                     if (response.code === responseCode.SUCCESS) {
                         renderState($card, statusCode);
+                        alert(getPreferenceChangeMessage(statusCode));
                         return;
                     }
 
@@ -84,4 +85,16 @@ function renderState($card, statusCode) {
         $card.classList.add("selected-dislike");
         $card.querySelector('[data-status-code="RF03"]').classList.add("active-dislike");
     }
+}
+
+function getPreferenceChangeMessage(statusCode) {
+    if (statusCode === "RF01") {
+        return translate("ui.myPage.preference.set_like");
+    } else if (statusCode === "RF02") {
+        return translate("ui.myPage.preference.set_normal");
+    } else if (statusCode === "RF03") {
+        return translate("ui.myPage.preference.set_dislike");
+    }
+
+    return null;
 }
