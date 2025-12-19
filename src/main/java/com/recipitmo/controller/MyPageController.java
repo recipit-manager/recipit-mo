@@ -19,6 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("/mypage")
 public class MyPageController {
+    private final CommonApi commonApi = new CommonApi();
     private final RecipeApi recipeApi = new RecipeApi();
     private final UserApi userApi = new UserApi();
 
@@ -84,6 +85,15 @@ public class MyPageController {
             mv.addObject("userInfo", userInfoOpt.get());
             return mv;
         }
+
+        return mv;
+    }
+
+    @GetMapping("/user/preference")
+    public ModelAndView initPreferencePage(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView("/mypage/user/preference");
+
+        mv.addObject("preferCategory", recipeApi.getPreferCategoryList(request));
 
         return mv;
     }

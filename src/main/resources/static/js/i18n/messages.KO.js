@@ -260,6 +260,17 @@ export default {
                 change_password: "비밀번호 변경",
                 set_preference: "선호 요리 설정",
                 logout : "로그아웃"
+            },
+
+            preference: {
+                title: "선호 요리 설정",
+                guide_title: "설정 안내",
+                guide_desc: "각 요리 카테고리에 좋아요 또는 싫어요를 선택하세요.\n선택한 항목은 이후 요리 추천에 반영됩니다.",
+                update_fail: "선호 요리 설정 변경에 실패했습니다.",
+                server_error: "서버 통신 중 오류가 발생했습니다.",
+                set_like: "선호 요리로 설정하였습니다.",
+                set_normal: "일반 선호 요리로 설정하였습니다.",
+                set_dislike: "비선호 요리로 설정하였습니다."
             }
         },
 

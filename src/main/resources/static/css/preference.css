@@ -1,0 +1,130 @@
+html, body {
+    overflow-x: hidden;
+}
+
+.preference-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 100px 16px 120px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.preference-guide {
+    margin-bottom: 20px;
+}
+
+.guide-box {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 14px;
+    background-color: #f8f8f8;
+    box-sizing: border-box;
+}
+
+.guide-box img {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.guide-text strong {
+    font-size: 14px;
+}
+
+.guide-text p {
+    font-size: 12px;
+    color: #555555;
+    margin-top: 4px;
+}
+
+.preference-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.preference-card {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 16px;
+    border: 1px solid #dddddd;
+    padding: 14px 8px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card-icon img {
+    width: 40px;
+    height: 40px;
+    max-width: 100%;
+}
+
+.card-name {
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    word-break: keep-all;
+}
+
+.card-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 6px;
+}
+
+.preference-action {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    min-height: 26px;
+
+    border-radius: 50%;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+.preference-action img {
+    width: 15px;
+    height: 15px;
+    max-width: 100%;
+}
+
+.preference-card.selected-like {
+    background-color: #e9f6ea;
+    border-color: #5fbf7f;
+}
+
+.preference-card.selected-dislike {
+    background-color: #fdeaea;
+    border-color: #e57373;
+}
+
+.preference-error-message {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #e53935;
+    color: #e53935;
+    font-size: 13px;
+    text-align: center;
+}
+
+.preference-card.is-loading {
+    opacity: 0.6;
+    pointer-events: none;
+}

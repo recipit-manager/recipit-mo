@@ -3,6 +3,7 @@ package com.recipitmo.service;
 import com.recipitmo.dto.ApiResponse;
 import com.recipitmo.dto.BookmarkRecipeDto;
 import com.recipitmo.dto.PopularRecipeDto;
+import com.recipitmo.dto.PreferCategoryDto;
 import com.recipitmo.dto.RecipeDetailDto;
 import com.recipitmo.dto.SearchRecipeDto;
 import com.recipitmo.dto.UserDraftRecipeDto;
@@ -88,5 +89,10 @@ public interface RecipeService {
             @Header("Cookie") String cookie,
             @Query("page") int page,
             @Query("size") int size
+    );
+
+    @GET("/recipe/preference-category/list")
+    Call<ApiResponse<List<PreferCategoryDto>>> getPreferenceCategoryList(
+            @Header("Cookie") String cookie
     );
 }

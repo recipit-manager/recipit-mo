@@ -31,6 +31,7 @@ export const apiUtil = {
             UPLOAD_RECIPES: "/recipe/list",
             DELETE: (recipeNo) => `/recipe/${recipeNo}`,
             BOOKMARK_RECIPES: "/recipe/bookmark/list",
+            PREFERENCE_CATEGORY_STATUS: "/recipe/preference-category/status"
         },
         REFRI: {
             AUTO_COMPLETE: "/refri-item/ingredient/auto-complete",
