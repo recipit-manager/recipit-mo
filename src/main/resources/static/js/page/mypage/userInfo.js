@@ -288,6 +288,7 @@ function setPasswordEditEvents() {
 
 function openPasswordModal() {
     document.getElementById("passwordEditModal").classList.remove("hidden");
+    resetPasswordModal();
 
     const $ruleBox = document.getElementById("passwordRuleBox");
     if ($ruleBox) {
@@ -321,4 +322,14 @@ async function changePassword(currentPassword, newPassword) {
     } catch (e) {
         console.log(log.PASSWORD_UPDATE_FAILED, e);
     }
+}
+
+function resetPasswordModal() {
+    document.getElementById("currentPassword").value = "";
+    document.getElementById("newPassword").value = "";
+    document.getElementById("confirmPassword").value = "";
+
+    uiUtil.clearMsg(document.getElementById("currentPasswordMessage"));
+    uiUtil.clearMsg(document.getElementById("newPasswordMessage"));
+    uiUtil.clearMsg(document.getElementById("confirmPasswordMessage"));
 }
