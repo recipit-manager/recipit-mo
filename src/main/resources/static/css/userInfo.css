@@ -145,3 +145,224 @@
 .logout-button:hover {
     background-color: #fff5f5;
 }
+
+.nickname-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nickname-modal.hidden {
+    display: none;
+}
+
+.nickname-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.nickname-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 360px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+}
+
+.nickname-modal-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.nickname-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 8px;
+}
+
+.nickname-modal-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.nickname-label {
+    display: block;
+    font-size: 13px;
+    color: #666666;
+    margin-bottom: 6px;
+}
+
+.nickname-input-row {
+    display: flex;
+    gap: 8px;
+}
+
+.nickname-input-row input {
+    flex: 1;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.nickname-input-row input:focus {
+    outline: none;
+    border-color: #000000;
+}
+
+.nickname-message {
+    margin-top: 8px;
+    font-size: 12px;
+    min-height: 16px;
+}
+
+.nickname-modal-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.nickname-modal-footer button {
+    flex: 1;
+}
+
+.nickname-input-row button {
+    min-width: 84px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+}
+
+.nickname-input-row button:hover {
+    background-color: #f5f5f5;
+}
+
+.nickname-modal-footer button {
+    height: 42px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nickname-modal-footer .gray {
+    border: 1px solid #cccccc;
+    background-color: #f7f7f7;
+    color: #555555;
+}
+
+.nickname-modal-footer .gray:hover {
+    background-color: #eeeeee;
+}
+
+.nickname-modal-footer button:not(.gray) {
+    border: none;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.nickname-modal-footer button:not(.gray):hover {
+    background-color: #222222;
+}
+
+.password-input-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.password-input-row input {
+    flex: 1;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.password-rule-box {
+    margin: 10px 0 14px;
+    padding-left: 18px;
+    font-size: 12px;
+    color: #555555;
+}
+
+.password-rule-box li {
+    list-style: disc;
+    margin-bottom: 4px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.password-label-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.password-label-row .icon-btn {
+    padding: 0;
+}
+
+.password-label-row img {
+    width: 16px;
+    height: 16px;
+}
+
+.rule-anchor {
+    position: relative;
+}
+
+.password-rule-tooltip {
+    position: absolute;
+    top: 28px;
+    right: 0;
+
+    width: 260px;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding: 12px 14px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    z-index: 3000;
+
+    font-size: 12px;
+    color: #555555;
+}
+
+.password-rule-tooltip ul {
+    padding-left: 16px;
+    margin: 0;
+}
+
+.password-rule-tooltip li {
+    list-style: disc;
+    margin-bottom: 6px;
+}
+
+.password-rule-tooltip.hidden {
+    display: none;
+}

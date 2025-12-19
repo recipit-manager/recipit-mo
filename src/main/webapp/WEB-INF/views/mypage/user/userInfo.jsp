@@ -110,6 +110,102 @@
     </button>
 </div>
 
+<div id="nicknameEditModal" class="nickname-modal hidden">
+
+    <div class="nickname-modal-backdrop"></div>
+
+    <div class="nickname-modal-content">
+        <div class="nickname-modal-header">
+            <img src="/images/user.png" class="nickname-icon"/>
+            <h3 data-i18n="ui.myPage.nickname.change.title"></h3>
+        </div>
+
+        <div class="nickname-modal-body">
+
+            <label class="nickname-label" data-i18n="ui.myPage.nickname.label"></label>
+
+            <div class="nickname-input-row">
+                <input type="text" id="nicknameInput" maxlength="8" placeholder="2~8자"/>
+                <button type="button" id="nicknameDuplicateButton" class="btn-small" data-i18n="ui.myPage.nickname.duplicate_check">
+                </button>
+            </div>
+
+            <p id="nicknameMessage" class="nickname-message"></p>
+
+        </div>
+
+        <div class="nickname-modal-footer">
+            <button type="button" id="nicknameCancelButton" class="btn-small gray" data-i18n="ui.close"></button>
+            <button type="button" id="nicknameChangeButton" class="btn-small" data-i18n="ui.myPage.nickname.change.confirm"></button>
+        </div>
+    </div>
+
+</div>
+
+<div id="passwordEditModal" class="nickname-modal hidden">
+
+    <div class="nickname-modal-backdrop"></div>
+
+    <div class="nickname-modal-content">
+
+        <div class="nickname-modal-header">
+            <img src="/images/lock.png" class="nickname-icon"/>
+            <h3 data-i18n="ui.myPage.password.change.title"></h3>
+        </div>
+
+        <div class="nickname-modal-body">
+
+            <label class="nickname-label required"
+                   data-i18n="ui.myPage.password.current"></label>
+            <div class="password-input-row">
+                <input type="password" id="currentPassword"/>
+                <button type="button" class="icon-btn toggle-password" data-target="currentPassword">
+                    <img src="/images/eye.png">
+                </button>
+            </div>
+            <p class="nickname-message" id="currentPasswordMessage"></p>
+
+            <div class="password-label-row rule-anchor">
+                <label class="nickname-label required" data-i18n="ui.myPage.password.new"></label>
+
+                <button type="button" id="btnPasswordRuleInfo" class="icon-btn" aria-label="Password rules">
+                    <img src="/images/information.png">
+                </button>
+
+                <div class="password-rule-tooltip hidden"
+                     id="passwordRuleBox">
+                    <ul>
+                        <li data-i18n="ui.password_rule_1"></li>
+                        <li data-i18n="ui.password_rule_2"></li>
+                        <li data-i18n="ui.password_rule_3"></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="password-input-row">
+                <input type="password" id="newPassword"/>
+                <button type="button" class="icon-btn toggle-password" data-target="newPassword">
+                    <img src="/images/eye.png">
+                </button>
+            </div>
+            <p class="nickname-message" id="newPasswordMessage"></p>
+
+            <label class="nickname-label required" data-i18n="ui.myPage.password.confirm"></label>
+            <div class="password-input-row">
+                <input type="password" id="confirmPassword"/>
+            </div>
+            <p class="nickname-message" id="confirmPasswordMessage"></p>
+
+        </div>
+
+        <div class="nickname-modal-footer">
+            <button type="button" class="btn-small gray" id="passwordCancelButton" data-i18n="ui.close"></button>
+            <button type="button" class="btn-small" id="passwordChangeSubmitButton" data-i18n="ui.myPage.password.change.confirm"></button>
+        </div>
+
+    </div>
+</div>
+
 <script type="module" src="/js/common/header.js"></script>
 <script type="module" src="/js/page/mypage/userInfo.js"></script>
 </body>
