@@ -12,6 +12,8 @@ export default {
         already_used: "This nickname is already in use.",
         available: "This nickname is available.",
         bad_response: "Duplicate check response is invalid.",
+        duplicate_required: "Please complete the duplicate check.",
+        change_success: "Your nickname has been updated."
     },
     email: {
         input_required: "Please enter your email.",
@@ -271,6 +273,25 @@ export default {
                 set_like: "Set as preferred cooking category.",
                 set_normal: "Set as neutral cooking category.",
                 set_dislike: "Set as disliked cooking category."
+            },
+
+            nickname: {
+                change: {
+                    title: "Change Nickname",
+                    confirm: "Update"
+                },
+                label: "Nickname",
+                duplicate_check: "Check"
+            },
+
+            password: {
+                change: {
+                    title: "Change Password",
+                    confirm: "Change Password"
+                },
+                current: "Current Password",
+                new: "New Password",
+                confirm: "Confirm New Password"
             }
         },
 

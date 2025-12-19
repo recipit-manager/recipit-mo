@@ -9,6 +9,7 @@ export const apiUtil = {
         USER : {
             LOGIN: "/user/login",
             SIGN_UP: "/user",
+            NICKNAME: "/user/nickname",
             NICKNAME_DUPLICATE: (nickname) => `/user/nickname/${encodeURIComponent(nickname)}/duplicateYn`,
             EMAIL_SEND: "/user/email/authentication",
             EMAIL_VERIFY: (code, email) =>
@@ -18,6 +19,7 @@ export const apiUtil = {
             FIND_ID: "/user/id",
             FIND_PASSWORD: "/user/password/temporary",
             NOTICE_READ: "/user/notification/list/read",
+            PASSWORD:"/user/password"
         },
         RECIPE : {
             LIKE: (recipeNo) => `/recipe/${recipeNo}/like`,

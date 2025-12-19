@@ -12,6 +12,8 @@ export default {
         already_used: "이미 사용중인 닉네임입니다.",
         available: "사용 가능한 닉네임입니다.",
         bad_response: "중복확인 응답이 올바르지 않습니다.",
+        duplicate_required: "닉네임 중복확인을 진행해주세요.",
+        change_success: "닉네임이 변경되었습니다."
     },
     email: {
         input_required: "이메일을 입력해주세요.",
@@ -271,6 +273,25 @@ export default {
                 set_like: "선호 요리로 설정하였습니다.",
                 set_normal: "일반 선호 요리로 설정하였습니다.",
                 set_dislike: "비선호 요리로 설정하였습니다."
+            },
+
+            nickname: {
+                change: {
+                    title: "닉네임 변경",
+                    confirm: "닉네임 변경"
+                },
+                label: "닉네임",
+                duplicate_check: "중복확인"
+            },
+
+            password: {
+                change: {
+                    title: "비밀번호 변경",
+                    confirm: "비밀번호 변경"
+                },
+                current: "현재 비밀번호",
+                new: "새 비밀번호",
+                confirm: "새 비밀번호 확인"
             }
         },
 

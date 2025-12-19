@@ -17,6 +17,8 @@ export const log = {
     REPORT_RECIPE_FAILED: "Report recipe failed:",
     RECIPE_DELETE_FAILED: "Recipe delete failed:",
     PREFERENCES_UPDATE_FAILED: "Preferences update failed:",
+    NICKNAME_UPDATE_FAILED: "Nickname update failed:",
+    PASSWORD_UPDATE_FAILED: "Password update failed:",
 };
 
 export const responseCode = {
